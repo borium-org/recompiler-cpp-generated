@@ -11,12 +11,19 @@ namespace org::borium::javarecompiler
 			Object()
 			//				stack: empty
 			, mainClass(0) //
+					, ref_mainClass(mainClass) //
 					, classPaths(0) //
+					, ref_classPaths(classPaths) //
 					, dummy(0) //
+					, ref_dummy(dummy) //
 					, outputPath(0) //
+					, ref_outputPath(outputPath) //
 					, visualStudio(0) //
+					, ref_visualStudio(visualStudio) //
 					, processedClasses(0) //
+					, ref_processedClasses(processedClasses) //
 					, generatedClasses(0) //
+					, ref_generatedClasses(generatedClasses) //
 	{
 		// L0004:
 		//		aload 0

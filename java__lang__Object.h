@@ -14,6 +14,13 @@ namespace java::lang
 	{
 
 	};
+
+	template<class T>
+	class CountedReference
+	{
+public:
+		CountedReference(T & pointer);
+	};
 }
 
 #endif
