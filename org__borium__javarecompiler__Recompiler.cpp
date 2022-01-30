@@ -6,7 +6,7 @@ namespace org::borium::javarecompiler
 	Recompiler::Recompiler() :
 			// L0000:
 			//			aload 0
-			//				stack[0]=org::borium::javarecompiler::Recompiler-this
+			//				stack[0]: org::borium::javarecompiler::Recompiler=this
 			//			invokespecial java.lang.Object.<init>
 			Object()
 			//				stack: empty
@@ -27,54 +27,55 @@ namespace org::borium::javarecompiler
 	{
 		// L0004:
 		//		aload 0
-		//				stack[0]=org::borium::javarecompiler::Recompiler-this
+		//				stack[0]: org::borium::javarecompiler::Recompiler=this
 		//		new java.util.ArrayList
-		//				stack[0]=org::borium::javarecompiler::Recompiler-this
-		//				stack[1]=ArrayList*-new
+		//				stack[0]: org::borium::javarecompiler::Recompiler=this
+		//				stack[1]: ArrayList*=new
 		//		dup
-		//				stack[0]=org::borium::javarecompiler::Recompiler-this
-		//				stack[1]=ArrayList*-new
-		//				stack[2]=ArrayList*-new
+		//				stack[0]: org::borium::javarecompiler::Recompiler=this
+		//				stack[1]: ArrayList*=new
+		//				stack[2]: ArrayList*=new
 		//		invokespecial java.util.ArrayList.<init>
-		//				stack[0]=org::borium::javarecompiler::Recompiler-this
-		//				stack[1]=ArrayList*-new ArrayList()
-		//		putfield 28 classPaths
+		//				stack[0]: org::borium::javarecompiler::Recompiler=this
+		//				stack[1]: ArrayList*=new ArrayList()
+		//		putfield classPaths Ljava/util/ArrayList;
 		this->classPaths = new ArrayList<String*>();
 		//				stack: empty
 		// L000F:
 		//		aload 0
-		//				stack[0]=org::borium::javarecompiler::Recompiler-this
+		//				stack[0]: org::borium::javarecompiler::Recompiler=this
 		//		new java.util.HashMap
-		//				stack[0]=org::borium::javarecompiler::Recompiler-this
-		//				stack[1]=HashMap*-new
+		//				stack[0]: org::borium::javarecompiler::Recompiler=this
+		//				stack[1]: HashMap*=new
 		//		dup
-		//				stack[0]=org::borium::javarecompiler::Recompiler-this
-		//				stack[1]=HashMap*-new
-		//				stack[2]=HashMap*-new
+		//				stack[0]: org::borium::javarecompiler::Recompiler=this
+		//				stack[1]: HashMap*=new
+		//				stack[2]: HashMap*=new
 		//		invokespecial java.util.HashMap.<init>
-		//				stack[0]=org::borium::javarecompiler::Recompiler-this
-		//				stack[1]=HashMap*-new HashMap()
-		//		putfield 33 processedClasses
+		//				stack[0]: org::borium::javarecompiler::Recompiler=this
+		//				stack[1]: HashMap*=new HashMap()
+		//		putfield processedClasses Ljava/util/HashMap;
 		this->processedClasses = new HashMap<String*, ClassFile*>();
 		//				stack: empty
 		// L001A:
 		//		aload 0
-		//				stack[0]=org::borium::javarecompiler::Recompiler-this
+		//				stack[0]: org::borium::javarecompiler::Recompiler=this
 		//		new java.util.ArrayList
-		//				stack[0]=org::borium::javarecompiler::Recompiler-this
-		//				stack[1]=ArrayList*-new
+		//				stack[0]: org::borium::javarecompiler::Recompiler=this
+		//				stack[1]: ArrayList*=new
 		//		dup
-		//				stack[0]=org::borium::javarecompiler::Recompiler-this
-		//				stack[1]=ArrayList*-new
-		//				stack[2]=ArrayList*-new
+		//				stack[0]: org::borium::javarecompiler::Recompiler=this
+		//				stack[1]: ArrayList*=new
+		//				stack[2]: ArrayList*=new
 		//		invokespecial java.util.ArrayList.<init>
-		//				stack[0]=org::borium::javarecompiler::Recompiler-this
-		//				stack[1]=ArrayList*-new ArrayList()
-		//		putfield 35 generatedClasses
+		//				stack[0]: org::borium::javarecompiler::Recompiler=this
+		//				stack[1]: ArrayList*=new ArrayList()
+		//		putfield generatedClasses Ljava/util/ArrayList;
 		this->generatedClasses = new ArrayList<CppClass*>();
 		//				stack: empty
 		// L0025:
 		//		return
+		return;
 		//				stack: empty
 	}
 
@@ -82,9 +83,9 @@ namespace org::borium::javarecompiler
 	{
 		// L0000:
 		//		aload 0
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
+		//				stack[0]: JavaArray<java::lang::String*>*=param0
 		//		arraylength
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
+		//				stack[0]: int=param0->length
 		//		ifne L0035
 		//				stack[0]=JavaArray<java::lang::String*>*-param0
 		// L0005:

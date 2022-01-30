@@ -12,14 +12,15 @@ namespace java::lang
 	template<class T>
 	class JavaArray
 	{
-
+	public:
+		int length;
 	};
 
 	template<class T>
 	class CountedReference
 	{
-public:
-		CountedReference(T & pointer);
+	public:
+		CountedReference(T &pointer);
 	};
 }
 
