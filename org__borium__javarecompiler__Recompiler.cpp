@@ -236,6 +236,27 @@ namespace org::borium::javarecompiler
 		//		iconst 0
 		//				stack[0]: int=0
 		//		istore 2
+		int local2 = 0;
+		//				stack: empty
+		L003F:
+		//		goto L00F1
+		goto L00F1;
+		//				stack: empty
+		L0042:
+		//		aload 0
+		//				stack[0]: JavaArray<String*>*=param0
+		//		iload 2
+		//				stack[0]: JavaArray<String*>*=param0
+		//				stack[1]: int=local2
+		//		aaload
+		//				stack[0]: String*=param0[local2]
+		//		dup
+		//				stack[0]: String*=param0[local2]
+		//				stack[1]: String*=param0[local2]
+		//		astore 3
+		String* local3 = param0[local2];
+		//				stack[0]: String*=param0[local2]
+		//		invokevirtual java.lang.String.hashCode
 		{
 		}
 	}
