@@ -14,7 +14,8 @@ namespace java::lang
 	{
 	public:
 		JavaArray(int);
-		void assignString(int index, const char * value);
+		void assignString(int index, const char *value);
+		T get(int index);
 		int length;
 	};
 
