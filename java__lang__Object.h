@@ -13,6 +13,8 @@ namespace java::lang
 	class JavaArray
 	{
 	public:
+		JavaArray(int);
+		void assignString(int index, char * value);
 		int length;
 	};
 

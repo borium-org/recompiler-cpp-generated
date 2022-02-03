@@ -25,7 +25,7 @@ namespace org::borium::javarecompiler
 					, generatedClasses(0) //
 					, ref_generatedClasses(generatedClasses) //
 	{
-		// L0004:
+		L0004:
 		//		aload 0
 		//				stack[0]: org::borium::javarecompiler::Recompiler=this
 		//		new java.util.ArrayList
@@ -41,7 +41,7 @@ namespace org::borium::javarecompiler
 		//		putfield classPaths Ljava/util/ArrayList;
 		this->classPaths = new ArrayList<String*>();
 		//				stack: empty
-		// L000F:
+		L000F:
 		//		aload 0
 		//				stack[0]: org::borium::javarecompiler::Recompiler=this
 		//		new java.util.HashMap
@@ -57,7 +57,7 @@ namespace org::borium::javarecompiler
 		//		putfield processedClasses Ljava/util/HashMap;
 		this->processedClasses = new HashMap<String*, ClassFile*>();
 		//				stack: empty
-		// L001A:
+		L001A:
 		//		aload 0
 		//				stack[0]: org::borium::javarecompiler::Recompiler=this
 		//		new java.util.ArrayList
@@ -73,7 +73,7 @@ namespace org::borium::javarecompiler
 		//		putfield generatedClasses Ljava/util/ArrayList;
 		this->generatedClasses = new ArrayList<CppClass*>();
 		//				stack: empty
-		// L0025:
+		L0025:
 		//		return
 		return;
 		//				stack: empty
@@ -81,407 +81,162 @@ namespace org::borium::javarecompiler
 
 	void Recompiler::main(JavaArray<String*> *param0)
 	{
-		// L0000:
+		L0000:
 		//		aload 0
-		//				stack[0]: JavaArray<java::lang::String*>*=param0
+		//				stack[0]: JavaArray<String*>*=param0
 		//		arraylength
 		//				stack[0]: int=param0->length
 		//		ifne L0035
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		// L0005:
+		if ((param0->length) != 0)
+			goto L0035;
+		//				stack: empty
+		L0005:
 		//		bipush 8
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
+		//				stack[0]: int=8
 		//		anewarray java.lang.String
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//		dup
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//				stack[1]=JavaArray<java::lang::String*>*-param0
-		//		iconst 0
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//				stack[1]=JavaArray<java::lang::String*>*-param0
-		//		ldc "-classpath"
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//				stack[1]=JavaArray<java::lang::String*>*-param0
-		//		aastore
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//				stack[1]=JavaArray<java::lang::String*>*-param0
-		//		dup
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//				stack[1]=JavaArray<java::lang::String*>*-param0
-		//				stack[2]=JavaArray<java::lang::String*>*-param0
-		//		iconst 1
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//				stack[1]=JavaArray<java::lang::String*>*-param0
-		//				stack[2]=JavaArray<java::lang::String*>*-param0
-		//		ldc "bin"
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//				stack[1]=JavaArray<java::lang::String*>*-param0
-		//				stack[2]=JavaArray<java::lang::String*>*-param0
-		//		aastore
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//				stack[1]=JavaArray<java::lang::String*>*-param0
-		//				stack[2]=JavaArray<java::lang::String*>*-param0
-		//		dup
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//				stack[1]=JavaArray<java::lang::String*>*-param0
-		//				stack[2]=JavaArray<java::lang::String*>*-param0
-		//				stack[3]=JavaArray<java::lang::String*>*-param0
-		//		iconst 2
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//				stack[1]=JavaArray<java::lang::String*>*-param0
-		//				stack[2]=JavaArray<java::lang::String*>*-param0
-		//				stack[3]=JavaArray<java::lang::String*>*-param0
-		//		ldc "-outputpath"
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//				stack[1]=JavaArray<java::lang::String*>*-param0
-		//				stack[2]=JavaArray<java::lang::String*>*-param0
-		//				stack[3]=JavaArray<java::lang::String*>*-param0
-		//		aastore
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//				stack[1]=JavaArray<java::lang::String*>*-param0
-		//				stack[2]=JavaArray<java::lang::String*>*-param0
-		//				stack[3]=JavaArray<java::lang::String*>*-param0
-		//		dup
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//				stack[1]=JavaArray<java::lang::String*>*-param0
-		//				stack[2]=JavaArray<java::lang::String*>*-param0
-		//				stack[3]=JavaArray<java::lang::String*>*-param0
-		//				stack[4]=JavaArray<java::lang::String*>*-param0
-		//		iconst 3
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//				stack[1]=JavaArray<java::lang::String*>*-param0
-		//				stack[2]=JavaArray<java::lang::String*>*-param0
-		//				stack[3]=JavaArray<java::lang::String*>*-param0
-		//				stack[4]=JavaArray<java::lang::String*>*-param0
-		//		ldc "../JrcPortCpp"
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//				stack[1]=JavaArray<java::lang::String*>*-param0
-		//				stack[2]=JavaArray<java::lang::String*>*-param0
-		//				stack[3]=JavaArray<java::lang::String*>*-param0
-		//				stack[4]=JavaArray<java::lang::String*>*-param0
-		//		aastore
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//				stack[1]=JavaArray<java::lang::String*>*-param0
-		//				stack[2]=JavaArray<java::lang::String*>*-param0
-		//				stack[3]=JavaArray<java::lang::String*>*-param0
-		//				stack[4]=JavaArray<java::lang::String*>*-param0
-		//		dup
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//				stack[1]=JavaArray<java::lang::String*>*-param0
-		//				stack[2]=JavaArray<java::lang::String*>*-param0
-		//				stack[3]=JavaArray<java::lang::String*>*-param0
-		//				stack[4]=JavaArray<java::lang::String*>*-param0
-		//				stack[5]=JavaArray<java::lang::String*>*-param0
-		//		iconst 4
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//				stack[1]=JavaArray<java::lang::String*>*-param0
-		//				stack[2]=JavaArray<java::lang::String*>*-param0
-		//				stack[3]=JavaArray<java::lang::String*>*-param0
-		//				stack[4]=JavaArray<java::lang::String*>*-param0
-		//				stack[5]=JavaArray<java::lang::String*>*-param0
-		//		ldc "-mainclass"
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//				stack[1]=JavaArray<java::lang::String*>*-param0
-		//				stack[2]=JavaArray<java::lang::String*>*-param0
-		//				stack[3]=JavaArray<java::lang::String*>*-param0
-		//				stack[4]=JavaArray<java::lang::String*>*-param0
-		//				stack[5]=JavaArray<java::lang::String*>*-param0
-		//		aastore
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//				stack[1]=JavaArray<java::lang::String*>*-param0
-		//				stack[2]=JavaArray<java::lang::String*>*-param0
-		//				stack[3]=JavaArray<java::lang::String*>*-param0
-		//				stack[4]=JavaArray<java::lang::String*>*-param0
-		//				stack[5]=JavaArray<java::lang::String*>*-param0
-		//		dup
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//				stack[1]=JavaArray<java::lang::String*>*-param0
-		//				stack[2]=JavaArray<java::lang::String*>*-param0
-		//				stack[3]=JavaArray<java::lang::String*>*-param0
-		//				stack[4]=JavaArray<java::lang::String*>*-param0
-		//				stack[5]=JavaArray<java::lang::String*>*-param0
-		//				stack[6]=JavaArray<java::lang::String*>*-param0
-		//		iconst 5
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//				stack[1]=JavaArray<java::lang::String*>*-param0
-		//				stack[2]=JavaArray<java::lang::String*>*-param0
-		//				stack[3]=JavaArray<java::lang::String*>*-param0
-		//				stack[4]=JavaArray<java::lang::String*>*-param0
-		//				stack[5]=JavaArray<java::lang::String*>*-param0
-		//				stack[6]=JavaArray<java::lang::String*>*-param0
-		//		ldc "org.borium.javarecompiler.Recompiler"
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//				stack[1]=JavaArray<java::lang::String*>*-param0
-		//				stack[2]=JavaArray<java::lang::String*>*-param0
-		//				stack[3]=JavaArray<java::lang::String*>*-param0
-		//				stack[4]=JavaArray<java::lang::String*>*-param0
-		//				stack[5]=JavaArray<java::lang::String*>*-param0
-		//				stack[6]=JavaArray<java::lang::String*>*-param0
-		//		aastore
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//				stack[1]=JavaArray<java::lang::String*>*-param0
-		//				stack[2]=JavaArray<java::lang::String*>*-param0
-		//				stack[3]=JavaArray<java::lang::String*>*-param0
-		//				stack[4]=JavaArray<java::lang::String*>*-param0
-		//				stack[5]=JavaArray<java::lang::String*>*-param0
-		//				stack[6]=JavaArray<java::lang::String*>*-param0
-		//		dup
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//				stack[1]=JavaArray<java::lang::String*>*-param0
-		//				stack[2]=JavaArray<java::lang::String*>*-param0
-		//				stack[3]=JavaArray<java::lang::String*>*-param0
-		//				stack[4]=JavaArray<java::lang::String*>*-param0
-		//				stack[5]=JavaArray<java::lang::String*>*-param0
-		//				stack[6]=JavaArray<java::lang::String*>*-param0
-		//				stack[7]=JavaArray<java::lang::String*>*-param0
-		//		bipush 6
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//				stack[1]=JavaArray<java::lang::String*>*-param0
-		//				stack[2]=JavaArray<java::lang::String*>*-param0
-		//				stack[3]=JavaArray<java::lang::String*>*-param0
-		//				stack[4]=JavaArray<java::lang::String*>*-param0
-		//				stack[5]=JavaArray<java::lang::String*>*-param0
-		//				stack[6]=JavaArray<java::lang::String*>*-param0
-		//				stack[7]=JavaArray<java::lang::String*>*-param0
-		//		ldc "-vs"
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//				stack[1]=JavaArray<java::lang::String*>*-param0
-		//				stack[2]=JavaArray<java::lang::String*>*-param0
-		//				stack[3]=JavaArray<java::lang::String*>*-param0
-		//				stack[4]=JavaArray<java::lang::String*>*-param0
-		//				stack[5]=JavaArray<java::lang::String*>*-param0
-		//				stack[6]=JavaArray<java::lang::String*>*-param0
-		//				stack[7]=JavaArray<java::lang::String*>*-param0
-		//		aastore
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//				stack[1]=JavaArray<java::lang::String*>*-param0
-		//				stack[2]=JavaArray<java::lang::String*>*-param0
-		//				stack[3]=JavaArray<java::lang::String*>*-param0
-		//				stack[4]=JavaArray<java::lang::String*>*-param0
-		//				stack[5]=JavaArray<java::lang::String*>*-param0
-		//				stack[6]=JavaArray<java::lang::String*>*-param0
-		//				stack[7]=JavaArray<java::lang::String*>*-param0
-		//		dup
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//				stack[1]=JavaArray<java::lang::String*>*-param0
-		//				stack[2]=JavaArray<java::lang::String*>*-param0
-		//				stack[3]=JavaArray<java::lang::String*>*-param0
-		//				stack[4]=JavaArray<java::lang::String*>*-param0
-		//				stack[5]=JavaArray<java::lang::String*>*-param0
-		//				stack[6]=JavaArray<java::lang::String*>*-param0
-		//				stack[7]=JavaArray<java::lang::String*>*-param0
-		//				stack[8]=JavaArray<java::lang::String*>*-param0
-		//		bipush 7
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//				stack[1]=JavaArray<java::lang::String*>*-param0
-		//				stack[2]=JavaArray<java::lang::String*>*-param0
-		//				stack[3]=JavaArray<java::lang::String*>*-param0
-		//				stack[4]=JavaArray<java::lang::String*>*-param0
-		//				stack[5]=JavaArray<java::lang::String*>*-param0
-		//				stack[6]=JavaArray<java::lang::String*>*-param0
-		//				stack[7]=JavaArray<java::lang::String*>*-param0
-		//				stack[8]=JavaArray<java::lang::String*>*-param0
-		//		ldc "2005"
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//				stack[1]=JavaArray<java::lang::String*>*-param0
-		//				stack[2]=JavaArray<java::lang::String*>*-param0
-		//				stack[3]=JavaArray<java::lang::String*>*-param0
-		//				stack[4]=JavaArray<java::lang::String*>*-param0
-		//				stack[5]=JavaArray<java::lang::String*>*-param0
-		//				stack[6]=JavaArray<java::lang::String*>*-param0
-		//				stack[7]=JavaArray<java::lang::String*>*-param0
-		//				stack[8]=JavaArray<java::lang::String*>*-param0
-		//		aastore
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//				stack[1]=JavaArray<java::lang::String*>*-param0
-		//				stack[2]=JavaArray<java::lang::String*>*-param0
-		//				stack[3]=JavaArray<java::lang::String*>*-param0
-		//				stack[4]=JavaArray<java::lang::String*>*-param0
-		//				stack[5]=JavaArray<java::lang::String*>*-param0
-		//				stack[6]=JavaArray<java::lang::String*>*-param0
-		//				stack[7]=JavaArray<java::lang::String*>*-param0
-		//				stack[8]=JavaArray<java::lang::String*>*-param0
-		//		astore 0
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//				stack[1]=JavaArray<java::lang::String*>*-param0
-		//				stack[2]=JavaArray<java::lang::String*>*-param0
-		//				stack[3]=JavaArray<java::lang::String*>*-param0
-		//				stack[4]=JavaArray<java::lang::String*>*-param0
-		//				stack[5]=JavaArray<java::lang::String*>*-param0
-		//				stack[6]=JavaArray<java::lang::String*>*-param0
-		//				stack[7]=JavaArray<java::lang::String*>*-param0
-		//				stack[8]=JavaArray<java::lang::String*>*-param0
-		// L0035:
+		{
+			JavaArray<String*>* temp = new JavaArray<String*>(8);
+			//				stack[0]: JavaArray<String*>*=temp
+			//			dup
+			//				stack[0]: JavaArray<String*>*=temp
+			//				stack[1]: JavaArray<String*>*=temp
+			//			iconst 0
+			//				stack[0]: JavaArray<String*>*=temp
+			//				stack[1]: JavaArray<String*>*=temp
+			//				stack[2]: int=0
+			//			ldc "-classpath"
+			//				stack[0]: JavaArray<String*>*=temp
+			//				stack[1]: JavaArray<String*>*=temp
+			//				stack[2]: int=0
+			//				stack[3]: String *="-classpath"
+			//			aastore
+			temp->assignString(0, "-classpath");
+			//				stack[0]: JavaArray<String*>*=temp
+			//			dup
+			//				stack[0]: JavaArray<String*>*=temp
+			//				stack[1]: JavaArray<String*>*=temp
+			//			iconst 1
+			//				stack[0]: JavaArray<String*>*=temp
+			//				stack[1]: JavaArray<String*>*=temp
+			//				stack[2]: int=1
+			//			ldc "bin"
+			//				stack[0]: JavaArray<String*>*=temp
+			//				stack[1]: JavaArray<String*>*=temp
+			//				stack[2]: int=1
+			//				stack[3]: String *="bin"
+			//			aastore
+			temp->assignString(1, "bin");
+			//				stack[0]: JavaArray<String*>*=temp
+			//			dup
+			//				stack[0]: JavaArray<String*>*=temp
+			//				stack[1]: JavaArray<String*>*=temp
+			//			iconst 2
+			//				stack[0]: JavaArray<String*>*=temp
+			//				stack[1]: JavaArray<String*>*=temp
+			//				stack[2]: int=2
+			//			ldc "-outputpath"
+			//				stack[0]: JavaArray<String*>*=temp
+			//				stack[1]: JavaArray<String*>*=temp
+			//				stack[2]: int=2
+			//				stack[3]: String *="-outputpath"
+			//			aastore
+			temp->assignString(2, "-outputpath");
+			//				stack[0]: JavaArray<String*>*=temp
+			//			dup
+			//				stack[0]: JavaArray<String*>*=temp
+			//				stack[1]: JavaArray<String*>*=temp
+			//			iconst 3
+			//				stack[0]: JavaArray<String*>*=temp
+			//				stack[1]: JavaArray<String*>*=temp
+			//				stack[2]: int=3
+			//			ldc "../JrcPortCpp"
+			//				stack[0]: JavaArray<String*>*=temp
+			//				stack[1]: JavaArray<String*>*=temp
+			//				stack[2]: int=3
+			//				stack[3]: String *="../JrcPortCpp"
+			//			aastore
+			temp->assignString(3, "../JrcPortCpp");
+			//				stack[0]: JavaArray<String*>*=temp
+			//			dup
+			//				stack[0]: JavaArray<String*>*=temp
+			//				stack[1]: JavaArray<String*>*=temp
+			//			iconst 4
+			//				stack[0]: JavaArray<String*>*=temp
+			//				stack[1]: JavaArray<String*>*=temp
+			//				stack[2]: int=4
+			//			ldc "-mainclass"
+			//				stack[0]: JavaArray<String*>*=temp
+			//				stack[1]: JavaArray<String*>*=temp
+			//				stack[2]: int=4
+			//				stack[3]: String *="-mainclass"
+			//			aastore
+			temp->assignString(4, "-mainclass");
+			//				stack[0]: JavaArray<String*>*=temp
+			//			dup
+			//				stack[0]: JavaArray<String*>*=temp
+			//				stack[1]: JavaArray<String*>*=temp
+			//			iconst 5
+			//				stack[0]: JavaArray<String*>*=temp
+			//				stack[1]: JavaArray<String*>*=temp
+			//				stack[2]: int=5
+			//			ldc "org.borium.javarecompiler.Recompiler"
+			//				stack[0]: JavaArray<String*>*=temp
+			//				stack[1]: JavaArray<String*>*=temp
+			//				stack[2]: int=5
+			//				stack[3]: String *="org.borium.javarecompiler.Recompiler"
+			//			aastore
+			temp->assignString(5, "org.borium.javarecompiler.Recompiler");
+			//				stack[0]: JavaArray<String*>*=temp
+			//			dup
+			//				stack[0]: JavaArray<String*>*=temp
+			//				stack[1]: JavaArray<String*>*=temp
+			//			bipush 6
+			//				stack[0]: JavaArray<String*>*=temp
+			//				stack[1]: JavaArray<String*>*=temp
+			//				stack[2]: int=6
+			//			ldc "-vs"
+			//				stack[0]: JavaArray<String*>*=temp
+			//				stack[1]: JavaArray<String*>*=temp
+			//				stack[2]: int=6
+			//				stack[3]: String *="-vs"
+			//			aastore
+			temp->assignString(6, "-vs");
+			//				stack[0]: JavaArray<String*>*=temp
+			//			dup
+			//				stack[0]: JavaArray<String*>*=temp
+			//				stack[1]: JavaArray<String*>*=temp
+			//			bipush 7
+			//				stack[0]: JavaArray<String*>*=temp
+			//				stack[1]: JavaArray<String*>*=temp
+			//				stack[2]: int=7
+			//			ldc "2005"
+			//				stack[0]: JavaArray<String*>*=temp
+			//				stack[1]: JavaArray<String*>*=temp
+			//				stack[2]: int=7
+			//				stack[3]: String *="2005"
+			//			aastore
+			temp->assignString(7, "2005");
+			//				stack[0]: JavaArray<String*>*=temp
+			//			astore 0
+			param0 = temp;
+		}
+		//				stack: empty
+		L0035:
 		//		new org.borium.javarecompiler.Recompiler
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//				stack[1]=JavaArray<java::lang::String*>*-param0
-		//				stack[2]=JavaArray<java::lang::String*>*-param0
-		//				stack[3]=JavaArray<java::lang::String*>*-param0
-		//				stack[4]=JavaArray<java::lang::String*>*-param0
-		//				stack[5]=JavaArray<java::lang::String*>*-param0
-		//				stack[6]=JavaArray<java::lang::String*>*-param0
-		//				stack[7]=JavaArray<java::lang::String*>*-param0
-		//				stack[8]=JavaArray<java::lang::String*>*-param0
-		//				stack[9]=Recompiler*-new
+		//				stack[0]: Recompiler*=new
 		//		dup
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//				stack[1]=JavaArray<java::lang::String*>*-param0
-		//				stack[2]=JavaArray<java::lang::String*>*-param0
-		//				stack[3]=JavaArray<java::lang::String*>*-param0
-		//				stack[4]=JavaArray<java::lang::String*>*-param0
-		//				stack[5]=JavaArray<java::lang::String*>*-param0
-		//				stack[6]=JavaArray<java::lang::String*>*-param0
-		//				stack[7]=JavaArray<java::lang::String*>*-param0
-		//				stack[8]=JavaArray<java::lang::String*>*-param0
-		//				stack[9]=Recompiler*-new
-		//				stack[10]=Recompiler*-new
+		//				stack[0]: Recompiler*=new
+		//				stack[1]: Recompiler*=new
 		//		invokespecial org.borium.javarecompiler.Recompiler.<init>
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//				stack[1]=JavaArray<java::lang::String*>*-param0
-		//				stack[2]=JavaArray<java::lang::String*>*-param0
-		//				stack[3]=JavaArray<java::lang::String*>*-param0
-		//				stack[4]=JavaArray<java::lang::String*>*-param0
-		//				stack[5]=JavaArray<java::lang::String*>*-param0
-		//				stack[6]=JavaArray<java::lang::String*>*-param0
-		//				stack[7]=JavaArray<java::lang::String*>*-param0
-		//				stack[8]=JavaArray<java::lang::String*>*-param0
-		//				stack[9]=Recompiler*-new Recompiler()
+		//				stack[0]: Recompiler*=new Recompiler()
 		//		astore 1
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//				stack[1]=JavaArray<java::lang::String*>*-param0
-		//				stack[2]=JavaArray<java::lang::String*>*-param0
-		//				stack[3]=JavaArray<java::lang::String*>*-param0
-		//				stack[4]=JavaArray<java::lang::String*>*-param0
-		//				stack[5]=JavaArray<java::lang::String*>*-param0
-		//				stack[6]=JavaArray<java::lang::String*>*-param0
-		//				stack[7]=JavaArray<java::lang::String*>*-param0
-		//				stack[8]=JavaArray<java::lang::String*>*-param0
-		//				stack[9]=Recompiler*-new Recompiler()
-		// L003D:
+		Recompiler* local1 = new Recompiler();
+		//				stack: empty
+		L003D:
 		//		iconst 0
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//				stack[1]=JavaArray<java::lang::String*>*-param0
-		//				stack[2]=JavaArray<java::lang::String*>*-param0
-		//				stack[3]=JavaArray<java::lang::String*>*-param0
-		//				stack[4]=JavaArray<java::lang::String*>*-param0
-		//				stack[5]=JavaArray<java::lang::String*>*-param0
-		//				stack[6]=JavaArray<java::lang::String*>*-param0
-		//				stack[7]=JavaArray<java::lang::String*>*-param0
-		//				stack[8]=JavaArray<java::lang::String*>*-param0
-		//				stack[9]=Recompiler*-new Recompiler()
+		//				stack[0]: int=0
 		//		istore 2
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//				stack[1]=JavaArray<java::lang::String*>*-param0
-		//				stack[2]=JavaArray<java::lang::String*>*-param0
-		//				stack[3]=JavaArray<java::lang::String*>*-param0
-		//				stack[4]=JavaArray<java::lang::String*>*-param0
-		//				stack[5]=JavaArray<java::lang::String*>*-param0
-		//				stack[6]=JavaArray<java::lang::String*>*-param0
-		//				stack[7]=JavaArray<java::lang::String*>*-param0
-		//				stack[8]=JavaArray<java::lang::String*>*-param0
-		//				stack[9]=Recompiler*-new Recompiler()
-		// L003F:
-		//		goto L00F1
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//				stack[1]=JavaArray<java::lang::String*>*-param0
-		//				stack[2]=JavaArray<java::lang::String*>*-param0
-		//				stack[3]=JavaArray<java::lang::String*>*-param0
-		//				stack[4]=JavaArray<java::lang::String*>*-param0
-		//				stack[5]=JavaArray<java::lang::String*>*-param0
-		//				stack[6]=JavaArray<java::lang::String*>*-param0
-		//				stack[7]=JavaArray<java::lang::String*>*-param0
-		//				stack[8]=JavaArray<java::lang::String*>*-param0
-		//				stack[9]=Recompiler*-new Recompiler()
-		// L0042:
-		//		aload 0
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//				stack[1]=JavaArray<java::lang::String*>*-param0
-		//				stack[2]=JavaArray<java::lang::String*>*-param0
-		//				stack[3]=JavaArray<java::lang::String*>*-param0
-		//				stack[4]=JavaArray<java::lang::String*>*-param0
-		//				stack[5]=JavaArray<java::lang::String*>*-param0
-		//				stack[6]=JavaArray<java::lang::String*>*-param0
-		//				stack[7]=JavaArray<java::lang::String*>*-param0
-		//				stack[8]=JavaArray<java::lang::String*>*-param0
-		//				stack[9]=Recompiler*-new Recompiler()
-		//				stack[10]=JavaArray<java::lang::String*>*-param0
-		//		iload 2
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//				stack[1]=JavaArray<java::lang::String*>*-param0
-		//				stack[2]=JavaArray<java::lang::String*>*-param0
-		//				stack[3]=JavaArray<java::lang::String*>*-param0
-		//				stack[4]=JavaArray<java::lang::String*>*-param0
-		//				stack[5]=JavaArray<java::lang::String*>*-param0
-		//				stack[6]=JavaArray<java::lang::String*>*-param0
-		//				stack[7]=JavaArray<java::lang::String*>*-param0
-		//				stack[8]=JavaArray<java::lang::String*>*-param0
-		//				stack[9]=Recompiler*-new Recompiler()
-		//				stack[10]=JavaArray<java::lang::String*>*-param0
-		//		aaload
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//				stack[1]=JavaArray<java::lang::String*>*-param0
-		//				stack[2]=JavaArray<java::lang::String*>*-param0
-		//				stack[3]=JavaArray<java::lang::String*>*-param0
-		//				stack[4]=JavaArray<java::lang::String*>*-param0
-		//				stack[5]=JavaArray<java::lang::String*>*-param0
-		//				stack[6]=JavaArray<java::lang::String*>*-param0
-		//				stack[7]=JavaArray<java::lang::String*>*-param0
-		//				stack[8]=JavaArray<java::lang::String*>*-param0
-		//				stack[9]=Recompiler*-new Recompiler()
-		//				stack[10]=JavaArray<java::lang::String*>*-param0
-		//		dup
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//				stack[1]=JavaArray<java::lang::String*>*-param0
-		//				stack[2]=JavaArray<java::lang::String*>*-param0
-		//				stack[3]=JavaArray<java::lang::String*>*-param0
-		//				stack[4]=JavaArray<java::lang::String*>*-param0
-		//				stack[5]=JavaArray<java::lang::String*>*-param0
-		//				stack[6]=JavaArray<java::lang::String*>*-param0
-		//				stack[7]=JavaArray<java::lang::String*>*-param0
-		//				stack[8]=JavaArray<java::lang::String*>*-param0
-		//				stack[9]=Recompiler*-new Recompiler()
-		//				stack[10]=JavaArray<java::lang::String*>*-param0
-		//				stack[11]=JavaArray<java::lang::String*>*-param0
-		//		astore 3
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//				stack[1]=JavaArray<java::lang::String*>*-param0
-		//				stack[2]=JavaArray<java::lang::String*>*-param0
-		//				stack[3]=JavaArray<java::lang::String*>*-param0
-		//				stack[4]=JavaArray<java::lang::String*>*-param0
-		//				stack[5]=JavaArray<java::lang::String*>*-param0
-		//				stack[6]=JavaArray<java::lang::String*>*-param0
-		//				stack[7]=JavaArray<java::lang::String*>*-param0
-		//				stack[8]=JavaArray<java::lang::String*>*-param0
-		//				stack[9]=Recompiler*-new Recompiler()
-		//				stack[10]=JavaArray<java::lang::String*>*-param0
-		//				stack[11]=JavaArray<java::lang::String*>*-param0
-		//		invokevirtual java.lang.String.hashCode
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//				stack[1]=JavaArray<java::lang::String*>*-param0
-		//				stack[2]=JavaArray<java::lang::String*>*-param0
-		//				stack[3]=JavaArray<java::lang::String*>*-param0
-		//				stack[4]=JavaArray<java::lang::String*>*-param0
-		//				stack[5]=JavaArray<java::lang::String*>*-param0
-		//				stack[6]=JavaArray<java::lang::String*>*-param0
-		//				stack[7]=JavaArray<java::lang::String*>*-param0
-		//				stack[8]=JavaArray<java::lang::String*>*-param0
-		//				stack[9]=Recompiler*-new Recompiler()
-		//				stack[10]=JavaArray<java::lang::String*>*-param0
-		//				stack[11]=JavaArray<java::lang::String*>*-param0
-		//		lookupswitch 4 cases
-		//				stack[0]=JavaArray<java::lang::String*>*-param0
-		//				stack[1]=JavaArray<java::lang::String*>*-param0
-		//				stack[2]=JavaArray<java::lang::String*>*-param0
-		//				stack[3]=JavaArray<java::lang::String*>*-param0
-		//				stack[4]=JavaArray<java::lang::String*>*-param0
-		//				stack[5]=JavaArray<java::lang::String*>*-param0
-		//				stack[6]=JavaArray<java::lang::String*>*-param0
-		//				stack[7]=JavaArray<java::lang::String*>*-param0
-		//				stack[8]=JavaArray<java::lang::String*>*-param0
-		//				stack[9]=Recompiler*-new Recompiler()
-		//				stack[10]=JavaArray<java::lang::String*>*-param0
-		//				stack[11]=JavaArray<java::lang::String*>*-param0
-		// L0074:
-		//		aload 3
+		{
+		}
 	}
 }
