@@ -7,6 +7,8 @@ namespace java::lang
 	{
 	public:
 		Object();
+		virtual ~Object();
+		virtual int hashCode();
 	};
 
 	template<class T>

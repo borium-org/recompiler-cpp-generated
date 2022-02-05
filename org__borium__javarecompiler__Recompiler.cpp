@@ -257,7 +257,31 @@ namespace org::borium::javarecompiler
 		String* local3 = param0->get(local2);
 		//				stack[0]: String*=param0->get(local2)
 		//		invokevirtual java.lang.String.hashCode
-		L00F1:
+		//				stack[0]: int=param0->get(local2)->hashCode()
+		//		lookupswitch 4 cases
+		switch (param0->get(local2)->hashCode())
+		{
+		case 0xE0528093:
+			goto L0074;
+		case 0xE22731D2:
+			goto L0080;
+		case 0xF0617410:
+			goto L008C;
+		case 0x0000B7AA:
+			goto L0098;
+		default:
+			goto L00D4;
+		}
+		//				stack: empty
+		L0074:
+		//		aload 3
+		//				stack[0]: String*=local3
+		//		ldc "-outputpath"
+		//				stack[0]: String*=local3
+		//				stack[1]: String *="-outputpath"
+		//		invokevirtual java.lang.String.equals
+		//				stack[0]: bool=local3->equals("-outputpath")
+		//		ifne L00B0
 		{
 		}
 	}

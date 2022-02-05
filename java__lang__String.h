@@ -3,8 +3,12 @@
 
 namespace java::lang
 {
-	class String
+	class String: public Object
 	{
+	public:
+		String();
+		virtual ~String();
+		virtual int hashCode();
 	};
 }
 
