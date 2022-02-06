@@ -532,9 +532,9 @@ namespace org::borium::javarecompiler
 		//				stack: empty
 		L00FB:
 		//		getstatic out Ljava/io/PrintStream;
-		//				stack[0]: PrintStream*=System::out
+		//				stack[0]: PrintStream*=GetStatic(System::ClassInit, System::out)
 		//		ldc "Done."
-		//				stack[0]: PrintStream*=System::out
+		//				stack[0]: PrintStream*=GetStatic(System::ClassInit, System::out)
 		//				stack[1]: String *="Done."
 		//		invokevirtual java.io.PrintStream.println
 		GetStatic(System::ClassInit, System::out)->println("Done.");
