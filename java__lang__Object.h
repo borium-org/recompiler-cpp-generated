@@ -9,7 +9,11 @@ namespace java::lang
 		Object();
 		virtual ~Object();
 		virtual int hashCode();
+		virtual bool equals(Object *other);
+
 	};
+
+	template<class T> T GetStatic(void (*classInit)(), T field);
 
 	template<class T>
 	class JavaArray

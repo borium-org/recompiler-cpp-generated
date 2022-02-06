@@ -9,6 +9,7 @@ namespace java::lang
 		String();
 		virtual ~String();
 		virtual int hashCode();
+		virtual bool equals(const char *other);
 	};
 }
 

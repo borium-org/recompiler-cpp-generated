@@ -1,10 +1,16 @@
 #ifndef JAVA__IO__PRINTSTREAM
 #define JAVA__IO__PRINTSTREAM
 
+#include "java__lang__Object.h"
+
+using namespace java::lang;
+
 namespace java::io
 {
-	class PrintStream
+	class PrintStream: public Object
 	{
+	public:
+		virtual void println(const char *text);
 	};
 }
 
