@@ -48,16 +48,16 @@ namespace org::borium::javarecompiler
 
 		Recompiler();
 		static void main(JavaArray<String*> *param0);
-		void addClassPath(String *param1);
-		void run();
-		void setMainClass(String *param1);
-		void setOutputPath(String *param1);
-		void setVisualStudio(String *param1);
-		void addReferencedClasses(List *param1, ClassFile *param2);
-		void generateClass(String *param1);
-		void generateClasses();
-		ClassFile* processClassFile(String *param1);
-		void writeClasses();
+		virtual void addClassPath(String *param1);
+		virtual void run();
+		virtual void setMainClass(String *param1);
+		virtual void setOutputPath(String *param1);
+		virtual void setVisualStudio(String *param1);
+		virtual void addReferencedClasses(List *param1, ClassFile *param2);
+		virtual void generateClass(String *param1);
+		virtual void generateClasses();
+		virtual ClassFile* processClassFile(String *param1);
+		virtual void writeClasses();
 	};
 
 }
