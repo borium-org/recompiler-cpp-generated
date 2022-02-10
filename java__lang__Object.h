@@ -19,7 +19,7 @@ namespace java::lang
 	class JavaArray
 	{
 	public:
-		JavaArray(int);
+		JavaArray(int length);
 		void assignString(int index, const char *value);
 		T get(int index);
 		int length;

@@ -47,16 +47,16 @@ namespace org::borium::javarecompiler
 		CountedReference<ArrayList<CppClass*>*> ref_generatedClasses;
 
 		Recompiler();
-		static void main(JavaArray<String*> *param0);
-		virtual void addClassPath(String *param1);
+		static void main(JavaArray<String*> *args);
+		virtual void addClassPath(String *classPath);
 		virtual void run();
-		virtual void setMainClass(String *param1);
-		virtual void setOutputPath(String *param1);
-		virtual void setVisualStudio(String *param1);
-		virtual void addReferencedClasses(List *param1, ClassFile *param2);
-		virtual void generateClass(String *param1);
+		virtual void setMainClass(String *mainClass);
+		virtual void setOutputPath(String *outputPath);
+		virtual void setVisualStudio(String *visualStudio);
+		virtual void addReferencedClasses(List *newClassNames, ClassFile *classFile);
+		virtual void generateClass(String *className);
 		virtual void generateClasses();
-		virtual ClassFile* processClassFile(String *param1);
+		virtual ClassFile* processClassFile(String *classFileName);
 		virtual void writeClasses();
 	};
 
