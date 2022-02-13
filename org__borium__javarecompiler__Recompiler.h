@@ -31,6 +31,8 @@ namespace org::borium::javarecompiler
 	class Recompiler: public Object
 	{
 	public:
+		static bool instructionComments;
+		static bool stackComments;
 		String* mainClass;
 		CountedReference<String*> ref_mainClass;
 		ArrayList<String*>* classPaths;
@@ -46,6 +48,7 @@ namespace org::borium::javarecompiler
 		ArrayList<CppClass*>* generatedClasses;
 		CountedReference<ArrayList<CppClass*>*> ref_generatedClasses;
 
+		static void ClassInit();
 		Recompiler();
 		static void main(JavaArray<String*> *args);
 		virtual void addClassPath(String *classPath);
@@ -57,6 +60,7 @@ namespace org::borium::javarecompiler
 		virtual void generateClass(String *className);
 		virtual void generateClasses();
 		virtual ClassFile* processClassFile(String *classFileName);
+		virtual void setCommentLevel(String *commentLevel);
 		virtual void writeClasses();
 	};
 

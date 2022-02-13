@@ -8,6 +8,7 @@ namespace java::lang
 	public:
 		Object();
 		virtual ~Object();
+		static void ClassInit();
 		virtual int hashCode();
 		virtual bool equals(Object *other);
 
