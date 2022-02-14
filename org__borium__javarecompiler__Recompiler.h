@@ -34,19 +34,12 @@ namespace org::borium::javarecompiler
 		static bool instructionComments;
 		static bool stackComments;
 		String* mainClass;
-		CountedReference<String*> ref_mainClass;
 		ArrayList<String*>* classPaths;
-		CountedReference<ArrayList<String*>*> ref_classPaths;
 		ArrayList<HashMap<String*, String*>*>* dummy;
-		CountedReference<ArrayList<HashMap<String*, String*>*>*> ref_dummy;
 		String* outputPath;
-		CountedReference<String*> ref_outputPath;
 		String* visualStudio;
-		CountedReference<String*> ref_visualStudio;
 		HashMap<String*, ClassFile*>* processedClasses;
-		CountedReference<HashMap<String*, ClassFile*>*> ref_processedClasses;
 		ArrayList<CppClass*>* generatedClasses;
-		CountedReference<ArrayList<CppClass*>*> ref_generatedClasses;
 
 		static void ClassInit();
 		Recompiler();

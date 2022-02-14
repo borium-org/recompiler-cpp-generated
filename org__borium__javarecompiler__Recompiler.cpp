@@ -3,6 +3,10 @@
 namespace org::borium::javarecompiler
 {
 
+	bool Recompiler::instructionComments;
+
+	bool Recompiler::stackComments;
+
 	void Recompiler::ClassInit()
 	{
 		Object::ClassInit();
@@ -13,22 +17,13 @@ namespace org::borium::javarecompiler
 
 	Recompiler::Recompiler() :
 			Object() //
-			, instructionComments(0) //
-					, stackComments(0) //
-					, mainClass(0) //
-					, ref_mainClass(mainClass) //
+			, mainClass(0) //
 					, classPaths(0) //
-					, ref_classPaths(classPaths) //
 					, dummy(0) //
-					, ref_dummy(dummy) //
 					, outputPath(0) //
-					, ref_outputPath(outputPath) //
 					, visualStudio(0) //
-					, ref_visualStudio(visualStudio) //
 					, processedClasses(0) //
-					, ref_processedClasses(processedClasses) //
 					, generatedClasses(0) //
-					, ref_generatedClasses(generatedClasses) //
 	{
 		this->classPaths = new ArrayList<String*>();
 		this->processedClasses = new HashMap<String*, ClassFile*>();
