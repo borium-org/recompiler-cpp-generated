@@ -5,6 +5,12 @@ namespace java::lang
 {
 	class Throwable
 	{
+	public:
+		Throwable()
+		{
+		}
+		virtual ~Throwable();
+		virtual void printStackTrace();
 	};
 }
 

@@ -11,9 +11,11 @@ namespace java::lang
 	{
 	public:
 		StringBuilder();
-		StringBuilder(const char*);
+		StringBuilder(String *string);
+		StringBuilder(const char *string);
 		virtual ~StringBuilder();
 		StringBuilder* append(String *string);
+		StringBuilder* append(const char *string);
 		String* toString();
 	};
 }

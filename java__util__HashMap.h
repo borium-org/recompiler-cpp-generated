@@ -11,7 +11,11 @@ namespace java::util
 	class HashMap: public Object
 	{
 	public:
+		HashMap();
+		virtual ~HashMap();
 		virtual V put(K key, V value);
+		virtual V get(K key);
+		virtual bool containsKey(K key);
 	};
 }
 

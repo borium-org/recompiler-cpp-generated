@@ -49,7 +49,7 @@ namespace org::borium::javarecompiler
 		virtual void setMainClass(String *mainClass);
 		virtual void setOutputPath(String *outputPath);
 		virtual void setVisualStudio(String *visualStudio);
-		virtual void addReferencedClasses(List *newClassNames, ClassFile *classFile);
+		virtual void addReferencedClasses(List<Object*> *newClassNames, ClassFile *classFile);
 		virtual void generateClass(String *className);
 		virtual void generateClasses();
 		virtual ClassFile* processClassFile(String *classFileName);

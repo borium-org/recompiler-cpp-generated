@@ -11,6 +11,7 @@ namespace java::io
 	{
 	public:
 		virtual void println(const char *text);
+		virtual void println(String *text);
 	};
 }
 
