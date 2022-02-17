@@ -27,10 +27,10 @@ namespace java::lang
 	};
 
 	template<class T>
-	class CountedReference
+	class Pointer
 	{
 	public:
-		CountedReference(T &pointer);
+		Pointer(T &pointer);
 	};
 }
 

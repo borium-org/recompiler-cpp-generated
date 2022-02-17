@@ -1,1 +1,6 @@
 *.o
+.vs/
+x64/
+JrcPortCpp.VC.VC.opendb
+JrcPortCpp.VC.db
+ipch/
