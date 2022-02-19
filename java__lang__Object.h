@@ -1,21 +1,28 @@
 #ifndef JAVA__LANG__OBJECT
 #define JAVA__LANG__OBJECT
 
+// We allocate stuff in this header code so let's set up new debugging right here
+#ifdef _DEBUG
+#define new DEBUG_NEW
+#endif
+
 namespace java::lang
 {
-	template<class T> class Pointer;
-
 	class Object
 	{
+		// https://stackoverflow.com/questions/3736350/how-to-declare-a-template-class-as-a-friend-in-c
 		template<class T> friend class Pointer;
+		template<class T> friend class JavaArray;
 	public:
 		Object()
 		{
 			usageCounter = 0;
+			TRACE("Object::Object(%p)\n", this);
 		}
 		virtual ~Object()
 		{
 			ASSERT(usageCounter == 0);
+			TRACE("Object::~Object(%p)\n", this);
 		}
 		//static void ClassInit();
 		//virtual int hashCode();
@@ -24,8 +31,6 @@ namespace java::lang
 		int usageCounter;
 	};
 
-	template<class T> T GetStatic(void(*classInit)(), T field);
-
 	template<class T>
 	class Pointer
 	{
@@ -33,27 +38,37 @@ namespace java::lang
 		Pointer()
 		{
 			pointer = nullptr;
-			TRACE("Pointer::Pointer(%p): pointer = %p\n", this, pointer);
+			TRACE("Pointer::ctor(%p): pointer = %p\n", this, pointer);
 		}
 		Pointer(T* data)
 		{
 			pointer = nullptr;
+			TRACE("Pointer::Pointer(%p): pointer = %p\n", this, pointer);
 			assign(data);
+		}
+		Pointer(Pointer<T>& other)
+		{
+			pointer = nullptr;
+			assign((T*)other.pointer);
+		}
+		void operator = (Pointer<T>& other)
+		{
+			//		pointer = nullptr;
+			//		assign((T*)other.pointer);
+			ASSERT(false);
 		}
 		~Pointer()
 		{
+			TRACE("Pointer::dtor(%p): pointer = %p\n", this, pointer);
 			assign(nullptr);
 		}
-		void operator=(T* data)
-		{
-			return assign(data);
-		}
-		void assign(T *data)
+	private:
+		void assign(T* data)
 		{
 			if (pointer != nullptr)
 			{
 				pointer->usageCounter--;
-				TRACE("Pointer::=(%p): decrement pointer = %p value = %d\n", this, pointer, pointer->usageCounter);
+				TRACE("Pointer::assign(%p): decrement pointer = %p value = %d\n", this, pointer, pointer->usageCounter);
 				ASSERT(pointer->usageCounter >= 0);
 				if (pointer->usageCounter == 0)
 					delete pointer;
@@ -62,34 +77,35 @@ namespace java::lang
 			if (pointer != nullptr)
 			{
 				pointer->usageCounter++;
-				TRACE("Pointer::=(%p): increment pointer = %p value = %d\n", this, pointer, pointer->usageCounter);
+				TRACE("Pointer::assign(%p): increment pointer = %p value = %d\n", this, pointer, pointer->usageCounter);
 			}
 		}
-	private:
 		Object* pointer;
 	};
 
 	template<class T>
-	class JavaArray
+	class JavaArray : public Object
 	{
 	public:
 		JavaArray(int length)
 		{
 			this->length = length;
-			data.SetSize(length);
-			T *ptr = (T*)data.GetData();
-			for (int index = 0; index < length; index++)
-			{
-				new(ptr)Pointer<T*>();
-				ptr++;
-			}
+			data = new Pointer<T>[length];
+			TRACE("JavaArray::ctor(%p) data %p\n", this, data);
+		}
+		~JavaArray()
+		{
+			TRACE("JavaArray::dtor(%p) data %p\n", this, data);
+			delete[]data;
 		}
 		//void assignString(int index, const char *value);
 		//T get(int index);
 	private:
 		int length;
-		CArray<Pointer<T>, Pointer<T>&> data;
+		Pointer<T>* data;
 	};
+
+	template<class T> T GetStatic(void(*classInit)(), T field);
 }
 
 #endif

@@ -1,6 +1,8 @@
 #ifndef JAVA__LANG__STRING
 #define JAVA__LANG__STRING
 
+#include "java__lang__Object.h"
+
 namespace java::lang
 {
 	class String: public Object

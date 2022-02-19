@@ -32,95 +32,95 @@ namespace org::borium::javarecompiler
 	//	return;
 	//}
 
-	//void Recompiler::main(JavaArray<String*> *args)
-	//{
-	//	Recompiler* recompiler = nullptr;
-	//	int argc = 0;
-	//	if ((args->length) != 0)
-	//		goto L0041;
-	//	{
-	//		JavaArray<String*>* temp = new JavaArray<String*>(10);
-	//		temp->assignString(0, "-classpath");
-	//		temp->assignString(1, "bin");
-	//		temp->assignString(2, "-outputpath");
-	//		temp->assignString(3, "../JrcPortCpp");
-	//		temp->assignString(4, "-mainclass");
-	//		temp->assignString(5, "org.borium.javarecompiler.Recompiler");
-	//		temp->assignString(6, "-vs");
-	//		temp->assignString(7, "2005");
-	//		temp->assignString(8, "-comments");
-	//		temp->assignString(9, "none");
-	//		args = temp;
-	//	}
-	//	L0041: //
-	//	recompiler = new Recompiler();
-	//	argc = 0;
-	//	goto L011D;
-	//	{
-	//		L004E: //
-	//		String* local_0052 = args->get(argc);
-	//		switch (args->get(argc)->hashCode())
-	//		{
-	//		case (int) 0xE0528093:
-	//			goto L0088;
-	//		case (int) 0xE22731D2:
-	//			goto L0094;
-	//		case (int) 0xEC1F6121:
-	//			goto L00A0;
-	//		case (int) 0xF0617410:
-	//			goto L00AC;
-	//		case (int) 0x0000B7AA:
-	//			goto L00B8;
-	//		default:
-	//			goto L0100;
-	//		}
-	//		L0088: //
-	//		if (local_0052->equals("-outputpath"))
-	//			goto L00D0;
-	//		goto L0100;
-	//		L0094: //
-	//		if (local_0052->equals("-mainclass"))
-	//			goto L00DC;
-	//		goto L0100;
-	//		L00A0: //
-	//		if (local_0052->equals("-comments"))
-	//			goto L00F4;
-	//		goto L0100;
-	//		L00AC: //
-	//		if (local_0052->equals("-classpath"))
-	//			goto L00C4;
-	//		goto L0100;
-	//		L00B8: //
-	//		if (local_0052->equals("-vs"))
-	//			goto L00E8;
-	//		goto L0100;
-	//		L00C4: //
-	//		recompiler->addClassPath(args->get((argc) + (1)));
-	//		goto L011A;
-	//		L00D0: //
-	//		recompiler->setOutputPath(args->get((argc) + (1)));
-	//		goto L011A;
-	//		L00DC: //
-	//		recompiler->setMainClass(args->get((argc) + (1)));
-	//		goto L011A;
-	//		L00E8: //
-	//		recompiler->setVisualStudio(args->get((argc) + (1)));
-	//		goto L011A;
-	//		L00F4: //
-	//		recompiler->setCommentLevel(args->get((argc) + (1)));
-	//		goto L011A;
-	//		L0100: //
-	//		throw new RuntimeException((new StringBuilder("Unsupported argument "))->append(args->get(argc))->toString());
-	//		L011A: //
-	//		argc += 2;
-	//	}
-	//	L011D: //
-	//	if ((argc) < (args->length))
-	//		goto L004E;
-	//	recompiler->run();
-	//	GetStatic(System::ClassInit, System::out)->println("Done.");
-	//	return;
-	//}
+	void Recompiler::main(Pointer<JavaArray<String>> args)
+	{
+		//	Recompiler* recompiler = nullptr;
+		//	int argc = 0;
+		//	if ((args->length) != 0)
+		//		goto L0041;
+		//	{
+		//		JavaArray<String*>* temp = new JavaArray<String*>(10);
+		//		temp->assignString(0, "-classpath");
+		//		temp->assignString(1, "bin");
+		//		temp->assignString(2, "-outputpath");
+		//		temp->assignString(3, "../JrcPortCpp");
+		//		temp->assignString(4, "-mainclass");
+		//		temp->assignString(5, "org.borium.javarecompiler.Recompiler");
+		//		temp->assignString(6, "-vs");
+		//		temp->assignString(7, "2005");
+		//		temp->assignString(8, "-comments");
+		//		temp->assignString(9, "none");
+		//		args = temp;
+		//	}
+		//	L0041: //
+		//	recompiler = new Recompiler();
+		//	argc = 0;
+		//	goto L011D;
+		//	{
+		//		L004E: //
+		//		String* local_0052 = args->get(argc);
+		//		switch (args->get(argc)->hashCode())
+		//		{
+		//		case (int) 0xE0528093:
+		//			goto L0088;
+		//		case (int) 0xE22731D2:
+		//			goto L0094;
+		//		case (int) 0xEC1F6121:
+		//			goto L00A0;
+		//		case (int) 0xF0617410:
+		//			goto L00AC;
+		//		case (int) 0x0000B7AA:
+		//			goto L00B8;
+		//		default:
+		//			goto L0100;
+		//		}
+		//		L0088: //
+		//		if (local_0052->equals("-outputpath"))
+		//			goto L00D0;
+		//		goto L0100;
+		//		L0094: //
+		//		if (local_0052->equals("-mainclass"))
+		//			goto L00DC;
+		//		goto L0100;
+		//		L00A0: //
+		//		if (local_0052->equals("-comments"))
+		//			goto L00F4;
+		//		goto L0100;
+		//		L00AC: //
+		//		if (local_0052->equals("-classpath"))
+		//			goto L00C4;
+		//		goto L0100;
+		//		L00B8: //
+		//		if (local_0052->equals("-vs"))
+		//			goto L00E8;
+		//		goto L0100;
+		//		L00C4: //
+		//		recompiler->addClassPath(args->get((argc) + (1)));
+		//		goto L011A;
+		//		L00D0: //
+		//		recompiler->setOutputPath(args->get((argc) + (1)));
+		//		goto L011A;
+		//		L00DC: //
+		//		recompiler->setMainClass(args->get((argc) + (1)));
+		//		goto L011A;
+		//		L00E8: //
+		//		recompiler->setVisualStudio(args->get((argc) + (1)));
+		//		goto L011A;
+		//		L00F4: //
+		//		recompiler->setCommentLevel(args->get((argc) + (1)));
+		//		goto L011A;
+		//		L0100: //
+		//		throw new RuntimeException((new StringBuilder("Unsupported argument "))->append(args->get(argc))->toString());
+		//		L011A: //
+		//		argc += 2;
+		//	}
+		//	L011D: //
+		//	if ((argc) < (args->length))
+		//		goto L004E;
+		//	recompiler->run();
+		//	GetStatic(System::ClassInit, System::out)->println("Done.");
+		//	return;
+	}
 
 	//void Recompiler::addClassPath(String *classPath)
 	//{
