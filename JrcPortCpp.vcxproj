@@ -148,9 +148,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="java__io__File.h" />
     <ClInclude Include="java__io__IOException.h" />
     <ClInclude Include="java__io__PrintStream.h" />
