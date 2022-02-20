@@ -16,45 +16,45 @@ namespace org::borium::javarecompiler
 	//	return;
 	//}
 
-	//Recompiler::Recompiler() :
-	//		Object() //
-	//		, mainClass(0) //
-	//				, classPaths(0) //
-	//				, dummy(0) //
-	//				, outputPath(0) //
-	//				, visualStudio(0) //
-	//				, processedClasses(0) //
-	//				, generatedClasses(0) //
-	//{
-	//	this->classPaths = new ArrayList<String*>();
-	//	this->processedClasses = new HashMap<String*, ClassFile*>();
-	//	this->generatedClasses = new ArrayList<CppClass*>();
-	//	return;
-	//}
+	Recompiler::Recompiler() :
+		Object() //
+//		, mainClass(0) //
+//				, classPaths(0) //
+//				, dummy(0) //
+//				, outputPath(0) //
+//				, visualStudio(0) //
+//				, processedClasses(0) //
+//				, generatedClasses(0) //
+	{
+		//	this->classPaths = new ArrayList<String*>();
+		//	this->processedClasses = new HashMap<String*, ClassFile*>();
+		//	this->generatedClasses = new ArrayList<CppClass*>();
+		return;
+	}
 
 	void Recompiler::main(Pointer<JavaArray<String>> args)
 	{
-		//	Recompiler* recompiler = nullptr;
-		//	int argc = 0;
-		//	if ((args->length) != 0)
-		//		goto L0041;
-		//	{
-		//		JavaArray<String*>* temp = new JavaArray<String*>(10);
-		//		temp->assignString(0, "-classpath");
-		//		temp->assignString(1, "bin");
-		//		temp->assignString(2, "-outputpath");
-		//		temp->assignString(3, "../JrcPortCpp");
-		//		temp->assignString(4, "-mainclass");
-		//		temp->assignString(5, "org.borium.javarecompiler.Recompiler");
-		//		temp->assignString(6, "-vs");
-		//		temp->assignString(7, "2005");
-		//		temp->assignString(8, "-comments");
-		//		temp->assignString(9, "none");
-		//		args = temp;
-		//	}
-		//	L0041: //
-		//	recompiler = new Recompiler();
-		//	argc = 0;
+		Pointer<Recompiler> recompiler;
+		int argc = 0;
+		if ((args->length) != 0)
+			goto L0041;
+		{
+			Pointer<JavaArray<String>> temp = new JavaArray<String>(10);
+			temp->assignString(0, "-classpath");
+			temp->assignString(1, "bin");
+			temp->assignString(2, "-outputpath");
+			temp->assignString(3, "../JrcPortCpp");
+			temp->assignString(4, "-mainclass");
+			temp->assignString(5, "org.borium.javarecompiler.Recompiler");
+			temp->assignString(6, "-vs");
+			temp->assignString(7, "2005");
+			temp->assignString(8, "-comments");
+			temp->assignString(9, "none");
+			args = temp;
+		}
+	L0041: //
+		recompiler = new Recompiler();
+		argc = 0;
 		//	goto L011D;
 		//	{
 		//		L004E: //
@@ -119,7 +119,7 @@ namespace org::borium::javarecompiler
 		//		goto L004E;
 		//	recompiler->run();
 		//	GetStatic(System::ClassInit, System::out)->println("Done.");
-		//	return;
+		return;
 	}
 
 	//void Recompiler::addClassPath(String *classPath)

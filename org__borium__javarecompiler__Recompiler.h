@@ -42,7 +42,7 @@ namespace org::borium::javarecompiler
 		//	ArrayList<CppClass*>* generatedClasses;
 
 		//	static void ClassInit();
-		//	Recompiler();
+		Recompiler();
 		static void main(Pointer<JavaArray<String>> args);
 		//	virtual void addClassPath(String *classPath);
 		//	virtual void run();
