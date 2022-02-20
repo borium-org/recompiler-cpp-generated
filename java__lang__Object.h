@@ -53,14 +53,28 @@ namespace java::lang
 		}
 		void operator = (Pointer<T>& other)
 		{
-			//		pointer = nullptr;
-			//		assign((T*)other.pointer);
-			ASSERT(false);
+			pointer = nullptr;
+			assign((T*)other.pointer);
 		}
 		~Pointer()
 		{
 			TRACE("Pointer::dtor(%p): pointer = %p\n", this, pointer);
 			assign(nullptr);
+		}
+		Pointer<T>& operator [] (int index)
+		{
+			TRACE("Object %p Type: %s\n", this, typeid(*pointer).name());
+			ASSERT(strncmp(typeid(*pointer).name(), "class java::lang::JavaArray<", 28) == 0);
+			JavaArray<T>* array = (JavaArray<T>*)pointer;
+			return array->data[index];
+		}
+		void operator = (Object* object)
+		{
+			//if (pointer)
+			//	TRACE("Object %p %s Type: %s\n", this, typeid(this).name(), typeid(*pointer).name());
+			//else
+			//	TRACE("Object %p %s Type: nullptr\n", this, typeid(this).name());
+			assign((T*)object);
 		}
 	private:
 		void assign(T* data)
@@ -86,6 +100,7 @@ namespace java::lang
 	template<class T>
 	class JavaArray : public Object
 	{
+		template<class T> friend class Pointer;
 	public:
 		JavaArray(int length)
 		{
