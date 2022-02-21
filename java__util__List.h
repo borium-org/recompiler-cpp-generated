@@ -10,14 +10,14 @@ namespace java::util
 	template<class T>
 	class List
 	{
-	public:
-		List();
-		virtual ~List();
-		virtual bool add(T element)=0;
-		virtual T remove(int index)=0;
-		virtual int size()=0;
-		virtual bool contains(T element);
-		virtual Iterator<T>* iterator();
+	//public:
+	//	List();
+	//	virtual ~List();
+	//	virtual bool add(T element)=0;
+	//	virtual T remove(int index)=0;
+	//	virtual int size()=0;
+	//	virtual bool contains(T element);
+	//	virtual Iterator<T>* iterator();
 	};
 }
 

@@ -28,33 +28,32 @@ using namespace org::borium::javarecompiler::cplusplus;
 namespace org::borium::javarecompiler
 {
 
-	class Recompiler: public Object
+	class Recompiler : public Object
 	{
 	public:
-		static bool instructionComments;
-		static bool stackComments;
-		String* mainClass;
-		ArrayList<String*>* classPaths;
-		ArrayList<HashMap<String*, String*>*>* dummy;
-		String* outputPath;
-		String* visualStudio;
-		HashMap<String*, ClassFile*>* processedClasses;
-		ArrayList<CppClass*>* generatedClasses;
+		//	static bool instructionComments;
+		//	static bool stackComments;
+		Pointer<String> mainClass;
+		Pointer<ArrayList<String>> classPaths;
+		Pointer<String> outputPath;
+		Pointer<String> visualStudio;
+		Pointer<HashMap<String, ClassFile>> processedClasses;
+		Pointer<ArrayList<CppClass>> generatedClasses;
 
-		static void ClassInit();
+		//	static void ClassInit();
 		Recompiler();
-		static void main(JavaArray<String*> *args);
-		virtual void addClassPath(String *classPath);
-		virtual void run();
-		virtual void setMainClass(String *mainClass);
-		virtual void setOutputPath(String *outputPath);
-		virtual void setVisualStudio(String *visualStudio);
-		virtual void addReferencedClasses(List<Object*> *newClassNames, ClassFile *classFile);
-		virtual void generateClass(String *className);
-		virtual void generateClasses();
-		virtual ClassFile* processClassFile(String *classFileName);
-		virtual void setCommentLevel(String *commentLevel);
-		virtual void writeClasses();
+		static void main(Pointer<JavaArray<String>> args);
+		virtual void addClassPath(Pointer<String> classPath);
+		//	virtual void run();
+		virtual void setMainClass(Pointer<String> mainClass);
+		virtual void setOutputPath(Pointer<String> outputPath);
+		virtual void setVisualStudio(Pointer<String> visualStudio);
+		//	virtual void addReferencedClasses(List<Object*> *newClassNames, ClassFile *classFile);
+		//	virtual void generateClass(String *className);
+		//	virtual void generateClasses();
+		//	virtual ClassFile* processClassFile(String *classFileName);
+		virtual void setCommentLevel(Pointer<String> commentLevel);
+		//	virtual void writeClasses();
 	};
 
 }

@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="JrcPortCpp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="java__io__File.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="java__io__IOException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="java__io__PrintStream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="java__lang__ClassFormatError.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="java__lang__Object.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="java__lang__RuntimeException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="java__lang__String.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="java__lang__StringBuilder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="java__lang__System.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="java__lang__Throwable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="java__util__ArrayList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="java__util__HashMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="java__util__Iterator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="java__util__List.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="org__borium__javarecompiler__classfile__ClassFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="org__borium__javarecompiler__classfile__IndentedOutputStream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="org__borium__javarecompiler__cplusplus__CppClass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="org__borium__javarecompiler__Recompiler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="JrcPortCpp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="org__borium__javarecompiler__Recompiler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="java__lang__Object.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="java__lang__JavaArray.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="java__lang__String.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="JrcPortCpp.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

@@ -13,10 +13,10 @@ namespace java::util
 	class ArrayList: public Object, public List<T>
 	{
 	public:
-		virtual bool add(T element);
-		virtual T remove(int index);
-		virtual int size();
-		virtual Iterator<T>* iterator();
+		//virtual bool add(T element);
+		//virtual T remove(int index);
+		//virtual int size();
+		//virtual Iterator<T>* iterator();
 	};
 }
 
