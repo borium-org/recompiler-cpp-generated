@@ -34,6 +34,7 @@ namespace java::lang
 	template<class T>
 	class Pointer
 	{
+		template<class T> friend class JavaArray;
 	public:
 		Pointer()
 		{
@@ -66,6 +67,10 @@ namespace java::lang
 			ASSERT(strncmp(typeid(*pointer).name(), "class java::lang::JavaArray<", 28) == 0);
 			JavaArray<T>* array = (JavaArray<T>*)pointer;
 			return array->data[index];
+		}
+		void operator = (T* object)
+		{
+			this->operator=((Object*)object);
 		}
 		void operator = (Object* object)
 		{
@@ -122,7 +127,12 @@ namespace java::lang
 		{
 			data[index] = new String(value);
 		}
-		//T get(int index);
+		T* get(int index)
+		{
+			ASSERT(index >= 0 && index < length);
+			Pointer<T>* ptr = data + index;
+			return (T*)ptr->pointer;
+		}
 		int length;
 	private:
 		Pointer<T>* data;

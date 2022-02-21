@@ -20,4 +20,21 @@ namespace java::lang
 			free(data);
 	}
 
+	int String::hashCode()
+	{
+		int h = 0;
+		int length = strlen(data);
+		for (int i = 0; i < length; i++)
+		{
+			int v = data[i];
+			h = 31 * h + (v & 0xff);
+		}
+		return h;
+	}
+
+	bool String::equals(const char* other)
+	{
+		return strcmp(data, other) == 0;
+	}
+
 }
