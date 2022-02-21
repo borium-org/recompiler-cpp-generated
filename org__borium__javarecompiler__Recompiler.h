@@ -33,13 +33,12 @@ namespace org::borium::javarecompiler
 	public:
 		//	static bool instructionComments;
 		//	static bool stackComments;
-		//	String* mainClass;
-		//	ArrayList<String*>* classPaths;
-		//	ArrayList<HashMap<String*, String*>*>* dummy;
-		//	String* outputPath;
-		//	String* visualStudio;
-		//	HashMap<String*, ClassFile*>* processedClasses;
-		//	ArrayList<CppClass*>* generatedClasses;
+		Pointer<String> mainClass;
+		Pointer<ArrayList<String>> classPaths;
+		Pointer<String> outputPath;
+		Pointer<String> visualStudio;
+		Pointer<HashMap<String, ClassFile>> processedClasses;
+		Pointer<ArrayList<CppClass>> generatedClasses;
 
 		//	static void ClassInit();
 		Recompiler();

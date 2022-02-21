@@ -18,17 +18,10 @@ namespace org::borium::javarecompiler
 
 	Recompiler::Recompiler() :
 		Object() //
-//		, mainClass(0) //
-//				, classPaths(0) //
-//				, dummy(0) //
-//				, outputPath(0) //
-//				, visualStudio(0) //
-//				, processedClasses(0) //
-//				, generatedClasses(0) //
 	{
-		//	this->classPaths = new ArrayList<String*>();
+		this->classPaths = new ArrayList<String>();
 		//	this->processedClasses = new HashMap<String*, ClassFile*>();
-		//	this->generatedClasses = new ArrayList<CppClass*>();
+		this->generatedClasses = new ArrayList<CppClass>();
 		return;
 	}
 
