@@ -117,7 +117,7 @@ namespace org::borium::javarecompiler
 	L011D: //
 		if ((argc) < (args->length))
 			goto L004E;
-		//	recompiler->run();
+		recompiler->run();
 		//	GetStatic(System::ClassInit, System::out)->println("Done.");
 		return;
 	}
@@ -128,29 +128,29 @@ namespace org::borium::javarecompiler
 		return;
 	}
 
-	//void Recompiler::run()
-	//{
-	//	ClassFile* classFile = nullptr;
-	//	List<Object*>* newClassNames = nullptr;
-	//	String* newClassName = nullptr;
-	//	classFile = this->processClassFile(this->mainClass);
-	//	this->processedClasses->put(classFile->getClassName(), classFile);
-	//	newClassNames = new ArrayList<Object*>();
-	//	this->addReferencedClasses(newClassNames, classFile);
-	//	goto L004B;
-	//	L0027: //
-	//	// ASSERT_KINDOF(String*, newClassNames->remove(0));
-	//	newClassName = (String*) newClassNames->remove(0);
-	//	classFile = this->processClassFile(newClassName);
-	//	this->processedClasses->put(classFile->getClassName(), classFile);
-	//	this->addReferencedClasses(newClassNames, classFile);
-	//	L004B: //
-	//	if ((newClassNames->size()) > 0)
-	//		goto L0027;
-	//	this->generateClasses();
-	//	this->writeClasses();
-	//	return;
-	//}
+	void Recompiler::run()
+	{
+		Pointer<ClassFile> classFile;
+		//	Pointer<List<Object*>* newClassNames = nullptr;
+		Pointer<String> newClassName;
+		classFile = this->processClassFile(this->mainClass);
+		//	this->processedClasses->put(classFile->getClassName(), classFile);
+		//	newClassNames = new ArrayList<Object*>();
+		//	this->addReferencedClasses(newClassNames, classFile);
+		//	goto L004B;
+		//	L0027: //
+		//	// ASSERT_KINDOF(String*, newClassNames->remove(0));
+		//	newClassName = (String*) newClassNames->remove(0);
+		classFile = this->processClassFile(newClassName);
+		//	this->processedClasses->put(classFile->getClassName(), classFile);
+		//	this->addReferencedClasses(newClassNames, classFile);
+		//	L004B: //
+		//	if ((newClassNames->size()) > 0)
+		//		goto L0027;
+		//	this->generateClasses();
+		//	this->writeClasses();
+		return;
+	}
 
 	void Recompiler::setMainClass(Pointer<String> mainClass)
 	{
@@ -222,76 +222,76 @@ namespace org::borium::javarecompiler
 	//	return;
 	//}
 
-	//ClassFile* Recompiler::processClassFile(String *classFileName)
-	//{
-	//	String* classPathFileName = nullptr;
-	//	String* fileName = nullptr;
-	//	String* classPath = nullptr;
-	//	File* file = nullptr;
-	//	ClassFile* classFile = nullptr;
-	//	if (!(classFileName->startsWith("java.")))
-	//		goto L000B;
-	//	return nullptr;
-	//	L000B: //
-	//	String::ClassInit();
-	//	classPathFileName = (new StringBuilder(String::valueOf(classFileName->replace(46, 47))))->append(".class")->toString();
-	//	fileName = nullptr;
-	//	Iterator<Object*>* local_002F = (Iterator<Object*>*) this->classPaths->iterator();
-	//	goto L008F;
-	//	L0034: //
-	//	// ASSERT_KINDOF(String*, local_002F->next());
-	//	classPath = (String*) local_002F->next();
-	//	String::ClassInit();
-	//	file = new File((new StringBuilder(String::valueOf(classPath)))->append("/")->append(classPathFileName)->toString());
-	//	if (!(file->exists()))
-	//		goto L008F;
-	//	if (!(file->isFile()))
-	//		goto L008F;
-	//	String::ClassInit();
-	//	fileName = (new StringBuilder(String::valueOf(classPath)))->append("/")->append(classPathFileName)->toString();
-	//	goto L0099;
-	//	L008F: //
-	//	if (local_002F->hasNext())
-	//		goto L0034;
-	//	L0099: //
-	//	if ((fileName) != nullptr)
-	//		goto L00D3;
-	//	GetStatic(System::ClassInit, System::out)->println((new StringBuilder("Error: "))->append(classFileName)->toString());
-	//	throw new RuntimeException((new StringBuilder("Class "))->append(classFileName)->append(" not found")->toString());
-	//	L00D3: //
-	//	classFile = new ClassFile();
-	//	try
-	//	{
-	//		L00DC: //
-	//		classFile->read(fileName);
-	//		L00E2: //
-	//		goto L00EC;
-	//	}
-	//	catch (ClassFormatError* e)
-	//	{
-	//		e->printStackTrace();
-	//	}
-	//	catch (IOException* e)
-	//	{
-	//		e->printStackTrace();
-	//	}
-	//	L00EC: //
-	//	try
-	//	{
-	//		IndentedOutputStream* stream = nullptr;
-	//		String::ClassInit();
-	//		stream = new IndentedOutputStream((new StringBuilder(String::valueOf(fileName->substring(0, (fileName->length()) - (5)))))->append("txt")->toString());
-	//		classFile->dump(stream);
-	//		L011A: //
-	//		goto L0124;
-	//	}
-	//	catch (IOException* e)
-	//	{
-	//		e->printStackTrace();
-	//	}
-	//	L0124: //
-	//	return classFile;
-	//}
+	Pointer<ClassFile> Recompiler::processClassFile(Pointer<String> classFileName)
+	{
+		Pointer<String> classPathFileName;
+		Pointer<String> fileName;
+		Pointer<String> classPath;
+		//	File* file = nullptr;
+		Pointer<ClassFile> classFile;
+		//	if (!(classFileName->startsWith("java.")))
+		//		goto L000B;
+		//	return nullptr;
+		//	L000B: //
+		//	String::ClassInit();
+		//	classPathFileName = (new StringBuilder(String::valueOf(classFileName->replace(46, 47))))->append(".class")->toString();
+		//	fileName = nullptr;
+		//	Iterator<Object*>* local_002F = (Iterator<Object*>*) this->classPaths->iterator();
+		//	goto L008F;
+		//	L0034: //
+		//	// ASSERT_KINDOF(String*, local_002F->next());
+		//	classPath = (String*) local_002F->next();
+		//	String::ClassInit();
+		//	file = new File((new StringBuilder(String::valueOf(classPath)))->append("/")->append(classPathFileName)->toString());
+		//	if (!(file->exists()))
+		//		goto L008F;
+		//	if (!(file->isFile()))
+		//		goto L008F;
+		//	String::ClassInit();
+		//	fileName = (new StringBuilder(String::valueOf(classPath)))->append("/")->append(classPathFileName)->toString();
+		//	goto L0099;
+		//	L008F: //
+		//	if (local_002F->hasNext())
+		//		goto L0034;
+		//	L0099: //
+		//	if ((fileName) != nullptr)
+		//		goto L00D3;
+		//	GetStatic(System::ClassInit, System::out)->println((new StringBuilder("Error: "))->append(classFileName)->toString());
+		//	throw new RuntimeException((new StringBuilder("Class "))->append(classFileName)->append(" not found")->toString());
+		//	L00D3: //
+		//	classFile = new ClassFile();
+		//	try
+		//	{
+		//		L00DC: //
+		//		classFile->read(fileName);
+		//		L00E2: //
+		//		goto L00EC;
+		//	}
+		//	catch (ClassFormatError* e)
+		//	{
+		//		e->printStackTrace();
+		//	}
+		//	catch (IOException* e)
+		//	{
+		//		e->printStackTrace();
+		//	}
+		//	L00EC: //
+		//	try
+		//	{
+		//		IndentedOutputStream* stream = nullptr;
+		//		String::ClassInit();
+		//		stream = new IndentedOutputStream((new StringBuilder(String::valueOf(fileName->substring(0, (fileName->length()) - (5)))))->append("txt")->toString());
+		//		classFile->dump(stream);
+		//		L011A: //
+		//		goto L0124;
+		//	}
+		//	catch (IOException* e)
+		//	{
+		//		e->printStackTrace();
+		//	}
+		//	L0124: //
+		return classFile;
+	}
 
 	void Recompiler::setCommentLevel(Pointer<String>commentLevel)
 	{

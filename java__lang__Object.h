@@ -48,12 +48,12 @@ namespace java::lang
 			TRACE("Pointer::Pointer(%p): pointer = %p\n", this, pointer);
 			assign(data);
 		}
-		Pointer(Pointer<T>& other)
+		Pointer(const Pointer<T>& other)
 		{
 			pointer = nullptr;
 			assign((T*)other.pointer);
 		}
-		void operator = (Pointer<T>& other)
+		void operator = (const Pointer<T>& other)
 		{
 			assign((T*)other.pointer);
 		}
@@ -68,10 +68,6 @@ namespace java::lang
 			ASSERT(strncmp(typeid(*pointer).name(), "class java::lang::JavaArray<", 28) == 0);
 			JavaArray<T>* array = (JavaArray<T>*)pointer;
 			return array->data[index];
-		}
-		void operator = (T* object)
-		{
-			this->operator=((Object*)object);
 		}
 		void operator = (Object* object)
 		{

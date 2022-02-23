@@ -44,14 +44,14 @@ namespace org::borium::javarecompiler
 		Recompiler();
 		static void main(Pointer<JavaArray<String>> args);
 		virtual void addClassPath(Pointer<String> classPath);
-		//	virtual void run();
+		virtual void run();
 		virtual void setMainClass(Pointer<String> mainClass);
 		virtual void setOutputPath(Pointer<String> outputPath);
 		virtual void setVisualStudio(Pointer<String> visualStudio);
 		//	virtual void addReferencedClasses(List<Object*> *newClassNames, ClassFile *classFile);
 		//	virtual void generateClass(String *className);
 		//	virtual void generateClasses();
-		//	virtual ClassFile* processClassFile(String *classFileName);
+		virtual Pointer<ClassFile> processClassFile(Pointer<String> classFileName);
 		virtual void setCommentLevel(Pointer<String> commentLevel);
 		//	virtual void writeClasses();
 	private:
