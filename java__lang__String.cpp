@@ -23,8 +23,8 @@ namespace java::lang
 	int String::hashCode()
 	{
 		int h = 0;
-		int length = strlen(data);
-		for (int i = 0; i < length; i++)
+		size_t length = strlen(data);
+		for (size_t i = 0; i < length; i++)
 		{
 			int v = data[i];
 			h = 31 * h + (v & 0xff);

@@ -4,17 +4,23 @@
 namespace org::borium::javarecompiler
 {
 
-	//bool Recompiler::instructionComments;
+	bool Recompiler::instructionComments;
 
-	//bool Recompiler::stackComments;
+	bool Recompiler::stackComments;
 
-	//void Recompiler::ClassInit()
-	//{
-	//	Object::ClassInit();
-	//	Recompiler::instructionComments = false;
-	//	Recompiler::stackComments = false;
-	//	return;
-	//}
+	bool Recompiler::classInitialized = false;
+
+	void Recompiler::ClassInit()
+	{
+		if (!classInitialized)
+		{
+			Object::ClassInit();
+			Recompiler::instructionComments = false;
+			Recompiler::stackComments = false;
+			classInitialized = true;
+		}
+		return;
+	}
 
 	Recompiler::Recompiler() :
 		Object() //
@@ -46,6 +52,7 @@ namespace org::borium::javarecompiler
 			args = temp;
 		}
 	L0041: //
+		Recompiler::ClassInit();
 		recompiler = new Recompiler();
 		argc = 0;
 		goto L011D;

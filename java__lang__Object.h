@@ -24,11 +24,12 @@ namespace java::lang
 			ASSERT(usageCounter == 0);
 			TRACE("Object::~Object(%p)\n", this);
 		}
-		//static void ClassInit();
+		static void ClassInit();
 		//virtual int hashCode();
 		//virtual bool equals(Object *other);
 	private:
 		int usageCounter;
+		static bool classInitialized;
 	};
 
 	template<class T>
@@ -138,7 +139,7 @@ namespace java::lang
 		Pointer<T>* data;
 	};
 
-	template<class T> T GetStatic(void(*classInit)(), T field);
+	//template<class T> T GetStatic(void(*classInit)(), T field);
 }
 
 #endif

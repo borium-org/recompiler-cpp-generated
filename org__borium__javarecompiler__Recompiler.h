@@ -31,8 +31,8 @@ namespace org::borium::javarecompiler
 	class Recompiler : public Object
 	{
 	public:
-		//	static bool instructionComments;
-		//	static bool stackComments;
+		static bool instructionComments;
+		static bool stackComments;
 		Pointer<String> mainClass;
 		Pointer<ArrayList<String>> classPaths;
 		Pointer<String> outputPath;
@@ -40,7 +40,7 @@ namespace org::borium::javarecompiler
 		Pointer<HashMap<String, ClassFile>> processedClasses;
 		Pointer<ArrayList<CppClass>> generatedClasses;
 
-		//	static void ClassInit();
+		static void ClassInit();
 		Recompiler();
 		static void main(Pointer<JavaArray<String>> args);
 		virtual void addClassPath(Pointer<String> classPath);
@@ -54,6 +54,8 @@ namespace org::borium::javarecompiler
 		//	virtual ClassFile* processClassFile(String *classFileName);
 		virtual void setCommentLevel(Pointer<String> commentLevel);
 		//	virtual void writeClasses();
+	private:
+		static bool classInitialized;
 	};
 
 }

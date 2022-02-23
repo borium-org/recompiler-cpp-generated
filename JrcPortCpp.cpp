@@ -12,6 +12,7 @@ int main(int argc, char** argv)
 	Pointer<JavaArray<String>> args = new JavaArray<String>(argc - 1);
 	for (int i = 1; i < argc; i++)
 		args[i - 1] = new String(argv[i]);
+	Recompiler::ClassInit();
 	Recompiler::main(args);
 	return nRetCode;
 }
