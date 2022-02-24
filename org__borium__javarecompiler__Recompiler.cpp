@@ -110,7 +110,7 @@ namespace org::borium::javarecompiler
 			recompiler->setCommentLevel(args->get((argc)+(1)));
 			goto L011A;
 		L0100: //
-//		throw new RuntimeException((new StringBuilder("Unsupported argument "))->append(args->get(argc))->toString());
+			throw new RuntimeException((new StringBuilder("Unsupported argument "))->append(args->get(argc))->toString());
 		L011A: //
 			argc += 2;
 		}
