@@ -154,30 +154,33 @@ namespace org::borium::javarecompiler
 
 	void Recompiler::setMainClass(Pointer<String> mainClass)
 	{
-		//if ((this->mainClass) == nullptr)
-			//goto L0030;
-		//throw new RuntimeException((new StringBuilder("Main class already set to '"))->append(this->mainClass)->append("', not setting it to '")->append(mainClass)->append("'")->toString());
-		//L0030: //
+		if ((this->mainClass) == nullptr)
+			goto L0030;
+		StringBuilder::ClassInit();
+		throw new RuntimeException((new StringBuilder("Main class already set to '"))->append(this->mainClass)->append("', not setting it to '")->append(mainClass)->append("'")->toString());
+	L0030: //
 		this->mainClass = mainClass;
 		return;
 	}
 
 	void Recompiler::setOutputPath(Pointer<String> outputPath)
 	{
-		//if ((this->outputPath) == nullptr)
-		//	goto L0030;
-		//throw new RuntimeException((new StringBuilder("Output path already set to '"))->append(this->outputPath)->append("', not setting it to '")->append(outputPath)->append("'")->toString());
-		//L0030: //
+		if ((this->outputPath) == nullptr)
+			goto L0030;
+		StringBuilder::ClassInit();
+		throw new RuntimeException((new StringBuilder("Output path already set to '"))->append(this->outputPath)->append("', not setting it to '")->append(outputPath)->append("'")->toString());
+	L0030: //
 		this->outputPath = outputPath;
 		return;
 	}
 
 	void Recompiler::setVisualStudio(Pointer<String> visualStudio)
 	{
-		//	if ((this->visualStudio) == nullptr)
-		//		goto L0030;
-		//	throw new RuntimeException((new StringBuilder("Visual Studio already set to '"))->append(this->visualStudio)->append("', not setting it to '")->append(visualStudio)->append("'")->toString());
-		//	L0030: //
+		if ((this->visualStudio) == nullptr)
+			goto L0030;
+		StringBuilder::ClassInit();
+		throw new RuntimeException((new StringBuilder("Visual Studio already set to '"))->append(this->visualStudio)->append("', not setting it to '")->append(visualStudio)->append("'")->toString());
+	L0030: //
 		this->visualStudio = visualStudio;
 		return;
 	}

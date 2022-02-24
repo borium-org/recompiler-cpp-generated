@@ -6,11 +6,10 @@ namespace java::lang
 	class Throwable
 	{
 	public:
-		Throwable()
+		virtual ~Throwable()
 		{
 		}
-		virtual ~Throwable();
-		virtual void printStackTrace();
+		virtual void printStackTrace() = 0;
 	};
 }
 

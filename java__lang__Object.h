@@ -81,6 +81,10 @@ namespace java::lang
 		{
 			return (T*)pointer;
 		}
+		bool operator == (Object* value)
+		{
+			return pointer == value;
+		}
 	private:
 		void assign(T* data)
 		{

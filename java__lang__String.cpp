@@ -37,4 +37,9 @@ namespace java::lang
 		return strcmp(data, other) == 0;
 	}
 
+	int String::length()
+	{
+		return (int)strlen(data);
+	}
+
 }

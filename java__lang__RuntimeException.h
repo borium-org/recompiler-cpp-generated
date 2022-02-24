@@ -8,13 +8,18 @@ using namespace java::lang;
 
 namespace java::lang
 {
-	class RuntimeException: public Throwable
+
+	class RuntimeException : public Throwable
 	{
 	public:
-		RuntimeException();
-		RuntimeException(String *message);
+		//RuntimeException();
+		RuntimeException(Pointer<String> message);
 		virtual ~RuntimeException();
+		virtual void printStackTrace();
+	private:
+		Pointer<String> errorMessage;
 	};
+
 }
 
 #endif

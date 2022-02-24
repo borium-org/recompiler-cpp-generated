@@ -101,6 +101,12 @@
     <ClCompile Include="java__lang__String.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="java__lang__RuntimeException.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="java__lang__StringBuilder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="JrcPortCpp.rc">

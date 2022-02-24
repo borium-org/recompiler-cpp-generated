@@ -177,9 +177,11 @@
   <ItemGroup>
     <ClCompile Include="java__lang__JavaArray.cpp" />
     <ClCompile Include="java__lang__Object.cpp" />
+    <ClCompile Include="java__lang__RuntimeException.cpp" />
     <ClCompile Include="java__lang__String.cpp" />
     <ClCompile Include="JrcPortCpp.cpp" />
     <ClCompile Include="org__borium__javarecompiler__Recompiler.cpp" />
+    <ClCompile Include="java__lang__StringBuilder.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
