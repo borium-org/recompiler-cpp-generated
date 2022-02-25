@@ -25,7 +25,10 @@ namespace java::lang
 			TRACE("Object::~Object(%p)\n", this);
 		}
 		static void ClassInit();
-		//virtual int hashCode();
+		virtual int hashCode()
+		{
+			return (int)(size_t)this;
+		}
 		//virtual bool equals(Object *other);
 	private:
 		int usageCounter;
@@ -81,13 +84,18 @@ namespace java::lang
 		{
 			return (T*)pointer;
 		}
-		bool operator == (Object* value)
+		bool operator == (Object* value) const
 		{
 			return pointer == value;
 		}
-		bool operator == (Pointer<T>& other)
+		bool operator == (const Pointer<T>& other) const
 		{
 			return pointer == other.pointer;
+		}
+		// This one is for MFC CMap hashing
+		operator long()
+		{
+			return pointer->hashCode();
 		}
 	private:
 		void assign(T* data)
