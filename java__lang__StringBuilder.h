@@ -18,9 +18,7 @@ namespace java::lang
 		StringBuilder* append(const char* string);
 		Pointer<String> toString();
 	private:
-		char buffer[100];
-		size_t length;
-		char* ptr;
+		CString buffer;
 	};
 }
 

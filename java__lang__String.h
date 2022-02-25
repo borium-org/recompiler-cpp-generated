@@ -7,6 +7,7 @@ namespace java::lang
 {
 	class String : public Object
 	{
+		friend class StringBuilder;
 	public:
 		String();
 		String(const char* string);
@@ -18,7 +19,8 @@ namespace java::lang
 		virtual bool startsWith(const char* start);
 		virtual Pointer<String> replace(char from, char to);
 		virtual Pointer<String> substring(int first, int last);
-		char* data;
+	private:
+		CString data;
 	};
 }
 

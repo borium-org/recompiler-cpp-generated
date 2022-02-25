@@ -6,25 +6,22 @@ namespace java::lang
 
 	String::String()
 	{
-		data = nullptr;
 	}
 
 	String::String(const char* string)
 	{
-		data = _strdup(string);
+		data = string;
 	}
 
 	String::~String()
 	{
-		if (data)
-			free(data);
 	}
 
 	int String::hashCode()
 	{
 		int h = 0;
-		size_t length = strlen(data);
-		for (size_t i = 0; i < length; i++)
+		int length = data.GetLength();
+		for (int i = 0; i < length; i++)
 		{
 			int v = data[i];
 			h = 31 * h + (v & 0xff);
@@ -34,12 +31,12 @@ namespace java::lang
 
 	bool String::equals(const char* other)
 	{
-		return strcmp(data, other) == 0;
+		return data == other;
 	}
 
 	int String::length()
 	{
-		return (int)strlen(data);
+		return data.GetLength();
 	}
 
 	bool String::startsWith(const char* start)
@@ -50,13 +47,9 @@ namespace java::lang
 
 	Pointer<String> String::replace(char from, char to)
 	{
-		String* newString = new String(data);
-		for (char* ptr = newString->data; *ptr != 0; ptr++)
-		{
-			if (*ptr == from)
-				*ptr = to;
-		}
-		return newString;
+		CString newString = data;
+		newString.Replace(from, to);
+		return new String(newString);
 	}
 
 	Pointer<String> String::valueOf(Pointer<String> string)
@@ -68,14 +61,7 @@ namespace java::lang
 
 	Pointer<String> String::substring(int first, int last)
 	{
-		size_t length = strlen(data);
-		ASSERT(first < last&& first < length&& last <= length);
-		char* buf = (char*)_malloca((size_t)last - (size_t)first + 1);
-		if (buf)
-		{
-			memcpy(buf, data + first, (size_t)last - (size_t)first);
-			buf[last - first] = 0;
-		}
+		CString buf = data.Mid(first, last - first);
 		return new String(buf);
 	}
 
