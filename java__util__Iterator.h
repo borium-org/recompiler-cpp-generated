@@ -8,12 +8,12 @@ using namespace java::lang;
 namespace java::util
 {
 	template<class T>
-	class Iterator: public Object
+	class Iterator : public Object
 	{
 	public:
 		Iterator();
 		virtual ~Iterator();
-		virtual T next();
+		virtual Pointer<T> next();
 		virtual bool hasNext();
 	};
 }

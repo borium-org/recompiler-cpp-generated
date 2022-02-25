@@ -42,4 +42,26 @@ namespace java::lang
 		return (int)strlen(data);
 	}
 
+	bool String::startsWith(const char* start)
+	{
+		size_t length = strlen(start);
+		return strncmp(data, start, length) == 0;
+	}
+
+	Pointer<String> String::replace(char from, char to)
+	{
+		String* newString = new String(data);
+		for (char* ptr = newString->data; *ptr != 0; ptr++)
+		{
+			if (*ptr == from)
+				*ptr = to;
+		}
+		return newString;
+	}
+
+	Pointer<String> String::valueOf(Pointer<String> string)
+	{
+		return string;
+	}
+
 }

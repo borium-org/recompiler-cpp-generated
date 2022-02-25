@@ -13,6 +13,21 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\java.io">
+      <UniqueIdentifier>{9fd246bb-f9d9-49fa-bdc9-821563535249}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\java.lang">
+      <UniqueIdentifier>{56de8659-6e05-4841-b816-bd9daa8235b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\java.lang">
+      <UniqueIdentifier>{2ec26e14-4f73-4100-8f0d-e37cbe7e5cda}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\java.util">
+      <UniqueIdentifier>{d787b06a-2b16-45b9-9596-87639a842cdb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\java.util">
+      <UniqueIdentifier>{befe1bf3-8740-4790-abfc-0ae7000ae0df}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -27,48 +42,6 @@
     <ClInclude Include="JrcPortCpp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="java__io__File.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="java__io__IOException.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="java__io__PrintStream.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="java__lang__ClassFormatError.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="java__lang__Object.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="java__lang__RuntimeException.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="java__lang__String.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="java__lang__StringBuilder.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="java__lang__System.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="java__lang__Throwable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="java__util__ArrayList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="java__util__HashMap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="java__util__Iterator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="java__util__List.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="org__borium__javarecompiler__classfile__ClassFile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -81,6 +54,48 @@
     <ClInclude Include="org__borium__javarecompiler__Recompiler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="java__io__File.h">
+      <Filter>Header Files\java.io</Filter>
+    </ClInclude>
+    <ClInclude Include="java__io__IOException.h">
+      <Filter>Header Files\java.io</Filter>
+    </ClInclude>
+    <ClInclude Include="java__io__PrintStream.h">
+      <Filter>Header Files\java.io</Filter>
+    </ClInclude>
+    <ClInclude Include="java__lang__ClassFormatError.h">
+      <Filter>Header Files\java.lang</Filter>
+    </ClInclude>
+    <ClInclude Include="java__lang__Object.h">
+      <Filter>Header Files\java.lang</Filter>
+    </ClInclude>
+    <ClInclude Include="java__lang__RuntimeException.h">
+      <Filter>Header Files\java.lang</Filter>
+    </ClInclude>
+    <ClInclude Include="java__lang__String.h">
+      <Filter>Header Files\java.lang</Filter>
+    </ClInclude>
+    <ClInclude Include="java__lang__StringBuilder.h">
+      <Filter>Header Files\java.lang</Filter>
+    </ClInclude>
+    <ClInclude Include="java__lang__System.h">
+      <Filter>Header Files\java.lang</Filter>
+    </ClInclude>
+    <ClInclude Include="java__lang__Throwable.h">
+      <Filter>Header Files\java.lang</Filter>
+    </ClInclude>
+    <ClInclude Include="java__util__ArrayList.h">
+      <Filter>Header Files\java.util</Filter>
+    </ClInclude>
+    <ClInclude Include="java__util__HashMap.h">
+      <Filter>Header Files\java.util</Filter>
+    </ClInclude>
+    <ClInclude Include="java__util__Iterator.h">
+      <Filter>Header Files\java.util</Filter>
+    </ClInclude>
+    <ClInclude Include="java__util__List.h">
+      <Filter>Header Files\java.util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -92,20 +107,20 @@
     <ClCompile Include="org__borium__javarecompiler__Recompiler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="java__lang__Object.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="java__lang__JavaArray.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\java.lang</Filter>
     </ClCompile>
-    <ClCompile Include="java__lang__String.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="java__lang__Object.cpp">
+      <Filter>Source Files\java.lang</Filter>
     </ClCompile>
     <ClCompile Include="java__lang__RuntimeException.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\java.lang</Filter>
+    </ClCompile>
+    <ClCompile Include="java__lang__String.cpp">
+      <Filter>Source Files\java.lang</Filter>
     </ClCompile>
     <ClCompile Include="java__lang__StringBuilder.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\java.lang</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -11,13 +11,13 @@ namespace java::lang
 		String();
 		String(const char* string);
 		virtual ~String();
-		//static String* valueOf(String* string);
+		static Pointer<String> valueOf(Pointer<String> string);
 		virtual int hashCode();
 		virtual int length();
 		virtual bool equals(const char* other);
-		//virtual bool startsWith(const char* start);
-		//virtual String* replace(char from, char to);
-		//virtual String* substring(int first, int last);
+		virtual bool startsWith(const char* start);
+		virtual Pointer<String> replace(char from, char to);
+		virtual Pointer<String> substring(int first, int last);
 		char* data;
 	};
 }

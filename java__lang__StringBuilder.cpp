@@ -4,8 +4,23 @@
 namespace java::lang
 {
 
+	StringBuilder::StringBuilder(Pointer<String> string)
+	{
+		memset(buffer, 0, sizeof(buffer));
+		length = 100;
+		ptr = buffer;
+		if (string->length() >= length)
+		{
+			length *= 2;
+			ptr = new char[length];
+		}
+		strcpy_s(ptr, length, string->data);
+	}
+
+
 	StringBuilder::StringBuilder(const char* string)
 	{
+		memset(buffer, 0, sizeof(buffer));
 		length = 100;
 		ptr = buffer;
 		if (strlen(string) >= length)
@@ -14,6 +29,12 @@ namespace java::lang
 			ptr = new char[length];
 		}
 		strcpy_s(ptr, length, string);
+	}
+
+	StringBuilder::~StringBuilder()
+	{
+		if (ptr != buffer)
+			delete ptr;
 	}
 
 	StringBuilder* StringBuilder::append(Pointer<String> string)

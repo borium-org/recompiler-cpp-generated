@@ -13,15 +13,15 @@ using namespace org::borium::javarecompiler::classfile;
 
 namespace org::borium::javarecompiler::classfile
 {
-	class ClassFile: public Object
+	class ClassFile : public Object
 	{
 	public:
 		ClassFile();
 		virtual ~ClassFile();
-		virtual void read(String *fileName);
-		virtual String* getClassName();
-		virtual void dump(IndentedOutputStream *stream);
-		virtual List<Object*>* getReferencedClasses();
+		virtual void read(Pointer<String> fileName);
+		virtual Pointer<String> getClassName();
+		virtual void dump(Pointer<IndentedOutputStream> stream);
+		virtual Pointer<List<String>> getReferencedClasses();
 	};
 }
 

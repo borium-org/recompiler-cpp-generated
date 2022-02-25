@@ -85,6 +85,10 @@ namespace java::lang
 		{
 			return pointer == value;
 		}
+		bool operator == (Pointer<T>& other)
+		{
+			return pointer == other.pointer;
+		}
 	private:
 		void assign(T* data)
 		{
@@ -96,7 +100,7 @@ namespace java::lang
 				if (pointer->usageCounter == 0)
 					delete pointer;
 			}
-			pointer = data;
+			pointer = (Object*)data;
 			if (pointer != nullptr)
 			{
 				pointer->usageCounter++;
@@ -139,7 +143,7 @@ namespace java::lang
 		Pointer<T>* data;
 	};
 
-	//template<class T> T GetStatic(void(*classInit)(), T field);
+	template<class T> T GetStatic(void(*classInit)(), T field);
 }
 
 #endif

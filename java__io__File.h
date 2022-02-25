@@ -8,10 +8,10 @@ using namespace java::lang;
 
 namespace java::io
 {
-	class File: public Object
+	class File : public Object
 	{
 	public:
-		File(String *fileName);
+		File(Pointer<String> fileName);
 		virtual ~File();
 		virtual bool exists();
 		virtual bool isFile();

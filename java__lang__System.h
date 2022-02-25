@@ -10,7 +10,7 @@ namespace java::lang
 	class System
 	{
 	public:
-		static PrintStream* out;
+		static Pointer<PrintStream> out;
 		static void ClassInit();
 	};
 }

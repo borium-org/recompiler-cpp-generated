@@ -7,11 +7,11 @@ using namespace java::lang;
 
 namespace java::io
 {
-	class PrintStream: public Object
+	class PrintStream : public Object
 	{
 	public:
-		virtual void println(const char *text);
-		virtual void println(String *text);
+		virtual void println(const char* text);
+		virtual void println(Pointer<String> text);
 	};
 }
 

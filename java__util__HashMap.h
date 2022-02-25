@@ -8,14 +8,14 @@ using namespace java::lang;
 namespace java::util
 {
 	template<class K, class V>
-	class HashMap: public Object
+	class HashMap : public Object
 	{
 	public:
 		HashMap();
 		virtual ~HashMap();
-		virtual V put(K key, V value);
-		virtual V get(K key);
-		virtual bool containsKey(K key);
+		virtual Pointer<V> put(Pointer<K> key, Pointer<V> value);
+		virtual Pointer<V> get(Pointer<K> key);
+		virtual bool containsKey(Pointer<K> key);
 	};
 }
 

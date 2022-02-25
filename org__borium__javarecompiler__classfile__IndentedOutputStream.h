@@ -3,10 +3,10 @@
 
 namespace org::borium::javarecompiler::classfile
 {
-	class IndentedOutputStream: public Object
+	class IndentedOutputStream : public Object
 	{
 	public:
-		IndentedOutputStream(String *fileName);
+		IndentedOutputStream(Pointer<String> fileName);
 		virtual ~IndentedOutputStream();
 	};
 }
