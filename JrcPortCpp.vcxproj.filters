@@ -96,6 +96,9 @@
     <ClInclude Include="java__util__List.h">
       <Filter>Header Files\java.util</Filter>
     </ClInclude>
+    <ClInclude Include="java__util__NoSuchElementException.h">
+      <Filter>Header Files\java.util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

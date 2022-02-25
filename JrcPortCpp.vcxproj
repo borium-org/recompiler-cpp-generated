@@ -165,6 +165,7 @@
     <ClInclude Include="java__util__HashMap.h" />
     <ClInclude Include="java__util__Iterator.h" />
     <ClInclude Include="java__util__List.h" />
+    <ClInclude Include="java__util__NoSuchElementException.h" />
     <ClInclude Include="JrcPortCpp.h" />
     <ClInclude Include="org__borium__javarecompiler__classfile__ClassFile.h" />
     <ClInclude Include="org__borium__javarecompiler__classfile__IndentedOutputStream.h" />

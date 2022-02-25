@@ -4,6 +4,7 @@
 #include "java__lang__Object.h"
 #include "java__util__List.h"
 #include "java__util__Iterator.h"
+#include "java__util__NoSuchElementException.h"
 
 using namespace java::lang;
 
@@ -12,6 +13,30 @@ namespace java::util
 	template<class T>
 	class ArrayList : public Object, public List<T>
 	{
+		class Itr : public Iterator<T>
+		{
+		public:
+			Itr(Pointer<ArrayList<T>> arrayList)
+			{
+				this->arrayList = arrayList;
+				cursor = 0;
+			}
+			virtual Pointer<T> next()
+			{
+				if (!hasNext())
+					throw new NoSuchElementException();
+				Pointer<T> element = arrayList->get(cursor);
+				cursor++;
+				return element;
+			}
+			virtual bool hasNext()
+			{
+				return cursor < arrayList->_size;
+			}
+		private:
+			Pointer<ArrayList<T>> arrayList;
+			int cursor;
+		};
 	public:
 		ArrayList()
 		{
@@ -38,6 +63,12 @@ namespace java::util
 			_size++;
 			return true;
 		}
+		virtual Pointer<T> get(int index)
+		{
+			ASSERT(index >= 0 && index < _size);
+			Pointer<T> pointer = data[index];
+			return pointer;
+		}
 		virtual Pointer<T> remove(int index)
 		{
 			ASSERT(index >= 0 && index < _size);
@@ -59,7 +90,10 @@ namespace java::util
 		{
 			return _size;
 		}
-		virtual Pointer<Iterator<T>> iterator();
+		virtual Pointer<Iterator<T>> iterator()
+		{
+			return new Itr(this);
+		}
 	private:
 		int _size;
 		int allocated;

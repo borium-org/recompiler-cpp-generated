@@ -61,7 +61,22 @@ namespace java::lang
 
 	Pointer<String> String::valueOf(Pointer<String> string)
 	{
+		if (string == nullptr)
+			return new String("null");
 		return string;
+	}
+
+	Pointer<String> String::substring(int first, int last)
+	{
+		size_t length = strlen(data);
+		ASSERT(first < last&& first < length&& last <= length);
+		char* buf = (char*)_malloca((size_t)last - (size_t)first + 1);
+		if (buf)
+		{
+			memcpy(buf, data + first, (size_t)last - (size_t)first);
+			buf[last - first] = 0;
+		}
+		return new String(buf);
 	}
 
 }
