@@ -15,6 +15,9 @@ namespace java::io
 		virtual ~File();
 		virtual bool exists();
 		virtual bool isFile();
+	private:
+		CFile file;
+		CString fileName;
 	};
 }
 

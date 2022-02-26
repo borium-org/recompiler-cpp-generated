@@ -151,7 +151,11 @@ namespace java::lang
 		Pointer<T>* data;
 	};
 
-	template<class T> T GetStatic(void(*classInit)(), T field);
+	template<class T> T GetStatic(void(*classInit)(), T field)
+	{
+		classInit();
+		return field;
+	}
 }
 
 #endif

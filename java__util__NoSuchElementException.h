@@ -11,10 +11,18 @@ namespace java::util
 	class NoSuchElementException : public Throwable
 	{
 	public:
-		NoSuchElementException();
-		NoSuchElementException(Pointer<String> message);
-		virtual ~NoSuchElementException();
-		virtual void printStackTrace();
+		NoSuchElementException()
+		{
+		}
+		NoSuchElementException(Pointer<String> message)
+		{
+		}
+		virtual ~NoSuchElementException()
+		{
+		}
+		virtual void printStackTrace()
+		{
+		}
 	private:
 		Pointer<String> errorMessage;
 	};

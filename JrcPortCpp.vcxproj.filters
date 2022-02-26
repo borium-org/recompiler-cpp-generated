@@ -28,6 +28,9 @@
     <Filter Include="Source Files\java.util">
       <UniqueIdentifier>{befe1bf3-8740-4790-abfc-0ae7000ae0df}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\java.io">
+      <UniqueIdentifier>{e8eaeeb7-7b7c-43b8-ab93-04e6b2f72d35}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -124,6 +127,15 @@
     </ClCompile>
     <ClCompile Include="java__lang__StringBuilder.cpp">
       <Filter>Source Files\java.lang</Filter>
+    </ClCompile>
+    <ClCompile Include="java__io__File.cpp">
+      <Filter>Source Files\java.io</Filter>
+    </ClCompile>
+    <ClCompile Include="java__lang__System.cpp">
+      <Filter>Source Files\java.lang</Filter>
+    </ClCompile>
+    <ClCompile Include="java__io__PrintStream.cpp">
+      <Filter>Source Files\java.io</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

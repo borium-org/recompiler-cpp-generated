@@ -19,6 +19,10 @@ namespace java::lang
 		virtual bool startsWith(const char* start);
 		virtual Pointer<String> replace(char from, char to);
 		virtual Pointer<String> substring(int first, int last);
+		operator CString() const
+		{
+			return data;
+		}
 	private:
 		CString data;
 	};

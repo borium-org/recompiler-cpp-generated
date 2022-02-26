@@ -176,10 +176,13 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="java__io__File.cpp" />
+    <ClCompile Include="java__io__PrintStream.cpp" />
     <ClCompile Include="java__lang__JavaArray.cpp" />
     <ClCompile Include="java__lang__Object.cpp" />
     <ClCompile Include="java__lang__RuntimeException.cpp" />
     <ClCompile Include="java__lang__String.cpp" />
+    <ClCompile Include="java__lang__System.cpp" />
     <ClCompile Include="JrcPortCpp.cpp" />
     <ClCompile Include="org__borium__javarecompiler__Recompiler.cpp" />
     <ClCompile Include="java__lang__StringBuilder.cpp" />
