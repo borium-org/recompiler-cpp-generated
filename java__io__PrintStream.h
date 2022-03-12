@@ -1,5 +1,4 @@
-#ifndef JAVA__IO__PRINTSTREAM
-#define JAVA__IO__PRINTSTREAM
+#pragma once
 
 #include "java__lang__Object.h"
 
@@ -16,5 +15,3 @@ namespace java::io
 		virtual void println(Pointer<String> text);
 	};
 }
-
-#endif

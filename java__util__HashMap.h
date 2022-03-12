@@ -1,5 +1,4 @@
-#ifndef JAVA__UTIL__HASHMAP
-#define JAVA__UTIL__HASHMAP
+#pragma once
 
 #include "java__lang__Object.h"
 
@@ -50,5 +49,3 @@ namespace java::util
 		CMap<Pointer<K>, Pointer<K>, Pointer<V>, Pointer<V>> map;
 	};
 }
-
-#endif

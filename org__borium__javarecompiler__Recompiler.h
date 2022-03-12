@@ -1,5 +1,4 @@
-#ifndef ORG__BORIUM__JAVARECOMPILER__RECOMPILER
-#define ORG__BORIUM__JAVARECOMPILER__RECOMPILER
+#pragma once
 
 #include "java__io__File.h"
 #include "java__io__IOException.h"
@@ -59,5 +58,3 @@ namespace org::borium::javarecompiler
 	};
 
 }
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef JAVA__LANG__SYSTEM
-#define JAVA__LANG__SYSTEM
+#pragma once
 
 #include "java__io__PrintStream.h"
 
@@ -14,5 +13,3 @@ namespace java::lang
 		static void ClassInit();
 	};
 }
-
-#endif

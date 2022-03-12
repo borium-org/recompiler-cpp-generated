@@ -1,5 +1,4 @@
-#ifndef JAVA__LANG__THROWABLE
-#define JAVA__LANG__THROWABLE
+#pragma once
 
 namespace java::lang
 {
@@ -12,5 +11,3 @@ namespace java::lang
 		virtual void printStackTrace() = 0;
 	};
 }
-
-#endif

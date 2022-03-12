@@ -102,6 +102,30 @@
     <ClInclude Include="java__util__NoSuchElementException.h">
       <Filter>Header Files\java.util</Filter>
     </ClInclude>
+    <ClInclude Include="java__io__DataInputStream.h">
+      <Filter>Header Files\java.io</Filter>
+    </ClInclude>
+    <ClInclude Include="java__io__FileInputStream.h">
+      <Filter>Header Files\java.io</Filter>
+    </ClInclude>
+    <ClInclude Include="org__borium__javarecompiler__classfile__ByteInputStream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="org__borium__javarecompiler__classfile__ClassAttribute.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="org__borium__javarecompiler__classfile__ClassField.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="org__borium__javarecompiler__classfile__ClassMethod.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="org__borium__javarecompiler__classfile__constants__ConstantClassInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="org__borium__javarecompiler__classfile__constants__ConstantPool.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -136,6 +160,9 @@
     </ClCompile>
     <ClCompile Include="java__io__PrintStream.cpp">
       <Filter>Source Files\java.io</Filter>
+    </ClCompile>
+    <ClCompile Include="org__borium__javarecompiler__classfile__ClassFile.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

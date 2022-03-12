@@ -92,6 +92,13 @@ namespace java::lang
 		{
 			return pointer == other.pointer;
 		}
+		// This one is for cases where we need to return a Pointer<class> and class can be
+		// upcast but pointer doesn't allow upcasting. Converter will have to take care of
+		// it explicitly some day...
+		T* getValue()
+		{
+			return pointer;
+		}
 		// This one is for MFC CMap hashing
 		operator long()
 		{
@@ -139,6 +146,16 @@ namespace java::lang
 		void assignString(int index, const char* value)
 		{
 			data[index] = new String(value);
+		}
+		void assign(int index, Pointer<T> value)
+		{
+			//data[index] = new String(value);
+			ASSERT(false);
+		}
+		void assign(int index, T value)
+		{
+			//data[index] = new String(value);
+			ASSERT(false);
 		}
 		T* get(int index)
 		{

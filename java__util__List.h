@@ -1,5 +1,4 @@
-#ifndef JAVA__UTIL__LIST
-#define JAVA__UTIL__LIST
+#pragma once
 
 #include "java__util__Iterator.h"
 
@@ -18,5 +17,3 @@ namespace java::util
 		virtual Pointer<Iterator<T>> iterator() = 0;
 	};
 }
-
-#endif

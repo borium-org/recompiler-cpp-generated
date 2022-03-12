@@ -1,5 +1,4 @@
-#ifndef JAVA__UTIL__ARRAYLIST
-#define JAVA__UTIL__ARRAYLIST
+#pragma once
 
 #include "java__lang__Object.h"
 #include "java__util__List.h"
@@ -100,5 +99,3 @@ namespace java::util
 		Pointer<T>* data;
 	};
 }
-
-#endif

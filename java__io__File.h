@@ -1,5 +1,4 @@
-#ifndef JAVA__IO__FILE
-#define JAVA__IO__FILE
+#pragma once
 
 #include "java__lang__Object.h"
 #include "java__lang__String.h"
@@ -20,5 +19,3 @@ namespace java::io
 		CString fileName;
 	};
 }
-
-#endif

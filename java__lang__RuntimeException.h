@@ -1,5 +1,4 @@
-#ifndef JAVA__LANG__RUNTIMEEXCEPTION
-#define JAVA__LANG__RUNTIMEEXCEPTION
+#pragma once
 
 #include "java__lang__String.h"
 #include "java__lang__Throwable.h"
@@ -21,5 +20,3 @@ namespace java::lang
 	};
 
 }
-
-#endif
