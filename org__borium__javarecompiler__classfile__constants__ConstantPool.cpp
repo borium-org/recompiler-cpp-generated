@@ -12,7 +12,7 @@ namespace org::borium::javarecompiler::classfile::constants
 
 	void ConstantPool::dump(Pointer<IndentedOutputStream> stream)
 	{
-		int i = 0;
+		int i;
 		stream->println("Constants:");
 		stream->indent(1);
 		i = 1;
@@ -62,7 +62,6 @@ namespace org::borium::javarecompiler::classfile::constants
 		Pointer<Constant> c;
 		Pointer<ConstantClassInfo> ci;
 		Pointer<Constant> instanceOfPatternExpressionValue;
-		Pointer<ConstantClassInfo> local_002D;
 		referencedClasses = new ArrayList<String>();
 		Pointer<JavaArray<Constant>> local_000D = this->constants;
 		int local_0010 = this->constants->length;
@@ -74,7 +73,7 @@ namespace org::borium::javarecompiler::classfile::constants
 		if (!(instanceOfPatternExpressionValue->instanceOf(ConstantClassInfo::getClass())))
 			goto L004C;
 		instanceOfPatternExpressionValue->checkCast(ConstantClassInfo::getClass());
-		local_002D = instanceOfPatternExpressionValue.getValue();
+		Pointer<ConstantClassInfo> local_002D = instanceOfPatternExpressionValue.getValue();
 		instanceOfPatternExpressionValue->checkCast(ConstantClassInfo::getClass());
 		if ((instanceOfPatternExpressionValue) != (instanceOfPatternExpressionValue))
 			goto L004C;
@@ -92,13 +91,12 @@ namespace org::borium::javarecompiler::classfile::constants
 		Pointer<Constant> constant;
 		Pointer<ConstantUtf8Info> utf8;
 		Pointer<Constant> instanceOfPatternExpressionValue;
-		Pointer<ConstantUtf8Info>local_0017;
 		constant = this->get(index);
 		instanceOfPatternExpressionValue = constant;
 		if (!(instanceOfPatternExpressionValue->instanceOf(ConstantUtf8Info::getClass())))
 			goto L0025;
 		instanceOfPatternExpressionValue->checkCast(ConstantUtf8Info::getClass());
-		local_0017 = instanceOfPatternExpressionValue.getValue();
+		Pointer<ConstantUtf8Info> local_0017 = instanceOfPatternExpressionValue;
 		instanceOfPatternExpressionValue->checkCast(ConstantUtf8Info::getClass());
 		if ((instanceOfPatternExpressionValue) != (instanceOfPatternExpressionValue))
 			goto L0025;
@@ -109,13 +107,13 @@ namespace org::borium::javarecompiler::classfile::constants
 
 	void ConstantPool::read(Pointer<ByteInputStream> in)
 	{
-		int count = 0;
-		int i = 0;
-		int tag = 0;
-		Constant* constant = nullptr;
-		int i = 0;
+		int count;
+		int i;
+		int tag;
+		Pointer<Constant> constant;
+		int i;
 		count = in->u2();
-		this->constants = new JavaArray<Constant*>(count);
+		this->constants = new JavaArray<Constant>(count);
 		i = 1;
 		goto L0046;
 	L0012: //
@@ -151,8 +149,8 @@ namespace org::borium::javarecompiler::classfile::constants
 
 	void ConstantPool::verify(int majorVersion, int minorVersion)
 	{
-		int i = 0;
-		Constant* constant = nullptr;
+		int i;
+		Pointer<Constant> constant;
 		i = 0;
 		goto L001F;
 	L0005: //

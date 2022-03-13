@@ -197,6 +197,7 @@
     <ClCompile Include="java__lang__System.cpp" />
     <ClCompile Include="JrcPortCpp.cpp" />
     <ClCompile Include="org__borium__javarecompiler__classfile__ClassFile.cpp" />
+    <ClCompile Include="org__borium__javarecompiler__classfile__constants__Constant.cpp" />
     <ClCompile Include="org__borium__javarecompiler__classfile__constants__ConstantPool.cpp" />
     <ClCompile Include="org__borium__javarecompiler__Recompiler.cpp" />
     <ClCompile Include="java__lang__StringBuilder.cpp" />

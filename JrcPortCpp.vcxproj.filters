@@ -37,6 +37,12 @@
     <Filter Include="Header Files\classfile.constants">
       <UniqueIdentifier>{8aecfc83-6a82-4235-878a-a16d736dc7db}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\classfile">
+      <UniqueIdentifier>{3f2267c6-352a-4872-9866-a3c1f534a21e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\classfile.constants">
+      <UniqueIdentifier>{227ad655-992e-4750-9d4b-0673cbcd5336}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -49,12 +55,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="JrcPortCpp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="org__borium__javarecompiler__classfile__ClassFile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="org__borium__javarecompiler__classfile__IndentedOutputStream.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="org__borium__javarecompiler__cplusplus__CppClass.h">
@@ -114,24 +114,6 @@
     <ClInclude Include="java__io__FileInputStream.h">
       <Filter>Header Files\java.io</Filter>
     </ClInclude>
-    <ClInclude Include="org__borium__javarecompiler__classfile__ByteInputStream.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="org__borium__javarecompiler__classfile__ClassAttribute.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="org__borium__javarecompiler__classfile__ClassField.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="org__borium__javarecompiler__classfile__ClassMethod.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="org__borium__javarecompiler__classfile__constants__ConstantClassInfo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="org__borium__javarecompiler__classfile__constants__ConstantPool.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="java__lang__Exception.h">
       <Filter>Header Files\java.lang</Filter>
     </ClInclude>
@@ -143,6 +125,30 @@
     </ClInclude>
     <ClInclude Include="org__borium__javarecompiler__classfile__constants__ConstantUtf8Info.h">
       <Filter>Header Files\classfile.constants</Filter>
+    </ClInclude>
+    <ClInclude Include="org__borium__javarecompiler__classfile__ByteInputStream.h">
+      <Filter>Header Files\classfile</Filter>
+    </ClInclude>
+    <ClInclude Include="org__borium__javarecompiler__classfile__ClassAttribute.h">
+      <Filter>Header Files\classfile</Filter>
+    </ClInclude>
+    <ClInclude Include="org__borium__javarecompiler__classfile__ClassField.h">
+      <Filter>Header Files\classfile</Filter>
+    </ClInclude>
+    <ClInclude Include="org__borium__javarecompiler__classfile__ClassFile.h">
+      <Filter>Header Files\classfile</Filter>
+    </ClInclude>
+    <ClInclude Include="org__borium__javarecompiler__classfile__ClassMethod.h">
+      <Filter>Header Files\classfile</Filter>
+    </ClInclude>
+    <ClInclude Include="org__borium__javarecompiler__classfile__constants__ConstantClassInfo.h">
+      <Filter>Header Files\classfile.constants</Filter>
+    </ClInclude>
+    <ClInclude Include="org__borium__javarecompiler__classfile__constants__ConstantPool.h">
+      <Filter>Header Files\classfile.constants</Filter>
+    </ClInclude>
+    <ClInclude Include="org__borium__javarecompiler__classfile__IndentedOutputStream.h">
+      <Filter>Header Files\classfile</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -180,10 +186,13 @@
       <Filter>Source Files\java.io</Filter>
     </ClCompile>
     <ClCompile Include="org__borium__javarecompiler__classfile__ClassFile.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\classfile</Filter>
     </ClCompile>
     <ClCompile Include="org__borium__javarecompiler__classfile__constants__ConstantPool.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\classfile.constants</Filter>
+    </ClCompile>
+    <ClCompile Include="org__borium__javarecompiler__classfile__constants__Constant.cpp">
+      <Filter>Source Files\classfile.constants</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

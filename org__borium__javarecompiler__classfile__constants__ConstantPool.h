@@ -1,16 +1,32 @@
 #pragma once
 
-#include "java__lang__Class.h"
-#include "java__lang__ClassFormatError.h"
 #include "java__lang__Object.h"
-#include "java__lang__String.h"
-#include "java__lang__StringBuilder.h"
-#include "java__util__ArrayList.h"
-#include "org__borium__javarecompiler__classfile__ByteInputStream.h"
-#include "org__borium__javarecompiler__classfile__IndentedOutputStream.h"
-#include "org__borium__javarecompiler__classfile__constants__Constant.h"
-#include "org__borium__javarecompiler__classfile__constants__ConstantClassInfo.h"
-#include "org__borium__javarecompiler__classfile__constants__ConstantUtf8Info.h"
+
+namespace java::lang
+{
+	class Class;
+	class ClassFormatError;
+	class String;
+	class StringBuilder;
+}
+
+namespace java::util
+{
+	template<class T> class ArrayList;
+}
+
+namespace org::borium::javarecompiler::classfile
+{
+	class ByteInputStream;
+	class IndentedOutputStream;
+}
+
+namespace org::borium::javarecompiler::classfile::constants
+{
+	class Constant;
+	class ConstantClassInfo;
+	class ConstantUtf8Info;
+}
 
 using namespace java::lang;
 using namespace java::util;
@@ -19,7 +35,7 @@ using namespace org::borium::javarecompiler::classfile;
 namespace org::borium::javarecompiler::classfile::constants
 {
 
-	class ConstantPool: public Object
+	class ConstantPool : public Object
 	{
 	public:
 		Pointer<JavaArray<Constant>> constants;

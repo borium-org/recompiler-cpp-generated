@@ -1,5 +1,11 @@
-#ifndef ORG__BORIUM__JAVARECOMPILER__CLASSFILE__INDENTEDOUTPUTSTREAM
-#define ORG__BORIUM__JAVARECOMPILER__CLASSFILE__INDENTEDOUTPUTSTREAM
+#pragma once
+
+#include "java__lang__Object.h"
+
+namespace java::lang
+{
+	class String;
+}
 
 namespace org::borium::javarecompiler::classfile
 {
@@ -18,5 +24,3 @@ namespace org::borium::javarecompiler::classfile
 		virtual void printHex(int value, int width);
 	};
 }
-
-#endif
