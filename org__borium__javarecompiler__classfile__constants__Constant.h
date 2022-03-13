@@ -66,11 +66,11 @@ namespace org::borium::javarecompiler::classfile::constants
 
 		Constant();
 		static Pointer<Constant> create(int tag);
-		virtual void dump(Pointer<IndentedOutputStream> param1);
+		virtual void dump(Pointer<IndentedOutputStream> param1) = 0;
 		virtual bool is(int constantType);
 		virtual void fixup(Pointer<ConstantPool> constantPool);
-		virtual void read(Pointer<ByteInputStream> param1);
-		virtual bool verify(int param1, int param2, Pointer<ConstantPool> param3, int param4);
+		virtual void read(Pointer<ByteInputStream> param1) = 0;
+		virtual bool verify(int param1, int param2, Pointer<ConstantPool> param3, int param4) = 0;
 	};
 
 }
