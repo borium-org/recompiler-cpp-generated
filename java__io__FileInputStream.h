@@ -1,6 +1,9 @@
 #pragma once
 
-class FileInputStream
+#include "java__lang__Object.h"
+#include "java__lang__String.h"
+
+class FileInputStream : public Object
 {
 public:
 	FileInputStream(Pointer<String> fileName);

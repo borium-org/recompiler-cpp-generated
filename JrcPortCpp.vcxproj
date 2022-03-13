@@ -156,7 +156,9 @@
     <ClInclude Include="java__io__FileInputStream.h" />
     <ClInclude Include="java__io__IOException.h" />
     <ClInclude Include="java__io__PrintStream.h" />
+    <ClInclude Include="java__lang__Class.h" />
     <ClInclude Include="java__lang__ClassFormatError.h" />
+    <ClInclude Include="java__lang__Exception.h" />
     <ClInclude Include="java__lang__Object.h" />
     <ClInclude Include="java__lang__RuntimeException.h" />
     <ClInclude Include="java__lang__String.h" />
@@ -174,8 +176,10 @@
     <ClInclude Include="org__borium__javarecompiler__classfile__ClassField.h" />
     <ClInclude Include="org__borium__javarecompiler__classfile__ClassFile.h" />
     <ClInclude Include="org__borium__javarecompiler__classfile__ClassMethod.h" />
+    <ClInclude Include="org__borium__javarecompiler__classfile__constants__Constant.h" />
     <ClInclude Include="org__borium__javarecompiler__classfile__constants__ConstantClassInfo.h" />
     <ClInclude Include="org__borium__javarecompiler__classfile__constants__ConstantPool.h" />
+    <ClInclude Include="org__borium__javarecompiler__classfile__constants__ConstantUtf8Info.h" />
     <ClInclude Include="org__borium__javarecompiler__classfile__IndentedOutputStream.h" />
     <ClInclude Include="org__borium__javarecompiler__cplusplus__CppClass.h" />
     <ClInclude Include="org__borium__javarecompiler__Recompiler.h" />
@@ -193,6 +197,7 @@
     <ClCompile Include="java__lang__System.cpp" />
     <ClCompile Include="JrcPortCpp.cpp" />
     <ClCompile Include="org__borium__javarecompiler__classfile__ClassFile.cpp" />
+    <ClCompile Include="org__borium__javarecompiler__classfile__constants__ConstantPool.cpp" />
     <ClCompile Include="org__borium__javarecompiler__Recompiler.cpp" />
     <ClCompile Include="java__lang__StringBuilder.cpp" />
     <ClCompile Include="stdafx.cpp">

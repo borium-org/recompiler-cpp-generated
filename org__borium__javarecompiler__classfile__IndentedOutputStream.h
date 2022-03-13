@@ -14,6 +14,7 @@ namespace org::borium::javarecompiler::classfile
 		virtual void print(const char* string);
 		virtual void println();
 		virtual void println(Pointer<String> string);
+		virtual void println(const char* string);
 		virtual void printHex(int value, int width);
 	};
 }

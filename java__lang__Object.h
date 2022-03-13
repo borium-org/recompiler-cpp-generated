@@ -1,10 +1,11 @@
-#ifndef JAVA__LANG__OBJECT
-#define JAVA__LANG__OBJECT
+#pragma once
 
 // We allocate stuff in this header code so let's set up new debugging right here
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
+
+#include "java__lang__Class.h"
 
 namespace java::lang
 {
@@ -30,6 +31,9 @@ namespace java::lang
 			return (int)(size_t)this;
 		}
 		//virtual bool equals(Object *other);
+		static Pointer<Class> getClass();
+		virtual bool instanceOf(Pointer<Class> clazz);
+		virtual bool checkCast(Pointer<Class> clazz);
 	private:
 		int usageCounter;
 		static bool classInitialized;
@@ -174,5 +178,3 @@ namespace java::lang
 		return field;
 	}
 }
-
-#endif

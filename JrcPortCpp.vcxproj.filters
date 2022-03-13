@@ -31,6 +31,12 @@
     <Filter Include="Source Files\java.io">
       <UniqueIdentifier>{e8eaeeb7-7b7c-43b8-ab93-04e6b2f72d35}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\classfile">
+      <UniqueIdentifier>{10c5971b-f5a6-459b-9d5f-33f34811e2fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\classfile.constants">
+      <UniqueIdentifier>{8aecfc83-6a82-4235-878a-a16d736dc7db}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -126,6 +132,18 @@
     <ClInclude Include="org__borium__javarecompiler__classfile__constants__ConstantPool.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="java__lang__Exception.h">
+      <Filter>Header Files\java.lang</Filter>
+    </ClInclude>
+    <ClInclude Include="java__lang__Class.h">
+      <Filter>Header Files\java.lang</Filter>
+    </ClInclude>
+    <ClInclude Include="org__borium__javarecompiler__classfile__constants__Constant.h">
+      <Filter>Header Files\classfile.constants</Filter>
+    </ClInclude>
+    <ClInclude Include="org__borium__javarecompiler__classfile__constants__ConstantUtf8Info.h">
+      <Filter>Header Files\classfile.constants</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -162,6 +180,9 @@
       <Filter>Source Files\java.io</Filter>
     </ClCompile>
     <ClCompile Include="org__borium__javarecompiler__classfile__ClassFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="org__borium__javarecompiler__classfile__constants__ConstantPool.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
