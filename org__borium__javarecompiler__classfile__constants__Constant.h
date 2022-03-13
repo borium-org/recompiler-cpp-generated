@@ -10,8 +10,8 @@ namespace java::lang
 
 namespace org::borium::javarecompiler::classfile
 {
-	class IndentedOutputStream;
 	class ByteInputStream;
+	class IndentedOutputStream;
 }
 
 namespace org::borium::javarecompiler::classfile::constants
