@@ -28,15 +28,6 @@ namespace org::borium::javarecompiler::classfile
 		stream->println((new StringBuilder("Class: "))->append(this->className)->toString());
 		stream->println((new StringBuilder("Major Version: "))->append(this->majorVersion)->toString());
 		stream->println((new StringBuilder("Minor Version: "))->append(this->minorVersion)->toString());
-		//				stack: empty
-		//		aload 0
-		//				stack[0]: ClassFile*=this
-		//		getfield cp Lorg/borium/javarecompiler/classfile/constants/ConstantPool;
-		//				stack[0]: ConstantPool*=this->cp
-		//		aload 1
-		//				stack[0]: ConstantPool*=this->cp
-		//				stack[1]: IndentedOutputStream*=stream
-		//		invokevirtual org.borium.javarecompiler.classfile.constants.ConstantPool.dump
 		this->cp->dump(stream);
 		this->dumpClassInfo(stream);
 		this->dumpInterfaces(stream);
@@ -74,13 +65,6 @@ namespace org::borium::javarecompiler::classfile
 	Pointer<List<String>> ClassFile::getReferencedClasses()
 	{
 		Pointer<ArrayList<String>> referencedClasses;
-		//		aload 0
-		//				stack[0]: ClassFile*=this
-		//		getfield cp Lorg/borium/javarecompiler/classfile/constants/ConstantPool;
-		//				stack[0]: ConstantPool*=this->cp
-		//		invokevirtual org.borium.javarecompiler.classfile.constants.ConstantPool.getReferencedClasses
-		//				stack[0]: ArrayList*=this->cp->getReferencedClasses()
-		//		astore 1
 		referencedClasses = this->cp->getReferencedClasses();
 		return referencedClasses.getValue();
 	}
@@ -119,13 +103,6 @@ namespace org::borium::javarecompiler::classfile
 		String::ClassInit();
 		stream->iprint((new StringBuilder(String::valueOf(i)))->append(": ")->toString());
 		attribute = this->attributeList->get(i);
-		//				stack: empty
-		//		aload 3
-		//				stack[0]: ClassAttribute*=attribute
-		//		aload 1
-		//				stack[0]: ClassAttribute*=attribute
-		//				stack[1]: IndentedOutputStream*=stream
-		//		invokevirtual org.borium.javarecompiler.classfile.ClassAttribute.dump
 		attribute->dump(stream);
 		i += 1;
 		L004F: //
@@ -168,35 +145,7 @@ namespace org::borium::javarecompiler::classfile
 		L008D: //
 		stream->println();
 		stream->print((new StringBuilder("This Class: "))->append(this->thisClass)->append(" ")->toString());
-		//				stack: empty
-		//		aload 0
-		//				stack[0]: ClassFile*=this
-		//		getfield cp Lorg/borium/javarecompiler/classfile/constants/ConstantPool;
-		//				stack[0]: ConstantPool*=this->cp
-		//		aload 0
-		//				stack[0]: ConstantPool*=this->cp
-		//				stack[1]: ClassFile*=this
-		//		getfield thisClass I
-		//				stack[0]: ConstantPool*=this->cp
-		//				stack[1]: int=this->thisClass
-		//		ldc_w org/borium/javarecompiler/classfile/constants/ConstantClassInfo.class
-		//				stack[0]: ConstantPool*=this->cp
-		//				stack[1]: int=this->thisClass
-		//				stack[2]: class=org/borium/javarecompiler/classfile/constants/ConstantClassInfo
-		//		invokevirtual org.borium.javarecompiler.classfile.constants.ConstantPool.get
-		//				stack[0]: Constant*=this->cp->get(this->thisClass, org/borium/javarecompiler/classfile/constants/ConstantClassInfo)
-		//		checkcast org.borium.javarecompiler.classfile.constants.ConstantClassInfo
-		// ASSERT_KINDOF(ConstantClassInfo*, this->cp->get(this->thisClass, org/borium/javarecompiler/classfile/constants/ConstantClassInfo));
-		//				stack[0]: ConstantClassInfo*=this->cp->get(this->thisClass, org/borium/javarecompiler/classfile/constants/ConstantClassInfo)
-		//		astore 3
-		thisClassInfo = this->cp->get(this->thisClass, org/borium/javarecompiler/classfile/constants/ConstantClassInfo);
-		//				stack: empty
-		//		aload 3
-		//				stack[0]: ConstantClassInfo*=thisClassInfo
-		//		aload 1
-		//				stack[0]: ConstantClassInfo*=thisClassInfo
-		//				stack[1]: IndentedOutputStream*=stream
-		//		invokevirtual org.borium.javarecompiler.classfile.constants.ConstantClassInfo.dump
+		thisClassInfo = this->cp->get(this->thisClass, ConstantClassInfo::getClass()).getValue();
 		thisClassInfo->dump(stream);
 		stream->println();
 		stream->print((new StringBuilder("Super Class: "))->append(this->superClass)->append(" ")->toString());
@@ -205,34 +154,7 @@ namespace org::borium::javarecompiler::classfile
 		stream->print("<None>");
 		goto L0112;
 		L00F9: //
-		//		aload 0
-		//				stack[0]: ClassFile*=this
-		//		getfield cp Lorg/borium/javarecompiler/classfile/constants/ConstantPool;
-		//				stack[0]: ConstantPool*=this->cp
-		//		aload 0
-		//				stack[0]: ConstantPool*=this->cp
-		//				stack[1]: ClassFile*=this
-		//		getfield superClass I
-		//				stack[0]: ConstantPool*=this->cp
-		//				stack[1]: int=this->superClass
-		//		ldc_w org/borium/javarecompiler/classfile/constants/ConstantClassInfo.class
-		//				stack[0]: ConstantPool*=this->cp
-		//				stack[1]: int=this->superClass
-		//				stack[2]: class=org/borium/javarecompiler/classfile/constants/ConstantClassInfo
-		//		invokevirtual org.borium.javarecompiler.classfile.constants.ConstantPool.get
-		//				stack[0]: Constant*=this->cp->get(this->superClass, org/borium/javarecompiler/classfile/constants/ConstantClassInfo)
-		//		checkcast org.borium.javarecompiler.classfile.constants.ConstantClassInfo
-		// ASSERT_KINDOF(ConstantClassInfo*, this->cp->get(this->superClass, org/borium/javarecompiler/classfile/constants/ConstantClassInfo));
-		//				stack[0]: ConstantClassInfo*=this->cp->get(this->superClass, org/borium/javarecompiler/classfile/constants/ConstantClassInfo)
-		//		astore 4
-		superClassInfo = this->cp->get(this->superClass, org/borium/javarecompiler/classfile/constants/ConstantClassInfo);
-		//				stack: empty
-		//		aload 4
-		//				stack[0]: ConstantClassInfo*=superClassInfo
-		//		aload 1
-		//				stack[0]: ConstantClassInfo*=superClassInfo
-		//				stack[1]: IndentedOutputStream*=stream
-		//		invokevirtual org.borium.javarecompiler.classfile.constants.ConstantClassInfo.dump
+		superClassInfo = this->cp->get(this->superClass, ConstantClassInfo::getClass()).getValue();
 		superClassInfo->dump(stream);
 		L0112: //
 		stream->println();
@@ -251,13 +173,6 @@ namespace org::borium::javarecompiler::classfile
 		String::ClassInit();
 		stream->iprint((new StringBuilder(String::valueOf(i)))->append(": ")->toString());
 		field = this->fields->get(i);
-		//				stack: empty
-		//		aload 3
-		//				stack[0]: ClassField*=field
-		//		aload 1
-		//				stack[0]: ClassField*=field
-		//				stack[1]: IndentedOutputStream*=stream
-		//		invokevirtual org.borium.javarecompiler.classfile.ClassField.dump
 		field->dump(stream);
 		i += 1;
 		L0049: //
@@ -278,42 +193,7 @@ namespace org::borium::javarecompiler::classfile
 		L0023: //
 		String::ClassInit();
 		stream->iprint((new StringBuilder(String::valueOf(i)))->append(": ")->toString());
-		//				stack: empty
-		//		aload 0
-		//				stack[0]: ClassFile*=this
-		//		getfield cp Lorg/borium/javarecompiler/classfile/constants/ConstantPool;
-		//				stack[0]: ConstantPool*=this->cp
-		//		aload 0
-		//				stack[0]: ConstantPool*=this->cp
-		//				stack[1]: ClassFile*=this
-		//		getfield interfaces [I
-		//				stack[0]: ConstantPool*=this->cp
-		//				stack[1]: JavaArray<int>*=this->interfaces
-		//		iload 2
-		//				stack[0]: ConstantPool*=this->cp
-		//				stack[1]: JavaArray<int>*=this->interfaces
-		//				stack[2]: int=i
-		//		iaload
-		//				stack[0]: ConstantPool*=this->cp
-		//				stack[1]: int=this->interfaces.get(i)
-		//		ldc_w org/borium/javarecompiler/classfile/constants/ConstantClassInfo.class
-		//				stack[0]: ConstantPool*=this->cp
-		//				stack[1]: int=this->interfaces.get(i)
-		//				stack[2]: class=org/borium/javarecompiler/classfile/constants/ConstantClassInfo
-		//		invokevirtual org.borium.javarecompiler.classfile.constants.ConstantPool.get
-		//				stack[0]: Constant*=this->cp->get(this->interfaces.get(i), org/borium/javarecompiler/classfile/constants/ConstantClassInfo)
-		//		checkcast org.borium.javarecompiler.classfile.constants.ConstantClassInfo
-		// ASSERT_KINDOF(ConstantClassInfo*, this->cp->get(this->interfaces.get(i), org/borium/javarecompiler/classfile/constants/ConstantClassInfo));
-		//				stack[0]: ConstantClassInfo*=this->cp->get(this->interfaces.get(i), org/borium/javarecompiler/classfile/constants/ConstantClassInfo)
-		//		astore 3
-		classInfo = this->cp->get(this->interfaces.get(i), org/borium/javarecompiler/classfile/constants/ConstantClassInfo);
-		//				stack: empty
-		//		aload 3
-		//				stack[0]: ConstantClassInfo*=classInfo
-		//		aload 1
-		//				stack[0]: ConstantClassInfo*=classInfo
-		//				stack[1]: IndentedOutputStream*=stream
-		//		invokevirtual org.borium.javarecompiler.classfile.constants.ConstantClassInfo.dump
+		classInfo = this->cp->get(this->interfaces.get(i), ConstantClassInfo::getClass()).getValue();
 		classInfo->dump(stream);
 		stream->println();
 		i += 1;
@@ -336,21 +216,6 @@ namespace org::borium::javarecompiler::classfile
 		String::ClassInit();
 		stream->iprint((new StringBuilder(String::valueOf(i)))->append(": ")->toString());
 		method = this->methods->get(i);
-		//				stack: empty
-		//		aload 3
-		//				stack[0]: ClassMethod*=method
-		//		aload 1
-		//				stack[0]: ClassMethod*=method
-		//				stack[1]: IndentedOutputStream*=stream
-		//		aload 0
-		//				stack[0]: ClassMethod*=method
-		//				stack[1]: IndentedOutputStream*=stream
-		//				stack[2]: ClassFile*=this
-		//		getfield cp Lorg/borium/javarecompiler/classfile/constants/ConstantPool;
-		//				stack[0]: ClassMethod*=method
-		//				stack[1]: IndentedOutputStream*=stream
-		//				stack[2]: ConstantPool*=this->cp
-		//		invokevirtual org.borium.javarecompiler.classfile.ClassMethod.dump
 		method->dump(stream, this->cp);
 		i += 1;
 		L004D: //
@@ -370,27 +235,7 @@ namespace org::borium::javarecompiler::classfile
 		goto L0032;
 		L000D: //
 		ClassAttribute::ClassInit();
-		//				stack[0]: ClassAttribute*=ClassAttribute::readAttribute(this->in, this->cp)
-		//		astore 3
 		attribute = ClassAttribute::readAttribute(this->in, this->cp);
-		//				stack: empty
-		//		aload 0
-		//				stack[0]: ClassFile*=this
-		//		getfield attributes Ljava/util/HashMap;
-		//				stack[0]: HashMap*=this->attributes
-		//		aload 3
-		//				stack[0]: HashMap*=this->attributes
-		//				stack[1]: ClassAttribute*=attribute
-		//		invokevirtual org.borium.javarecompiler.classfile.ClassAttribute.getName
-		//				stack[0]: HashMap*=this->attributes
-		//				stack[1]: String*=attribute->getName()
-		//		aload 3
-		//				stack[0]: HashMap*=this->attributes
-		//				stack[1]: String*=attribute->getName()
-		//				stack[2]: ClassAttribute*=attribute
-		//		invokevirtual java.util.HashMap.put
-		//				stack[0]: Object*=this->attributes->put(attribute->getName(), attribute)
-		//		pop
 		this->attributes->put(attribute->getName(), attribute);
 		this->attributeList->add(attribute);
 		i += 1;
@@ -406,99 +251,14 @@ namespace org::borium::javarecompiler::classfile
 		this->accessFlags = this->in->u2();
 		this->thisClass = this->in->u2();
 		this->superClass = this->in->u2();
-		//				stack: empty
-		//		aload 0
-		//				stack[0]: ClassFile*=this
-		//		getfield cp Lorg/borium/javarecompiler/classfile/constants/ConstantPool;
-		//				stack[0]: ConstantPool*=this->cp
-		//		aload 0
-		//				stack[0]: ConstantPool*=this->cp
-		//				stack[1]: ClassFile*=this
-		//		getfield superClass I
-		//				stack[0]: ConstantPool*=this->cp
-		//				stack[1]: int=this->superClass
-		//		ldc_w org/borium/javarecompiler/classfile/constants/ConstantClassInfo.class
-		//				stack[0]: ConstantPool*=this->cp
-		//				stack[1]: int=this->superClass
-		//				stack[2]: class=org/borium/javarecompiler/classfile/constants/ConstantClassInfo
-		//		invokevirtual org.borium.javarecompiler.classfile.constants.ConstantPool.get
-		//				stack[0]: Constant*=this->cp->get(this->superClass, org/borium/javarecompiler/classfile/constants/ConstantClassInfo)
-		//		checkcast org.borium.javarecompiler.classfile.constants.ConstantClassInfo
-		// ASSERT_KINDOF(ConstantClassInfo*, this->cp->get(this->superClass, org/borium/javarecompiler/classfile/constants/ConstantClassInfo));
-		//				stack[0]: ConstantClassInfo*=this->cp->get(this->superClass, org/borium/javarecompiler/classfile/constants/ConstantClassInfo)
-		//		astore 1
-		ci = this->cp->get(this->superClass, org/borium/javarecompiler/classfile/constants/ConstantClassInfo);
-		//				stack: empty
-		//		aload 0
-		//				stack[0]: ClassFile*=this
-		//		aload 0
-		//				stack[0]: ClassFile*=this
-		//				stack[1]: ClassFile*=this
-		//		getfield cp Lorg/borium/javarecompiler/classfile/constants/ConstantPool;
-		//				stack[0]: ClassFile*=this
-		//				stack[1]: ConstantPool*=this->cp
-		//		aload 1
-		//				stack[0]: ClassFile*=this
-		//				stack[1]: ConstantPool*=this->cp
-		//				stack[2]: ConstantClassInfo*=ci
-		//		getfield nameIndex I
-		//				stack[0]: ClassFile*=this
-		//				stack[1]: ConstantPool*=this->cp
-		//				stack[2]: int=ci->nameIndex
-		//		invokevirtual org.borium.javarecompiler.classfile.constants.ConstantPool.getString
-		//				stack[0]: ClassFile*=this
-		//				stack[1]: String*=this->cp->getString(ci->nameIndex)
-		//		bipush 47
-		//				stack[0]: ClassFile*=this
-		//				stack[1]: String*=this->cp->getString(ci->nameIndex)
-		//				stack[2]: int=47
-		//		bipush 46
-		//				stack[0]: ClassFile*=this
-		//				stack[1]: String*=this->cp->getString(ci->nameIndex)
-		//				stack[2]: int=47
-		//				stack[3]: int=46
-		//		invokevirtual java.lang.String.replace
-		//				stack[0]: ClassFile*=this
-		//				stack[1]: String*=this->cp->getString(ci->nameIndex)->replace(47, 46)
-		//		putfield superClassName Ljava/lang/String;
+		ci = this->cp->get(this->superClass, ConstantClassInfo::getClass()).getValue();
 		this->superClassName = this->cp->getString(ci->nameIndex)->replace(47, 46);
 		return;
 	}
 
 	void ClassFile::readConstants()
 	{
-		//		aload 0
-		//				stack[0]: ClassFile*=this
-		//		getfield cp Lorg/borium/javarecompiler/classfile/constants/ConstantPool;
-		//				stack[0]: ConstantPool*=this->cp
-		//		aload 0
-		//				stack[0]: ConstantPool*=this->cp
-		//				stack[1]: ClassFile*=this
-		//		getfield in Lorg/borium/javarecompiler/classfile/ByteInputStream;
-		//				stack[0]: ConstantPool*=this->cp
-		//				stack[1]: ByteInputStream*=this->in
-		//		invokevirtual org.borium.javarecompiler.classfile.constants.ConstantPool.read
 		this->cp->read(this->in);
-		//				stack: empty
-		//		aload 0
-		//				stack[0]: ClassFile*=this
-		//		getfield cp Lorg/borium/javarecompiler/classfile/constants/ConstantPool;
-		//				stack[0]: ConstantPool*=this->cp
-		//		aload 0
-		//				stack[0]: ConstantPool*=this->cp
-		//				stack[1]: ClassFile*=this
-		//		getfield majorVersion I
-		//				stack[0]: ConstantPool*=this->cp
-		//				stack[1]: int=this->majorVersion
-		//		aload 0
-		//				stack[0]: ConstantPool*=this->cp
-		//				stack[1]: int=this->majorVersion
-		//				stack[2]: ClassFile*=this
-		//		getfield minorVersion I
-		//				stack[0]: ConstantPool*=this->cp
-		//				stack[1]: int=this->majorVersion
-		//				stack[2]: int=this->minorVersion
-		//		invokevirtual org.borium.javarecompiler.classfile.constants.ConstantPool.verify
 		this->cp->verify(this->majorVersion, this->minorVersion);
 		return;
 	}
@@ -514,24 +274,6 @@ namespace org::borium::javarecompiler::classfile
 		goto L0033;
 		L0015: //
 		field = new ClassField();
-		//				stack: empty
-		//		aload 3
-		//				stack[0]: ClassField*=field
-		//		aload 0
-		//				stack[0]: ClassField*=field
-		//				stack[1]: ClassFile*=this
-		//		getfield in Lorg/borium/javarecompiler/classfile/ByteInputStream;
-		//				stack[0]: ClassField*=field
-		//				stack[1]: ByteInputStream*=this->in
-		//		aload 0
-		//				stack[0]: ClassField*=field
-		//				stack[1]: ByteInputStream*=this->in
-		//				stack[2]: ClassFile*=this
-		//		getfield cp Lorg/borium/javarecompiler/classfile/constants/ConstantPool;
-		//				stack[0]: ClassField*=field
-		//				stack[1]: ByteInputStream*=this->in
-		//				stack[2]: ConstantPool*=this->cp
-		//		invokevirtual org.borium.javarecompiler.classfile.ClassField.read
 		field->read(this->in, this->cp);
 		this->fields->assign(i, field);
 		i += 1;
@@ -580,24 +322,6 @@ namespace org::borium::javarecompiler::classfile
 		goto L0033;
 		L0015: //
 		method = new ClassMethod();
-		//				stack: empty
-		//		aload 3
-		//				stack[0]: ClassMethod*=method
-		//		aload 0
-		//				stack[0]: ClassMethod*=method
-		//				stack[1]: ClassFile*=this
-		//		getfield in Lorg/borium/javarecompiler/classfile/ByteInputStream;
-		//				stack[0]: ClassMethod*=method
-		//				stack[1]: ByteInputStream*=this->in
-		//		aload 0
-		//				stack[0]: ClassMethod*=method
-		//				stack[1]: ByteInputStream*=this->in
-		//				stack[2]: ClassFile*=this
-		//		getfield cp Lorg/borium/javarecompiler/classfile/constants/ConstantPool;
-		//				stack[0]: ClassMethod*=method
-		//				stack[1]: ByteInputStream*=this->in
-		//				stack[2]: ConstantPool*=this->cp
-		//		invokevirtual org.borium.javarecompiler.classfile.ClassMethod.read
 		method->read(this->in, this->cp);
 		this->methods->assign(i, method);
 		i += 1;
