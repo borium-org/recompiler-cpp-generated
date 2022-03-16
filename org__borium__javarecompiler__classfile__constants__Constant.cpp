@@ -6,6 +6,7 @@ namespace org::borium::javarecompiler::classfile::constants
 
 	Constant::Constant() :
 			Object() //
+			, tag(0) //
 	{
 		return;
 	}
