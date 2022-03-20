@@ -1,6 +1,30 @@
 #include "stdafx.h"
 #include "org__borium__javarecompiler__Recompiler.h"
 
+#include "java__io__File.h"
+#include "java__io__IOException.h"
+#include "java__io__PrintStream.h"
+#include "java__lang__ClassFormatError.h"
+#include "java__lang__RuntimeException.h"
+#include "java__lang__String.h"
+#include "java__lang__StringBuilder.h"
+#include "java__lang__System.h"
+#include "java__lang__Throwable.h"
+#include "java__util__ArrayList.h"
+#include "java__util__HashMap.h"
+#include "java__util__Iterator.h"
+#include "java__util__List.h"
+#include "org__borium__javarecompiler__classfile__ClassFile.h"
+#include "org__borium__javarecompiler__classfile__IndentedOutputStream.h"
+#include "org__borium__javarecompiler__classfile__ReferencedClasses.h"
+#include "org__borium__javarecompiler__cplusplus__CppClass.h"
+
+using namespace java::io;
+using namespace java::lang;
+using namespace java::util;
+using namespace org::borium::javarecompiler::classfile;
+using namespace org::borium::javarecompiler::cplusplus;
+
 namespace org::borium::javarecompiler
 {
 
@@ -8,17 +32,11 @@ namespace org::borium::javarecompiler
 
 	bool Recompiler::stackComments;
 
-	bool Recompiler::classInitialized = false;
-
 	void Recompiler::ClassInit()
 	{
-		if (!classInitialized)
-		{
-			Object::ClassInit();
-			Recompiler::instructionComments = false;
-			Recompiler::stackComments = false;
-			classInitialized = true;
-		}
+		Object::ClassInit();
+		Recompiler::instructionComments = false;
+		Recompiler::stackComments = false;
 		return;
 	}
 
@@ -52,68 +70,65 @@ namespace org::borium::javarecompiler
 			args = temp;
 		}
 	L0041: //
-		Recompiler::ClassInit();
 		recompiler = new Recompiler();
 		argc = 0;
 		goto L011D;
+	L004E: //
+		Pointer<String> local_0052 = args->get(argc);
+		switch (args->get(argc)->hashCode())
 		{
-		L004E: //
-			Pointer<String> local_0052 = args->get(argc);
-			switch (args->get(argc)->hashCode())
-			{
-			case (int)0xE0528093:
-				goto L0088;
-			case (int)0xE22731D2:
-				goto L0094;
-			case (int)0xEC1F6121:
-				goto L00A0;
-			case (int)0xF0617410:
-				goto L00AC;
-			case (int)0x0000B7AA:
-				goto L00B8;
-			default:
-				goto L0100;
-			}
-		L0088: //
-			if (local_0052->equals("-outputpath"))
-				goto L00D0;
+		case (int)0xE0528093:
+			goto L0088;
+		case (int)0xE22731D2:
+			goto L0094;
+		case (int)0xEC1F6121:
+			goto L00A0;
+		case (int)0xF0617410:
+			goto L00AC;
+		case (int)0x0000B7AA:
+			goto L00B8;
+		default:
 			goto L0100;
-		L0094: //
-			if (local_0052->equals("-mainclass"))
-				goto L00DC;
-			goto L0100;
-		L00A0: //
-			if (local_0052->equals("-comments"))
-				goto L00F4;
-			goto L0100;
-		L00AC: //
-			if (local_0052->equals("-classpath"))
-				goto L00C4;
-			goto L0100;
-		L00B8: //
-			if (local_0052->equals("-vs"))
-				goto L00E8;
-			goto L0100;
-		L00C4: //
-			recompiler->addClassPath(args->get((argc)+(1)));
-			goto L011A;
-		L00D0: //
-			recompiler->setOutputPath(args->get((argc)+(1)));
-			goto L011A;
-		L00DC: //
-			recompiler->setMainClass(args->get((argc)+(1)));
-			goto L011A;
-		L00E8: //
-			recompiler->setVisualStudio(args->get((argc)+(1)));
-			goto L011A;
-		L00F4: //
-			recompiler->setCommentLevel(args->get((argc)+(1)));
-			goto L011A;
-		L0100: //
-			throw new RuntimeException((new StringBuilder("Unsupported argument "))->append(args->get(argc))->toString());
-		L011A: //
-			argc += 2;
 		}
+	L0088: //
+		if (local_0052->equals("-outputpath"))
+			goto L00D0;
+		goto L0100;
+	L0094: //
+		if (local_0052->equals("-mainclass"))
+			goto L00DC;
+		goto L0100;
+	L00A0: //
+		if (local_0052->equals("-comments"))
+			goto L00F4;
+		goto L0100;
+	L00AC: //
+		if (local_0052->equals("-classpath"))
+			goto L00C4;
+		goto L0100;
+	L00B8: //
+		if (local_0052->equals("-vs"))
+			goto L00E8;
+		goto L0100;
+	L00C4: //
+		recompiler->addClassPath(args->get((argc)+(1)));
+		goto L011A;
+	L00D0: //
+		recompiler->setOutputPath(args->get((argc)+(1)));
+		goto L011A;
+	L00DC: //
+		recompiler->setMainClass(args->get((argc)+(1)));
+		goto L011A;
+	L00E8: //
+		recompiler->setVisualStudio(args->get((argc)+(1)));
+		goto L011A;
+	L00F4: //
+		recompiler->setCommentLevel(args->get((argc)+(1)));
+		goto L011A;
+	L0100: //
+		throw new RuntimeException((new StringBuilder("Unsupported argument "))->append(args->get(argc))->toString());
+	L011A: //
+		argc += 2;
 	L011D: //
 		if ((argc) < (args->length))
 			goto L004E;
@@ -131,22 +146,11 @@ namespace org::borium::javarecompiler
 	void Recompiler::run()
 	{
 		Pointer<ClassFile> classFile;
-		Pointer<List<String>> newClassNames;
-		Pointer<String> newClassName;
+		Pointer<List> newClassNames;
 		classFile = this->processClassFile(this->mainClass);
 		this->processedClasses->put(classFile->getClassName(), classFile);
-		newClassNames = new ArrayList<String>();
+		newClassNames = new ArrayList();
 		this->addReferencedClasses(newClassNames, classFile);
-		goto L004B;
-	L0027: //
-//	// ASSERT_KINDOF(String*, newClassNames->remove(0));
-		newClassName = newClassNames->remove(0);
-		classFile = this->processClassFile(newClassName);
-		this->processedClasses->put(classFile->getClassName(), classFile);
-		this->addReferencedClasses(newClassNames, classFile);
-	L004B: //
-		if ((newClassNames->size()) > 0)
-			goto L0027;
 		this->generateClasses();
 		this->writeClasses();
 		return;
@@ -184,33 +188,33 @@ namespace org::borium::javarecompiler
 
 	void Recompiler::addReferencedClasses(Pointer<List<String>> newClassNames, Pointer<ClassFile> classFile)
 	{
-		Pointer<List<String>> allReferences;
+		Pointer<ReferencedClasses> allReferences;
 		Pointer<String> reference;
 		allReferences = classFile->getReferencedClasses();
-		Pointer<Iterator<String>> local_000B = allReferences->iterator();
-		goto L0050;
-	L0010: //
-	// ASSERT_KINDOF(String*, local_000B->next());
-		reference = local_000B->next();
+		Pointer<Iterator> local_0009 = allReferences->iterator();
+		goto L004E;
+	L000E: //
+		local_0009->next()->checkCast(String::getClass());
+		reference = local_0009->next();
 		if (reference->startsWith("java."))
-			goto L0050;
+			goto L004E;
 		if (reference->startsWith("["))
-			goto L0050;
+			goto L004E;
 		if (this->processedClasses->containsKey(reference))
-			goto L0050;
+			goto L004E;
 		if (newClassNames->contains(reference))
-			goto L0050;
+			goto L004E;
 		newClassNames->add(reference);
-	L0050: //
-		if (local_000B->hasNext())
-			goto L0010;
+	L004E: //
+		if (local_0009->hasNext())
+			goto L000E;
 		return;
 	}
 
 	void Recompiler::generateClass(Pointer<String> className)
 	{
 		Pointer<CppClass> cppClass;
-		// ASSERT_KINDOF(ClassFile*, this->processedClasses->get(className));
+		this->processedClasses->get(className)->checkCast(ClassFile::getClass());
 		cppClass = new CppClass(this->processedClasses->get(className));
 		this->generatedClasses->add(cppClass);
 		return;
@@ -231,65 +235,72 @@ namespace org::borium::javarecompiler
 		Pointer<ClassFile> classFile;
 		if (!(classFileName->startsWith("java.")))
 			goto L000B;
+		// ARETURN: Type mismatch
 		return nullptr;
 	L000B: //
+		String::ClassInit();
 		classPathFileName = (new StringBuilder(String::valueOf(classFileName->replace(46, 47))))->append(".class")->toString();
+		// ASTORE: Type mismatch
 		fileName = nullptr;
-		Pointer<Iterator<String>> local_002F = this->classPaths->iterator();
-		goto L008F;
+		Pointer<Iterator> local_002F = this->classPaths->iterator();
+		goto L008D;
 	L0034: //
-//	// ASSERT_KINDOF(String*, local_002F->next());
+		local_002F->next()->checkCast(String::getClass());
 		classPath = local_002F->next();
+		String::ClassInit();
 		file = new File((new StringBuilder(String::valueOf(classPath)))->append("/")->append(classPathFileName)->toString());
 		if (!(file->exists()))
-			goto L008F;
+			goto L008D;
 		if (!(file->isFile()))
-			goto L008F;
+			goto L008D;
+		String::ClassInit();
 		fileName = (new StringBuilder(String::valueOf(classPath)))->append("/")->append(classPathFileName)->toString();
-		goto L0099;
-	L008F: //
+		goto L0097;
+	L008D: //
 		if (local_002F->hasNext())
 			goto L0034;
-	L0099: //
+	L0097: //
 		if ((fileName) != nullptr)
-			goto L00D3;
+			goto L00D1;
 		GetStatic(System::ClassInit, System::out)->println((new StringBuilder("Error: "))->append(classFileName)->toString());
 		throw new RuntimeException((new StringBuilder("Class "))->append(classFileName)->append(" not found")->toString());
-	L00D3: //
+	L00D1: //
 		classFile = new ClassFile();
 		try
 		{
+		L00DA: //
 			classFile->read(fileName);
-			goto L00EC;
+		L00E0: //
+			goto L00EA;
 		}
-		catch (ClassFormatError* ePtr)
+		catch (ClassFormatError* e)
 		{
-			Pointer<ClassFormatError> e = ePtr;
 			e->printStackTrace();
 		}
-		catch (IOException* ePtr)
+		catch (IOException* e)
 		{
-			Pointer<IOException> e = ePtr;
 			e->printStackTrace();
 		}
-	L00EC: //
 		try
 		{
 			Pointer<IndentedOutputStream> stream;
+		L00EA: //
+			String::ClassInit();
 			stream = new IndentedOutputStream((new StringBuilder(String::valueOf(fileName->substring(0, (fileName->length()) - (5)))))->append("txt")->toString());
 			classFile->dump(stream);
-			goto L0124;
+			stream->close();
+		L011D: //
+			goto L0127;
 		}
-		catch (IOException* ePtr)
+		catch (IOException* e)
 		{
-			Pointer<IOException> e = ePtr;
 			e->printStackTrace();
 		}
-	L0124: //
+	L0127: //
 		return classFile;
 	}
 
-	void Recompiler::setCommentLevel(Pointer<String>commentLevel)
+	void Recompiler::setCommentLevel(Pointer<String> commentLevel)
 	{
 		Pointer<String> local_0002 = commentLevel;
 		switch (commentLevel->hashCode())
@@ -330,10 +341,10 @@ namespace org::borium::javarecompiler
 	void Recompiler::writeClasses()
 	{
 		Pointer<CppClass> cppClass;
-		Pointer<Iterator<CppClass>> local_0007 = this->generatedClasses->iterator();
+		Pointer<Iterator> local_0007 = this->generatedClasses->iterator();
 		goto L001D;
 	L000B: //
-	// ASSERT_KINDOF(CppClass*, local_0007->next());
+		local_0007->next()->checkCast(CppClass::getClass());
 		cppClass = local_0007->next();
 		cppClass->writeClass(this->outputPath);
 	L001D: //

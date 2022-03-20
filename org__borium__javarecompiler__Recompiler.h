@@ -1,24 +1,29 @@
 #pragma once
 
-#include "java__io__File.h"
-#include "java__io__IOException.h"
-#include "java__io__PrintStream.h"
-#include "java__lang__ClassFormatError.h"
 #include "java__lang__Object.h"
-#include "java__lang__RuntimeException.h"
-#include "java__lang__String.h"
-#include "java__lang__StringBuilder.h"
-#include "java__lang__System.h"
-#include "java__lang__Throwable.h"
-#include "java__util__ArrayList.h"
-#include "java__util__HashMap.h"
-#include "java__util__Iterator.h"
-#include "java__util__List.h"
-#include "org__borium__javarecompiler__classfile__ClassFile.h"
-#include "org__borium__javarecompiler__classfile__IndentedOutputStream.h"
-#include "org__borium__javarecompiler__cplusplus__CppClass.h"
 
-using namespace java::io;
+namespace java::lang
+{
+	class String;
+}
+
+namespace java::util
+{
+	template <class A> class ArrayList;
+	template <class A, class B> class HashMap;
+	template <class A> class List;
+}
+
+namespace org::borium::javarecompiler::classfile
+{
+	class ClassFile;
+}
+
+namespace org::borium::javarecompiler::cplusplus
+{
+	class CppClass;
+}
+
 using namespace java::lang;
 using namespace java::util;
 using namespace org::borium::javarecompiler::classfile;
@@ -34,6 +39,7 @@ namespace org::borium::javarecompiler
 		static bool stackComments;
 		Pointer<String> mainClass;
 		Pointer<ArrayList<String>> classPaths;
+		Pointer<ArrayList<HashMap<String, String>>> dummy;
 		Pointer<String> outputPath;
 		Pointer<String> visualStudio;
 		Pointer<HashMap<String, ClassFile>> processedClasses;
@@ -53,8 +59,6 @@ namespace org::borium::javarecompiler
 		virtual Pointer<ClassFile> processClassFile(Pointer<String> classFileName);
 		virtual void setCommentLevel(Pointer<String> commentLevel);
 		virtual void writeClasses();
-	private:
-		static bool classInitialized;
 	};
 
 }
