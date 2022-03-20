@@ -1,5 +1,4 @@
-#ifndef JAVA__LANG__SYSTEM
-#define JAVA__LANG__SYSTEM
+#pragma once
 
 #include "java__io__PrintStream.h"
 
@@ -10,9 +9,7 @@ namespace java::lang
 	class System
 	{
 	public:
-		static PrintStream* out;
+		static Pointer<PrintStream> out;
 		static void ClassInit();
 	};
 }
-
-#endif

@@ -4,4 +4,15 @@
 namespace java::lang
 {
 
+	bool Object::classInitialized = false;
+
+	void Object::ClassInit()
+	{
+		if (!classInitialized)
+		{
+			classInitialized = true;
+		}
+		return;
+	}
+
 }

@@ -1,5 +1,4 @@
-#ifndef JAVA__IO__FILE
-#define JAVA__IO__FILE
+#pragma once
 
 #include "java__lang__Object.h"
 #include "java__lang__String.h"
@@ -8,14 +7,15 @@ using namespace java::lang;
 
 namespace java::io
 {
-	class File: public Object
+	class File : public Object
 	{
 	public:
-		File(String *fileName);
+		File(Pointer<String> fileName);
 		virtual ~File();
 		virtual bool exists();
 		virtual bool isFile();
+	private:
+		CFile file;
+		CString fileName;
 	};
 }
-
-#endif

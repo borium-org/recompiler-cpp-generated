@@ -1,17 +1,13 @@
-#ifndef JAVA__LANG__THROWABLE
-#define JAVA__LANG__THROWABLE
+#pragma once
 
 namespace java::lang
 {
 	class Throwable
 	{
 	public:
-		Throwable()
+		virtual ~Throwable()
 		{
 		}
-		virtual ~Throwable();
-		virtual void printStackTrace();
+		virtual void printStackTrace() = 0;
 	};
 }
-
-#endif

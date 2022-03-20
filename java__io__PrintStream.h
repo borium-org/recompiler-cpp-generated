@@ -1,5 +1,4 @@
-#ifndef JAVA__IO__PRINTSTREAM
-#define JAVA__IO__PRINTSTREAM
+#pragma once
 
 #include "java__lang__Object.h"
 
@@ -7,12 +6,12 @@ using namespace java::lang;
 
 namespace java::io
 {
-	class PrintStream: public Object
+	class PrintStream : public Object
 	{
 	public:
-		virtual void println(const char *text);
-		virtual void println(String *text);
+		PrintStream();
+		~PrintStream();
+		virtual void println(const char* text);
+		virtual void println(Pointer<String> text);
 	};
 }
-
-#endif

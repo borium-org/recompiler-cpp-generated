@@ -12,12 +12,12 @@ using namespace org::borium::javarecompiler::classfile;
 
 namespace org::borium::javarecompiler::cplusplus
 {
-	class CppClass: public Object
+	class CppClass : public Object
 	{
 	public:
-		CppClass(ClassFile *name);
+		CppClass(Pointer<ClassFile> name);
 		virtual ~CppClass();
-		virtual void writeClass(String *fileName);
+		virtual void writeClass(Pointer<String> fileName);
 	};
 }
 

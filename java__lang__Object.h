@@ -1,10 +1,11 @@
-#ifndef JAVA__LANG__OBJECT
-#define JAVA__LANG__OBJECT
+#pragma once
 
 // We allocate stuff in this header code so let's set up new debugging right here
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
+
+#include "java__lang__Class.h"
 
 namespace java::lang
 {
@@ -24,11 +25,18 @@ namespace java::lang
 			ASSERT(usageCounter == 0);
 			TRACE("Object::~Object(%p)\n", this);
 		}
-		//static void ClassInit();
-		//virtual int hashCode();
+		static void ClassInit();
+		virtual int hashCode()
+		{
+			return (int)(size_t)this;
+		}
 		//virtual bool equals(Object *other);
+		static Pointer<Class> getClass();
+		virtual bool instanceOf(Pointer<Class> clazz);
+		virtual bool checkCast(Pointer<Class> clazz);
 	private:
 		int usageCounter;
+		static bool classInitialized;
 	};
 
 	template<class T>
@@ -47,12 +55,12 @@ namespace java::lang
 			TRACE("Pointer::Pointer(%p): pointer = %p\n", this, pointer);
 			assign(data);
 		}
-		Pointer(Pointer<T>& other)
+		Pointer(const Pointer<T>& other)
 		{
 			pointer = nullptr;
 			assign((T*)other.pointer);
 		}
-		void operator = (Pointer<T>& other)
+		void operator = (const Pointer<T>& other)
 		{
 			assign((T*)other.pointer);
 		}
@@ -68,10 +76,6 @@ namespace java::lang
 			JavaArray<T>* array = (JavaArray<T>*)pointer;
 			return array->data[index];
 		}
-		void operator = (T* object)
-		{
-			this->operator=((Object*)object);
-		}
 		void operator = (Object* object)
 		{
 			//if (pointer)
@@ -84,6 +88,26 @@ namespace java::lang
 		{
 			return (T*)pointer;
 		}
+		bool operator == (Object* value) const
+		{
+			return pointer == value;
+		}
+		bool operator == (const Pointer<T>& other) const
+		{
+			return pointer == other.pointer;
+		}
+		// This one is for cases where we need to return a Pointer<class> and class can be
+		// upcast but pointer doesn't allow upcasting. Converter will have to take care of
+		// it explicitly some day...
+		T* getValue()
+		{
+			return pointer;
+		}
+		// This one is for MFC CMap hashing
+		operator long()
+		{
+			return pointer->hashCode();
+		}
 	private:
 		void assign(T* data)
 		{
@@ -95,7 +119,7 @@ namespace java::lang
 				if (pointer->usageCounter == 0)
 					delete pointer;
 			}
-			pointer = data;
+			pointer = (Object*)data;
 			if (pointer != nullptr)
 			{
 				pointer->usageCounter++;
@@ -127,6 +151,16 @@ namespace java::lang
 		{
 			data[index] = new String(value);
 		}
+		void assign(int index, Pointer<T> value)
+		{
+			//data[index] = new String(value);
+			ASSERT(false);
+		}
+		void assign(int index, T value)
+		{
+			//data[index] = new String(value);
+			ASSERT(false);
+		}
 		T* get(int index)
 		{
 			ASSERT(index >= 0 && index < length);
@@ -138,7 +172,9 @@ namespace java::lang
 		Pointer<T>* data;
 	};
 
-	template<class T> T GetStatic(void(*classInit)(), T field);
+	template<class T> T GetStatic(void(*classInit)(), T field)
+	{
+		classInit();
+		return field;
+	}
 }
-
-#endif

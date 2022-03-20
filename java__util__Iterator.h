@@ -1,5 +1,4 @@
-#ifndef JAVA__UTIL__ITERATOR
-#define JAVA__UTIL__ITERATOR
+#pragma once
 
 #include "java__lang__Object.h"
 
@@ -8,14 +7,10 @@ using namespace java::lang;
 namespace java::util
 {
 	template<class T>
-	class Iterator: public Object
+	class Iterator
 	{
 	public:
-		Iterator();
-		virtual ~Iterator();
-		virtual T next();
-		virtual bool hasNext();
+		virtual Pointer<T> next() = 0;
+		virtual bool hasNext() = 0;
 	};
 }
-
-#endif

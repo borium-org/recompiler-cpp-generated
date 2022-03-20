@@ -6,24 +6,21 @@ namespace java::lang
 
 	String::String()
 	{
-		data = nullptr;
 	}
 
 	String::String(const char* string)
 	{
-		data = _strdup(string);
+		data = string;
 	}
 
 	String::~String()
 	{
-		if (data)
-			free(data);
 	}
 
 	int String::hashCode()
 	{
 		int h = 0;
-		int length = strlen(data);
+		int length = data.GetLength();
 		for (int i = 0; i < length; i++)
 		{
 			int v = data[i];
@@ -34,7 +31,38 @@ namespace java::lang
 
 	bool String::equals(const char* other)
 	{
-		return strcmp(data, other) == 0;
+		return data == other;
+	}
+
+	int String::length()
+	{
+		return data.GetLength();
+	}
+
+	bool String::startsWith(const char* start)
+	{
+		size_t length = strlen(start);
+		return strncmp(data, start, length) == 0;
+	}
+
+	Pointer<String> String::replace(char from, char to)
+	{
+		CString newString = data;
+		newString.Replace(from, to);
+		return new String(newString);
+	}
+
+	Pointer<String> String::valueOf(Pointer<String> string)
+	{
+		if (string == nullptr)
+			return new String("null");
+		return string;
+	}
+
+	Pointer<String> String::substring(int first, int last)
+	{
+		CString buf = data.Mid(first, last - first);
+		return new String(buf);
 	}
 
 }
