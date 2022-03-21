@@ -53,6 +53,7 @@ namespace org::borium::javarecompiler
 	{
 		Pointer<Recompiler> recompiler;
 		int argc = 0;
+		Pointer<String> local_0052;
 		if ((args->length) != 0)
 			goto L0041;
 		{
@@ -74,7 +75,7 @@ namespace org::borium::javarecompiler
 		argc = 0;
 		goto L011D;
 	L004E: //
-		Pointer<String> local_0052 = args->get(argc);
+		local_0052 = args->get(argc);
 		switch (args->get(argc)->hashCode())
 		{
 		case (int)0xE0528093:
@@ -190,8 +191,9 @@ namespace org::borium::javarecompiler
 	{
 		Pointer<ReferencedClasses> allReferences;
 		Pointer<String> reference;
+		Pointer<Iterator> local_0009;
 		allReferences = classFile->getReferencedClasses();
-		Pointer<Iterator> local_0009 = allReferences->iterator();
+		local_0009 = allReferences->iterator();
 		goto L004E;
 	L000E: //
 		local_0009->next()->checkCast(String::getClass());
@@ -233,6 +235,7 @@ namespace org::borium::javarecompiler
 		Pointer<String> classPath;
 		Pointer<File> file;
 		Pointer<ClassFile> classFile;
+		Pointer<Iterator> local_002F;
 		if (!(classFileName->startsWith("java.")))
 			goto L000B;
 		// ARETURN: Type mismatch
@@ -242,7 +245,7 @@ namespace org::borium::javarecompiler
 		classPathFileName = (new StringBuilder(String::valueOf(classFileName->replace(46, 47))))->append(".class")->toString();
 		// ASTORE: Type mismatch
 		fileName = nullptr;
-		Pointer<Iterator> local_002F = this->classPaths->iterator();
+		local_002F = this->classPaths->iterator();
 		goto L008D;
 	L0034: //
 		local_002F->next()->checkCast(String::getClass());
@@ -302,7 +305,8 @@ namespace org::borium::javarecompiler
 
 	void Recompiler::setCommentLevel(Pointer<String> commentLevel)
 	{
-		Pointer<String> local_0002 = commentLevel;
+		Pointer<String> local_0002;
+		local_0002 = commentLevel;
 		switch (commentLevel->hashCode())
 		{
 		case (int)0x000179A1:
@@ -341,7 +345,8 @@ namespace org::borium::javarecompiler
 	void Recompiler::writeClasses()
 	{
 		Pointer<CppClass> cppClass;
-		Pointer<Iterator> local_0007 = this->generatedClasses->iterator();
+		Pointer<Iterator> local_0007;
+		local_0007 = this->generatedClasses->iterator();
 		goto L001D;
 	L000B: //
 		local_0007->next()->checkCast(CppClass::getClass());
