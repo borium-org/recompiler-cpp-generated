@@ -268,9 +268,9 @@ namespace org::borium::javarecompiler
 		throw new RuntimeException((new StringBuilder("Class "))->append(classFileName)->append(" not found")->toString());
 	L00D1: //
 		classFile = new ClassFile();
+	L00DA: //
 		try
 		{
-		L00DA: //
 			classFile->read(fileName);
 		L00E0: //
 			goto L00EA;
@@ -283,10 +283,10 @@ namespace org::borium::javarecompiler
 		{
 			e->printStackTrace();
 		}
+	L00EA: //
 		try
 		{
 			Pointer<IndentedOutputStream> stream;
-		L00EA: //
 			String::ClassInit();
 			stream = new IndentedOutputStream((new StringBuilder(String::valueOf(fileName->substring(0, (fileName->length()) - (5)))))->append("txt")->toString());
 			classFile->dump(stream);
