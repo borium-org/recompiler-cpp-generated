@@ -53,23 +53,22 @@ namespace org::borium::javarecompiler
 	{
 		Pointer<Recompiler> recompiler;
 		int argc = 0;
+		Pointer<JavaArray<String>> temp_0007;
 		Pointer<String> local_0052;
 		if ((args->length) != 0)
 			goto L0041;
-		{
-			Pointer<JavaArray<String>> temp = new JavaArray<String>(10);
-			temp->assignString(0, "-classpath");
-			temp->assignString(1, "bin");
-			temp->assignString(2, "-outputpath");
-			temp->assignString(3, "../JrcPortCpp");
-			temp->assignString(4, "-mainclass");
-			temp->assignString(5, "org.borium.javarecompiler.Recompiler");
-			temp->assignString(6, "-vs");
-			temp->assignString(7, "2005");
-			temp->assignString(8, "-comments");
-			temp->assignString(9, "none");
-			args = temp;
-		}
+		temp_0007 = new JavaArray<String>(10);
+		temp_0007->assignString(0, "-classpath");
+		temp_0007->assignString(1, "bin");
+		temp_0007->assignString(2, "-outputpath");
+		temp_0007->assignString(3, "../JrcPortCpp");
+		temp_0007->assignString(4, "-mainclass");
+		temp_0007->assignString(5, "org.borium.javarecompiler.Recompiler");
+		temp_0007->assignString(6, "-vs");
+		temp_0007->assignString(7, "2005");
+		temp_0007->assignString(8, "-comments");
+		temp_0007->assignString(9, "none");
+		args = temp_0007;
 	L0041: //
 		recompiler = new Recompiler();
 		argc = 0;
