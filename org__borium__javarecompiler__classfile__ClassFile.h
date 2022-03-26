@@ -16,6 +16,7 @@
 #include "org__borium__javarecompiler__classfile__IndentedOutputStream.h"
 #include "org__borium__javarecompiler__classfile__constants__ConstantClassInfo.h"
 #include "org__borium__javarecompiler__classfile__constants__ConstantPool.h"
+#include "org__borium__javarecompiler__classfile__ReferencedClasses.h"
 
 using namespace java::io;
 using namespace java::lang;
@@ -52,7 +53,7 @@ namespace org::borium::javarecompiler::classfile
 		virtual Pointer<JavaArray<ClassField>> getFields();
 		virtual Pointer<JavaArray<ClassMethod>> getMethods();
 		virtual Pointer<String> getParentClassName();
-		virtual Pointer<List<String>> getReferencedClasses();
+		virtual Pointer<ReferencedClasses> getReferencedClasses();
 		virtual void read(Pointer<String> fileName);
 		virtual void dumpAttributes(Pointer<IndentedOutputStream> stream);
 		virtual void dumpClassInfo(Pointer<IndentedOutputStream> stream);

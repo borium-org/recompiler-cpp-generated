@@ -43,9 +43,15 @@ namespace org::borium::javarecompiler
 	Recompiler::Recompiler() :
 		Object() //
 	{
-		this->classPaths = new ArrayList<String>();
-		this->processedClasses = new HashMap<String, ClassFile>();
-		this->generatedClasses = new ArrayList<CppClass>();
+		Pointer<ArrayList> temp_0009;
+		Pointer<HashMap> temp_0014;
+		Pointer<ArrayList> temp_001F;
+		temp_0009 = new ArrayList();
+		this->classPaths = temp_0009;
+		temp_0014 = new HashMap();
+		this->processedClasses = temp_0014;
+		temp_001F = new ArrayList();
+		this->generatedClasses = temp_001F;
 		return;
 	}
 
@@ -54,7 +60,10 @@ namespace org::borium::javarecompiler
 		Pointer<Recompiler> recompiler;
 		int argc = 0;
 		Pointer<JavaArray<String>> temp_0007;
+		Pointer<Recompiler> temp_0045;
 		Pointer<String> local_0052;
+		Pointer<StringBuilder> temp_010A;
+		Pointer<RuntimeException> temp_0116;
 		if ((args->length) != 0)
 			goto L0041;
 		temp_0007 = new JavaArray<String>(10);
@@ -70,7 +79,8 @@ namespace org::borium::javarecompiler
 		temp_0007->assignString(9, "none");
 		args = temp_0007;
 	L0041: //
-		recompiler = new Recompiler();
+		temp_0045 = new Recompiler();
+		recompiler = temp_0045;
 		argc = 0;
 		goto L011D;
 	L004E: //
@@ -126,7 +136,9 @@ namespace org::borium::javarecompiler
 		recompiler->setCommentLevel(args->get((argc)+(1)));
 		goto L011A;
 	L0100: //
-		throw new RuntimeException((new StringBuilder("Unsupported argument "))->append(args->get(argc))->toString());
+		temp_010A = new StringBuilder("Unsupported argument ");
+		temp_0116 = new RuntimeException(temp_010A->append(args->get(argc))->toString());
+		throw temp_0116;
 	L011A: //
 		argc += 2;
 	L011D: //
@@ -147,9 +159,11 @@ namespace org::borium::javarecompiler
 	{
 		Pointer<ClassFile> classFile;
 		Pointer<List> newClassNames;
+		Pointer<ArrayList> temp_001A;
 		classFile = this->processClassFile(this->mainClass);
 		this->processedClasses->put(classFile->getClassName(), classFile);
-		newClassNames = new ArrayList();
+		temp_001A = new ArrayList();
+		newClassNames = temp_001A;
 		this->addReferencedClasses(newClassNames, classFile);
 		this->generateClasses();
 		this->writeClasses();
@@ -158,9 +172,13 @@ namespace org::borium::javarecompiler
 
 	void Recompiler::setMainClass(Pointer<String> mainClass)
 	{
+		Pointer<StringBuilder> temp_0011;
+		Pointer<RuntimeException> temp_002C;
 		if ((this->mainClass) == nullptr)
 			goto L0030;
-		throw new RuntimeException((new StringBuilder("Main class already set to '"))->append(this->mainClass)->append("', not setting it to '")->append(mainClass)->append("'")->toString());
+		temp_0011 = new StringBuilder("Main class already set to '");
+		temp_002C = new RuntimeException(temp_0011->append(this->mainClass)->append("', not setting it to '")->append(mainClass)->append("'")->toString());
+		throw temp_002C;
 	L0030: //
 		this->mainClass = mainClass;
 		return;
@@ -168,9 +186,13 @@ namespace org::borium::javarecompiler
 
 	void Recompiler::setOutputPath(Pointer<String> outputPath)
 	{
+		Pointer<StringBuilder> temp_0011;
+		Pointer<RuntimeException> temp_002C;
 		if ((this->outputPath) == nullptr)
 			goto L0030;
-		throw new RuntimeException((new StringBuilder("Output path already set to '"))->append(this->outputPath)->append("', not setting it to '")->append(outputPath)->append("'")->toString());
+		temp_0011 = new StringBuilder("Output path already set to '");
+		temp_002C = new RuntimeException(temp_0011->append(this->outputPath)->append("', not setting it to '")->append(outputPath)->append("'")->toString());
+		throw temp_002C;
 	L0030: //
 		this->outputPath = outputPath;
 		return;
@@ -178,9 +200,13 @@ namespace org::borium::javarecompiler
 
 	void Recompiler::setVisualStudio(Pointer<String> visualStudio)
 	{
+		Pointer<StringBuilder> temp_0011;
+		Pointer<RuntimeException> temp_002C;
 		if ((this->visualStudio) == nullptr)
 			goto L0030;
-		throw new RuntimeException((new StringBuilder("Visual Studio already set to '"))->append(this->visualStudio)->append("', not setting it to '")->append(visualStudio)->append("'")->toString());
+		temp_0011 = new StringBuilder("Visual Studio already set to '");
+		temp_002C = new RuntimeException(temp_0011->append(this->visualStudio)->append("', not setting it to '")->append(visualStudio)->append("'")->toString());
+		throw temp_002C;
 	L0030: //
 		this->visualStudio = visualStudio;
 		return;
@@ -215,8 +241,10 @@ namespace org::borium::javarecompiler
 	void Recompiler::generateClass(Pointer<String> className)
 	{
 		Pointer<CppClass> cppClass;
+		Pointer<CppClass> temp_000F;
 		this->processedClasses->get(className)->checkCast(ClassFile::getClass());
-		cppClass = new CppClass(this->processedClasses->get(className));
+		temp_000F = new CppClass(this->processedClasses->get(className));
+		cppClass = temp_000F;
 		this->generatedClasses->add(cppClass);
 		return;
 	}
@@ -234,14 +262,25 @@ namespace org::borium::javarecompiler
 		Pointer<String> classPath;
 		Pointer<File> file;
 		Pointer<ClassFile> classFile;
+		Pointer<StringBuilder> temp_001A;
 		Pointer<Iterator> local_002F;
+		Pointer<StringBuilder> temp_004D;
+		Pointer<File> temp_005C;
+		Pointer<StringBuilder> temp_007A;
+		Pointer<StringBuilder> temp_00A5;
+		Pointer<StringBuilder> temp_00BD;
+		Pointer<RuntimeException> temp_00CD;
+		Pointer<ClassFile> temp_00D5;
+		Pointer<StringBuilder> temp_0100;
+		Pointer<IndentedOutputStream> temp_010C;
 		if (!(classFileName->startsWith("java.")))
 			goto L000B;
 		// ARETURN: Type mismatch
 		return nullptr;
 	L000B: //
 		String::ClassInit();
-		classPathFileName = (new StringBuilder(String::valueOf(classFileName->replace(46, 47))))->append(".class")->toString();
+		temp_001A = new StringBuilder(String::valueOf(classFileName->replace(46, 47)));
+		classPathFileName = temp_001A->append(".class")->toString();
 		// ASTORE: Type mismatch
 		fileName = nullptr;
 		local_002F = this->classPaths->iterator();
@@ -250,13 +289,16 @@ namespace org::borium::javarecompiler
 		local_002F->next()->checkCast(String::getClass());
 		classPath = local_002F->next();
 		String::ClassInit();
-		file = new File((new StringBuilder(String::valueOf(classPath)))->append("/")->append(classPathFileName)->toString());
+		temp_004D = new StringBuilder(String::valueOf(classPath));
+		temp_005C = new File(temp_004D->append("/")->append(classPathFileName)->toString());
+		file = temp_005C;
 		if (!(file->exists()))
 			goto L008D;
 		if (!(file->isFile()))
 			goto L008D;
 		String::ClassInit();
-		fileName = (new StringBuilder(String::valueOf(classPath)))->append("/")->append(classPathFileName)->toString();
+		temp_007A = new StringBuilder(String::valueOf(classPath));
+		fileName = temp_007A->append("/")->append(classPathFileName)->toString();
 		goto L0097;
 	L008D: //
 		if (local_002F->hasNext())
@@ -264,10 +306,14 @@ namespace org::borium::javarecompiler
 	L0097: //
 		if ((fileName) != nullptr)
 			goto L00D1;
-		GetStatic(System::ClassInit, System::out)->println((new StringBuilder("Error: "))->append(classFileName)->toString());
-		throw new RuntimeException((new StringBuilder("Class "))->append(classFileName)->append(" not found")->toString());
+		temp_00A5 = new StringBuilder("Error: ");
+		GetStatic(System::ClassInit, System::out)->println(temp_00A5->append(classFileName)->toString());
+		temp_00BD = new StringBuilder("Class ");
+		temp_00CD = new RuntimeException(temp_00BD->append(classFileName)->append(" not found")->toString());
+		throw temp_00CD;
 	L00D1: //
-		classFile = new ClassFile();
+		temp_00D5 = new ClassFile();
+		classFile = temp_00D5;
 	L00DA: //
 		try
 		{
@@ -288,7 +334,9 @@ namespace org::borium::javarecompiler
 		{
 			Pointer<IndentedOutputStream> stream;
 			String::ClassInit();
-			stream = new IndentedOutputStream((new StringBuilder(String::valueOf(fileName->substring(0, (fileName->length()) - (5)))))->append("txt")->toString());
+			temp_0100 = new StringBuilder(String::valueOf(fileName->substring(0, (fileName->length()) - (5))));
+			temp_010C = new IndentedOutputStream(temp_0100->append("txt")->toString());
+			stream = temp_010C;
 			classFile->dump(stream);
 			stream->close();
 		L011D: //
@@ -305,6 +353,8 @@ namespace org::borium::javarecompiler
 	void Recompiler::setCommentLevel(Pointer<String> commentLevel)
 	{
 		Pointer<String> local_0002;
+		Pointer<StringBuilder> temp_005A;
+		Pointer<RuntimeException> temp_0064;
 		local_0002 = commentLevel;
 		switch (commentLevel->hashCode())
 		{
@@ -336,7 +386,9 @@ namespace org::borium::javarecompiler
 		Recompiler::stackComments = false;
 		goto L0068;
 	L004F: //
-		throw new RuntimeException((new StringBuilder("Unsupported comment level "))->append(commentLevel)->toString());
+		temp_005A = new StringBuilder("Unsupported comment level ");
+		temp_0064 = new RuntimeException(temp_005A->append(commentLevel)->toString());
+		throw temp_0064;
 	L0068: //
 		return;
 	}

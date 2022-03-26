@@ -62,7 +62,7 @@ namespace org::borium::javarecompiler::classfile
 		return this->superClassName;
 	}
 
-	Pointer<List<String>> ClassFile::getReferencedClasses()
+	Pointer<ReferencedClasses> ClassFile::getReferencedClasses()
 	{
 		Pointer<ArrayList<String>> referencedClasses;
 		referencedClasses = this->cp->getReferencedClasses();
