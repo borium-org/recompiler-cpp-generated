@@ -43,9 +43,9 @@ namespace org::borium::javarecompiler
 	Recompiler::Recompiler() :
 		Object() //
 	{
-		Pointer<ArrayList> temp_0009;
-		Pointer<HashMap> temp_0014;
-		Pointer<ArrayList> temp_001F;
+		Pointer<ArrayList<Object>> temp_0009;
+		Pointer<HashMap<Object, Object>> temp_0014;
+		Pointer<ArrayList<Object>> temp_001F;
 		temp_0009 = new ArrayList();
 		this->classPaths = temp_0009;
 		temp_0014 = new HashMap();
@@ -159,7 +159,7 @@ namespace org::borium::javarecompiler
 	{
 		Pointer<ClassFile> classFile;
 		Pointer<List> newClassNames;
-		Pointer<ArrayList> temp_001A;
+		Pointer<ArrayList<Object>> temp_001A;
 		classFile = this->processClassFile(this->mainClass);
 		this->processedClasses->put(classFile->getClassName(), classFile);
 		temp_001A = new ArrayList();
@@ -216,8 +216,9 @@ namespace org::borium::javarecompiler
 	{
 		Pointer<ReferencedClasses> allReferences;
 		Pointer<String> reference;
-		Pointer<Iterator> local_0009;
+		Pointer<Iterator<Object>> local_0009;
 		allReferences = classFile->getReferencedClasses();
+		// ASTORE: Type mismatch
 		local_0009 = allReferences->iterator();
 		goto L004E;
 	L000E: //
@@ -263,7 +264,7 @@ namespace org::borium::javarecompiler
 		Pointer<File> file;
 		Pointer<ClassFile> classFile;
 		Pointer<StringBuilder> temp_001A;
-		Pointer<Iterator> local_002F;
+		Pointer<Iterator<Object>> local_002F;
 		Pointer<StringBuilder> temp_004D;
 		Pointer<File> temp_005C;
 		Pointer<StringBuilder> temp_007A;
@@ -283,6 +284,7 @@ namespace org::borium::javarecompiler
 		classPathFileName = temp_001A->append(".class")->toString();
 		// ASTORE: Type mismatch
 		fileName = nullptr;
+		// ASTORE: Type mismatch
 		local_002F = this->classPaths->iterator();
 		goto L008D;
 	L0034: //
@@ -396,7 +398,8 @@ namespace org::borium::javarecompiler
 	void Recompiler::writeClasses()
 	{
 		Pointer<CppClass> cppClass;
-		Pointer<Iterator> local_0007;
+		Pointer<Iterator<Object>> local_0007;
+		// ASTORE: Type mismatch
 		local_0007 = this->generatedClasses->iterator();
 		goto L001D;
 	L000B: //

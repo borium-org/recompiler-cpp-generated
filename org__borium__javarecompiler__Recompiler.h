@@ -11,6 +11,7 @@ namespace java::util
 {
 	template <class A> class ArrayList;
 	template <class A, class B> class HashMap;
+	template <class A> class Iterator;
 	template <class A> class List;
 }
 
