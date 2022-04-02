@@ -46,12 +46,12 @@ namespace org::borium::javarecompiler
 		Pointer<ArrayList<Object>> temp_0009;
 		Pointer<HashMap<Object, Object>> temp_0014;
 		Pointer<ArrayList<Object>> temp_001F;
-		temp_0009 = new ArrayList();
-		this->classPaths = temp_0009;
-		temp_0014 = new HashMap();
-		this->processedClasses = temp_0014;
-		temp_001F = new ArrayList();
-		this->generatedClasses = temp_001F;
+		temp_0009 = new ArrayList<Object>();
+		this->classPaths = (ArrayList<String>*)(temp_0009.getValue());
+		temp_0014 = new HashMap<Object, Object>();
+		this->processedClasses = (HashMap<String, ClassFile>*)(temp_0014.getValue());
+		temp_001F = new ArrayList<Object>();
+		this->generatedClasses = (ArrayList<CppClass>*)(temp_001F.getValue());
 		return;
 	}
 
@@ -77,7 +77,7 @@ namespace org::borium::javarecompiler
 		temp_0007->assignString(7, "2005");
 		temp_0007->assignString(8, "-comments");
 		temp_0007->assignString(9, "none");
-		args = temp_0007;
+		args = (JavaArray<String>*)(temp_0007.getValue());
 	L0041: //
 		temp_0045 = new Recompiler();
 		recompiler = temp_0045;
@@ -158,12 +158,12 @@ namespace org::borium::javarecompiler
 	void Recompiler::run()
 	{
 		Pointer<ClassFile> classFile;
-		Pointer<List> newClassNames;
+		Pointer<List<String>> newClassNames;
 		Pointer<ArrayList<Object>> temp_001A;
 		classFile = this->processClassFile(this->mainClass);
 		this->processedClasses->put(classFile->getClassName(), classFile);
-		temp_001A = new ArrayList();
-		newClassNames = temp_001A;
+		temp_001A = new ArrayList<Object>();
+		newClassNames = (List<String>*)(temp_001A.getValue());
 		this->addReferencedClasses(newClassNames, classFile);
 		this->generateClasses();
 		this->writeClasses();
@@ -217,13 +217,14 @@ namespace org::borium::javarecompiler
 		Pointer<ReferencedClasses> allReferences;
 		Pointer<String> reference;
 		Pointer<Iterator<Object>> local_0009;
+		Pointer<String> temp_0015;
 		allReferences = classFile->getReferencedClasses();
-		// ASTORE: Type mismatch
-		local_0009 = allReferences->iterator();
+		local_0009 = (Iterator<Object>*)(allReferences->iterator().getValue());
 		goto L004E;
 	L000E: //
-		local_0009->next()->checkCast(String::getClass());
-		reference = local_0009->next();
+		temp_0015 = (String*)((local_0009->next()).getValue());
+		temp_0015->checkCast(String::getClass());
+		reference = temp_0015;
 		if (reference->startsWith("java."))
 			goto L004E;
 		if (reference->startsWith("["))
@@ -242,9 +243,11 @@ namespace org::borium::javarecompiler
 	void Recompiler::generateClass(Pointer<String> className)
 	{
 		Pointer<CppClass> cppClass;
+		Pointer<ClassFile> temp_000C;
 		Pointer<CppClass> temp_000F;
-		this->processedClasses->get(className)->checkCast(ClassFile::getClass());
-		temp_000F = new CppClass(this->processedClasses->get(className));
+		temp_000C = (ClassFile*)((this->processedClasses->get(className)).getValue());
+		temp_000C->checkCast(ClassFile::getClass());
+		temp_000F = new CppClass(temp_000C);
 		cppClass = temp_000F;
 		this->generatedClasses->add(cppClass);
 		return;
@@ -265,6 +268,7 @@ namespace org::borium::javarecompiler
 		Pointer<ClassFile> classFile;
 		Pointer<StringBuilder> temp_001A;
 		Pointer<Iterator<Object>> local_002F;
+		Pointer<String> temp_003B;
 		Pointer<StringBuilder> temp_004D;
 		Pointer<File> temp_005C;
 		Pointer<StringBuilder> temp_007A;
@@ -282,14 +286,13 @@ namespace org::borium::javarecompiler
 		String::ClassInit();
 		temp_001A = new StringBuilder(String::valueOf(classFileName->replace(46, 47)));
 		classPathFileName = temp_001A->append(".class")->toString();
-		// ASTORE: Type mismatch
 		fileName = nullptr;
-		// ASTORE: Type mismatch
-		local_002F = this->classPaths->iterator();
+		local_002F = (Iterator<Object>*)(this->classPaths->iterator().getValue());
 		goto L008D;
 	L0034: //
-		local_002F->next()->checkCast(String::getClass());
-		classPath = local_002F->next();
+		temp_003B = (String*)((local_002F->next()).getValue());
+		temp_003B->checkCast(String::getClass());
+		classPath = temp_003B;
 		String::ClassInit();
 		temp_004D = new StringBuilder(String::valueOf(classPath));
 		temp_005C = new File(temp_004D->append("/")->append(classPathFileName)->toString());
@@ -399,12 +402,13 @@ namespace org::borium::javarecompiler
 	{
 		Pointer<CppClass> cppClass;
 		Pointer<Iterator<Object>> local_0007;
-		// ASTORE: Type mismatch
-		local_0007 = this->generatedClasses->iterator();
+		Pointer<CppClass> temp_0011;
+		local_0007 = (Iterator<Object>*)(this->generatedClasses->iterator().getValue());
 		goto L001D;
 	L000B: //
-		local_0007->next()->checkCast(CppClass::getClass());
-		cppClass = local_0007->next();
+		temp_0011 = (CppClass*)((local_0007->next()).getValue());
+		temp_0011->checkCast(CppClass::getClass());
+		cppClass = temp_0011;
 		cppClass->writeClass(this->outputPath);
 	L001D: //
 		if (local_0007->hasNext())

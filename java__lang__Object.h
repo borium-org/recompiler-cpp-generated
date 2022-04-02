@@ -101,7 +101,7 @@ namespace java::lang
 		// it explicitly some day...
 		T* getValue()
 		{
-			return pointer;
+			return (T*) pointer;
 		}
 		// This one is for MFC CMap hashing
 		operator long()
