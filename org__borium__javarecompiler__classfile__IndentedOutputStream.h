@@ -16,11 +16,10 @@ namespace org::borium::javarecompiler::classfile
 		virtual ~IndentedOutputStream();
 		virtual void indent(int level);
 		virtual void iprint(Pointer<String> string);
+		virtual void iprintln(Pointer<String> string);
 		virtual void print(Pointer<String> string);
-		virtual void print(const char* string);
 		virtual void println();
 		virtual void println(Pointer<String> string);
-		virtual void println(const char* string);
 		virtual void printHex(int value, int width);
 		virtual void close();
 	};

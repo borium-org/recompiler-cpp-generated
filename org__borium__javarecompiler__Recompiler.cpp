@@ -32,11 +32,17 @@ namespace org::borium::javarecompiler
 
 	bool Recompiler::stackComments;
 
+	bool Recompiler::dumpInstructions;
+
+	bool Recompiler::dumpStatements;
+
 	void Recompiler::ClassInit()
 	{
 		Object::ClassInit();
 		Recompiler::instructionComments = false;
 		Recompiler::stackComments = false;
+		Recompiler::dumpInstructions = true;
+		Recompiler::dumpStatements = true;
 		return;
 	}
 
@@ -267,17 +273,17 @@ namespace org::borium::javarecompiler
 		Pointer<File> file;
 		Pointer<ClassFile> classFile;
 		Pointer<StringBuilder> temp_001A;
-		Pointer<Iterator<Object>> local_002F;
-		Pointer<String> temp_003B;
-		Pointer<StringBuilder> temp_004D;
-		Pointer<File> temp_005C;
-		Pointer<StringBuilder> temp_007A;
-		Pointer<StringBuilder> temp_00A5;
-		Pointer<StringBuilder> temp_00BD;
-		Pointer<RuntimeException> temp_00CD;
-		Pointer<ClassFile> temp_00D5;
-		Pointer<StringBuilder> temp_0100;
-		Pointer<IndentedOutputStream> temp_010C;
+		Pointer<Iterator<Object>> local_0030;
+		Pointer<String> temp_003C;
+		Pointer<StringBuilder> temp_004E;
+		Pointer<File> temp_005E;
+		Pointer<StringBuilder> temp_007C;
+		Pointer<StringBuilder> temp_00A8;
+		Pointer<StringBuilder> temp_00C0;
+		Pointer<RuntimeException> temp_00D0;
+		Pointer<ClassFile> temp_00D8;
+		Pointer<StringBuilder> temp_0103;
+		Pointer<IndentedOutputStream> temp_010F;
 		if (!(classFileName->startsWith("java.")))
 			goto L000B;
 		// ARETURN: Type mismatch
@@ -287,44 +293,44 @@ namespace org::borium::javarecompiler
 		temp_001A = new StringBuilder(String::valueOf(classFileName->replace(46, 47)));
 		classPathFileName = temp_001A->append(".class")->toString();
 		fileName = nullptr;
-		local_002F = (Iterator<Object>*)(this->classPaths->iterator().getValue());
-		goto L008D;
-	L0034: //
-		temp_003B = (String*)((local_002F->next()).getValue());
-		temp_003B->checkCast(String::getClass());
-		classPath = temp_003B;
+		local_0030 = (Iterator<Object>*)(this->classPaths->iterator().getValue());
+		goto L0090;
+	L0035: //
+		temp_003C = (String*)((local_0030->next()).getValue());
+		temp_003C->checkCast(String::getClass());
+		classPath = temp_003C;
 		String::ClassInit();
-		temp_004D = new StringBuilder(String::valueOf(classPath));
-		temp_005C = new File(temp_004D->append("/")->append(classPathFileName)->toString());
-		file = temp_005C;
+		temp_004E = new StringBuilder(String::valueOf(classPath));
+		temp_005E = new File(temp_004E->append("/")->append(classPathFileName)->toString());
+		file = temp_005E;
 		if (!(file->exists()))
-			goto L008D;
+			goto L0090;
 		if (!(file->isFile()))
-			goto L008D;
+			goto L0090;
 		String::ClassInit();
-		temp_007A = new StringBuilder(String::valueOf(classPath));
-		fileName = temp_007A->append("/")->append(classPathFileName)->toString();
-		goto L0097;
-	L008D: //
-		if (local_002F->hasNext())
-			goto L0034;
-	L0097: //
+		temp_007C = new StringBuilder(String::valueOf(classPath));
+		fileName = temp_007C->append("/")->append(classPathFileName)->toString();
+		goto L009A;
+	L0090: //
+		if (local_0030->hasNext())
+			goto L0035;
+	L009A: //
 		if ((fileName) != nullptr)
-			goto L00D1;
-		temp_00A5 = new StringBuilder("Error: ");
-		GetStatic(System::ClassInit, System::out)->println(temp_00A5->append(classFileName)->toString());
-		temp_00BD = new StringBuilder("Class ");
-		temp_00CD = new RuntimeException(temp_00BD->append(classFileName)->append(" not found")->toString());
-		throw temp_00CD;
-	L00D1: //
-		temp_00D5 = new ClassFile();
-		classFile = temp_00D5;
-	L00DA: //
+			goto L00D4;
+		temp_00A8 = new StringBuilder("Error: ");
+		GetStatic(System::ClassInit, System::out)->println(temp_00A8->append(classFileName)->toString());
+		temp_00C0 = new StringBuilder("Class ");
+		temp_00D0 = new RuntimeException(temp_00C0->append(classFileName)->append(" not found")->toString());
+		throw temp_00D0;
+	L00D4: //
+		temp_00D8 = new ClassFile();
+		classFile = temp_00D8;
+	L00DD: //
 		try
 		{
 			classFile->read(fileName);
-		L00E0: //
-			goto L00EA;
+		L00E3: //
+			goto L00ED;
 		}
 		catch (ClassFormatError* e)
 		{
@@ -334,24 +340,24 @@ namespace org::borium::javarecompiler
 		{
 			e->printStackTrace();
 		}
-	L00EA: //
+	L00ED: //
 		try
 		{
 			Pointer<IndentedOutputStream> stream;
 			String::ClassInit();
-			temp_0100 = new StringBuilder(String::valueOf(fileName->substring(0, (fileName->length()) - (5))));
-			temp_010C = new IndentedOutputStream(temp_0100->append("txt")->toString());
-			stream = temp_010C;
+			temp_0103 = new StringBuilder(String::valueOf(fileName->substring(0, (fileName->length()) - (5))));
+			temp_010F = new IndentedOutputStream(temp_0103->append("txt")->toString());
+			stream = temp_010F;
 			classFile->dump(stream);
 			stream->close();
-		L011D: //
-			goto L0127;
+		L0120: //
+			goto L012A;
 		}
 		catch (IOException* e)
 		{
 			e->printStackTrace();
 		}
-	L0127: //
+	L012A: //
 		return classFile;
 	}
 

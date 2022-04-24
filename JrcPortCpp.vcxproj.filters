@@ -150,6 +150,15 @@
     <ClInclude Include="org__borium__javarecompiler__classfile__IndentedOutputStream.h">
       <Filter>Header Files\classfile</Filter>
     </ClInclude>
+    <ClInclude Include="org__borium__javarecompiler__Statics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="java__lang__Integer.h">
+      <Filter>Header Files\java.lang</Filter>
+    </ClInclude>
+    <ClInclude Include="org__borium__javarecompiler__cplusplus__JavaTypeConverter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -193,6 +202,9 @@
     </ClCompile>
     <ClCompile Include="org__borium__javarecompiler__classfile__constants__Constant.cpp">
       <Filter>Source Files\classfile.constants</Filter>
+    </ClCompile>
+    <ClCompile Include="org__borium__javarecompiler__Statics.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

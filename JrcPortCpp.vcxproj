@@ -160,6 +160,7 @@
     <ClInclude Include="java__lang__Class.h" />
     <ClInclude Include="java__lang__ClassFormatError.h" />
     <ClInclude Include="java__lang__Exception.h" />
+    <ClInclude Include="java__lang__Integer.h" />
     <ClInclude Include="java__lang__Object.h" />
     <ClInclude Include="java__lang__RuntimeException.h" />
     <ClInclude Include="java__lang__String.h" />
@@ -183,7 +184,9 @@
     <ClInclude Include="org__borium__javarecompiler__classfile__constants__ConstantUtf8Info.h" />
     <ClInclude Include="org__borium__javarecompiler__classfile__IndentedOutputStream.h" />
     <ClInclude Include="org__borium__javarecompiler__cplusplus__CppClass.h" />
+    <ClInclude Include="org__borium__javarecompiler__cplusplus__JavaTypeConverter.h" />
     <ClInclude Include="org__borium__javarecompiler__Recompiler.h" />
+    <ClInclude Include="org__borium__javarecompiler__Statics.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -202,6 +205,7 @@
     <ClCompile Include="org__borium__javarecompiler__classfile__constants__ConstantPool.cpp" />
     <ClCompile Include="org__borium__javarecompiler__Recompiler.cpp" />
     <ClCompile Include="java__lang__StringBuilder.cpp" />
+    <ClCompile Include="org__borium__javarecompiler__Statics.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

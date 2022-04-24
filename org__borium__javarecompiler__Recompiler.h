@@ -38,6 +38,8 @@ namespace org::borium::javarecompiler
 	public:
 		static bool instructionComments;
 		static bool stackComments;
+		static bool dumpInstructions;
+		static bool dumpStatements;
 		Pointer<String> mainClass;
 		Pointer<ArrayList<String>> classPaths;
 		Pointer<ArrayList<HashMap<String, String>>> dummy;

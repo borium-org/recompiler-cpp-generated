@@ -47,14 +47,23 @@ namespace java::lang
 		Pointer()
 		{
 			pointer = nullptr;
+			string = nullptr;
 			TRACE("Pointer::ctor(%p): pointer = %p\n", this, pointer);
 		}
 		Pointer(T* data)
 		{
 			pointer = nullptr;
+			string = nullptr;
 			TRACE("Pointer::Pointer(%p): pointer = %p\n", this, pointer);
 			assign(data);
 		}
+		//Pointer(const char* data)
+		//{
+		//	pointer = nullptr;
+		//	string = nullptr;
+		//	TRACE("Pointer::Pointer(%p): pointer = %p\n", this, pointer);
+		//	string = strdup(data);
+		//}
 		Pointer(const Pointer<T>& other)
 		{
 			pointer = nullptr;
@@ -101,7 +110,7 @@ namespace java::lang
 		// it explicitly some day...
 		T* getValue()
 		{
-			return (T*) pointer;
+			return (T*)pointer;
 		}
 		// This one is for MFC CMap hashing
 		operator long()
@@ -111,7 +120,7 @@ namespace java::lang
 	private:
 		void assign(T* data)
 		{
-			if (pointer != nullptr)
+			if (pointer)
 			{
 				pointer->usageCounter--;
 				TRACE("Pointer::assign(%p): decrement pointer = %p value = %d\n", this, pointer, pointer->usageCounter);
@@ -119,14 +128,21 @@ namespace java::lang
 				if (pointer->usageCounter == 0)
 					delete pointer;
 			}
+			if (string)
+			{
+				free(string);
+				string = nullptr;
+			}
 			pointer = (Object*)data;
-			if (pointer != nullptr)
+			if (pointer)
 			{
 				pointer->usageCounter++;
 				TRACE("Pointer::assign(%p): increment pointer = %p value = %d\n", this, pointer, pointer->usageCounter);
 			}
 		}
 		Object* pointer;
+		// Special case for objects that are created from string constants
+		const char* string;
 	};
 
 	class String;
@@ -170,6 +186,31 @@ namespace java::lang
 		int length;
 	private:
 		Pointer<T>* data;
+	};
+
+	template<typename T> class JavaRawArray
+	{
+	public:
+		JavaRawArray(int size)
+		{
+			length = size;
+			data = new T[size];
+		}
+		~JavaRawArray()
+		{
+			delete data;
+		}
+		void assign(int index, T value)
+		{
+			data[index] = value;
+		}
+		T get(int index)
+		{
+			return data[index];
+		}
+		int length;
+	private:
+		T* data;
 	};
 
 	template<class T> T GetStatic(void(*classInit)(), T field)

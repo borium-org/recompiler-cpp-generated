@@ -13,6 +13,7 @@ namespace java::lang
 		virtual ~String();
 		static Pointer<String> valueOf(Pointer<String> string);
 		static Pointer<String> valueOf(int integer);
+		static Pointer<String> join(Pointer<String> separator, Pointer<JavaArray<String>> parts);
 		virtual int hashCode();
 		virtual int length();
 		virtual bool equals(const char* other);
@@ -20,7 +21,11 @@ namespace java::lang
 		virtual Pointer<String> replace(char from, char to);
 		virtual Pointer<String> substring(int first);
 		virtual Pointer<String> substring(int first, int last);
+		virtual int indexOf(char ch);
 		virtual int lastIndexOf(char ch);
+		virtual char charAt(int index);
+		virtual Pointer<JavaArray<String>> split(Pointer<String> regex);
+		virtual Pointer<String> toUpperCase();
 		operator CString() const
 		{
 			return data;
