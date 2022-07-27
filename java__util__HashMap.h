@@ -32,13 +32,15 @@ namespace java::util
 			Pointer<V> previous;
 			bool found = map.Lookup(key, previous);
 			map.SetAt(key, value);
-			return found ? previous : nullptr;
+			V* returnValue = found ? previous.getValue() : nullptr;
+			return returnValue;
 		}
 		virtual Pointer<V> get(Pointer<K> key)
 		{
 			Pointer<V> value;
 			bool found = map.Lookup(key, value);
-			return found ? value : nullptr;
+			V* returnValue = found ? value.getValue() : nullptr;
+			return returnValue;
 		}
 		virtual bool containsKey(Pointer<K> key)
 		{

@@ -47,13 +47,11 @@ namespace java::lang
 		Pointer()
 		{
 			pointer = nullptr;
-			string = nullptr;
 			TRACE("Pointer::ctor(%p): pointer = %p\n", this, pointer);
 		}
 		Pointer(T* data)
 		{
 			pointer = nullptr;
-			string = nullptr;
 			TRACE("Pointer::Pointer(%p): pointer = %p\n", this, pointer);
 			assign(data);
 		}
@@ -128,11 +126,6 @@ namespace java::lang
 				if (pointer->usageCounter == 0)
 					delete pointer;
 			}
-			if (string)
-			{
-				free(string);
-				string = nullptr;
-			}
 			pointer = (Object*)data;
 			if (pointer)
 			{
@@ -141,11 +134,46 @@ namespace java::lang
 			}
 		}
 		Object* pointer;
-		// Special case for objects that are created from string constants
-		const char* string;
 	};
 
 	class String;
+
+	template<> class Pointer<String>
+	{
+	public:
+		Pointer()
+		{
+			pointer = nullptr;
+		}
+		Pointer(String* string)
+		{
+		}
+		Pointer(const char* string)
+		{
+
+		}
+		String* operator -> ()
+		{
+			return pointer;
+		}
+		void operator = (String* object)
+		{
+
+		}
+		bool operator == (Object* value) const
+		{
+			return pointer == (String*)value;
+		}
+		bool operator == (const Pointer<String>& other) const
+		{
+			return pointer == other.pointer;
+		}
+		String* getValue()
+		{
+			return pointer;
+		}
+		String* pointer;
+	};
 
 	template<class T>
 	class JavaArray : public Object
@@ -188,7 +216,7 @@ namespace java::lang
 		Pointer<T>* data;
 	};
 
-	template<typename T> class JavaRawArray
+	template<typename T> class JavaRawArray : public Object
 	{
 	public:
 		JavaRawArray(int size)
