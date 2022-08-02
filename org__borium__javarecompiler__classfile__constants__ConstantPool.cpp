@@ -1,745 +1,211 @@
 #include "stdafx.h"
 #include "org__borium__javarecompiler__classfile__constants__ConstantPool.h"
 
+#include "java__lang__Class.h"
+#include "java__lang__ClassFormatError.h"
+#include "java__lang__String.h"
+#include "java__lang__StringBuilder.h"
+#include "java__util__Iterator.h"
+#include "org__borium__javarecompiler__classfile__ByteInputStream.h"
+#include "org__borium__javarecompiler__classfile__IndentedOutputStream.h"
+#include "org__borium__javarecompiler__classfile__ReferencedClasses.h"
+#include "org__borium__javarecompiler__classfile__constants__Constant.h"
+#include "org__borium__javarecompiler__classfile__constants__ConstantClassInfo.h"
+#include "org__borium__javarecompiler__classfile__constants__ConstantUtf8Info.h"
+
+using namespace java::lang;
+using namespace java::util;
+using namespace org::borium::javarecompiler::classfile;
+using namespace org::borium::javarecompiler::classfile::constants;
+
 namespace org::borium::javarecompiler::classfile::constants
 {
 
 	ConstantPool::ConstantPool() :
-			//			aload 0
-			//				stack[0]: ConstantPool*=this
-			//			invokespecial java.lang.Object.<init>
-			Object() //
-			//				stack: empty
-			, constants(0) //
+		Object() //
 	{
-		//		return
 		return;
-		//				stack: empty
 	}
 
-	void ConstantPool::dump(IndentedOutputStream *stream)
+	void ConstantPool::addReferencedClasses(Pointer<ReferencedClasses> referencedClasses)
 	{
-		int i = 0;
-		//		aload 1
-		//				stack[0]: IndentedOutputStream*=stream
-		//		ldc "Constants:"
-		//				stack[0]: IndentedOutputStream*=stream
-		//				stack[1]: String *="Constants:"
-		//		invokevirtual org.borium.javarecompiler.classfile.IndentedOutputStream.println
+		Pointer<Constant> c_0014;
+		Pointer<ConstantClassInfo> ci_002F;
+		Pointer<Constant>  instanceOfPatternExpressionValue_0017;
+		Pointer<String> className_0036;
+		Pointer<JavaArray<Constant>> local_0005;
+		Pointer<ConstantClassInfo> temp_0021;
+		Pointer<ConstantClassInfo> local_0025;
+		Pointer<ConstantClassInfo> temp_0029;
+		Pointer<StringBuilder> temp_0065;
+		local_0005 = (JavaArray<Constant>*)(this->constants.getValue());
+		int local_0008 = this->constants->length;
+		int local_000B = 0;
+		goto L007B;
+	L000F: //
+		c_0014 = local_0005->get(local_000B);
+		 instanceOfPatternExpressionValue_0017 = c_0014;
+		if (!( instanceOfPatternExpressionValue_0017->instanceOf(ConstantClassInfo::getClass())))
+			goto L0078;
+		temp_0021 = (ConstantClassInfo*)(( instanceOfPatternExpressionValue_0017).getValue());
+		temp_0021->checkCast(ConstantClassInfo::getClass());
+		local_0025 = temp_0021;
+		temp_0029 = (ConstantClassInfo*)(( instanceOfPatternExpressionValue_0017).getValue());
+		temp_0029->checkCast(ConstantClassInfo::getClass());
+		if ((temp_0021) != (temp_0029))
+			goto L0078;
+		className_0036 = ci_002F->getName();
+		if (!(className_0036->startsWith("[")))
+			goto L005E;
+		goto L004B;
+	L0043: //
+		className_0036 = className_0036->substring(1);
+	L004B: //
+		if (className_0036->startsWith("["))
+			goto L0043;
+		referencedClasses->add(className_0036);
+		goto L0078;
+	L005E: //
+		temp_0065 = new StringBuilder("L");
+		referencedClasses->add(temp_0065->append(className_0036)->append(";")->toString());
+	L0078: //
+		local_000B += 1;
+	L007B: //
+		if ((local_000B) < (local_0008))
+			goto L000F;
+		return;
+	}
+
+	void ConstantPool::dump(Pointer<IndentedOutputStream> stream)
+	{
+		int i_000D = 0;
+		Pointer<StringBuilder> temp_0022;
 		stream->println("Constants:");
-		//				stack: empty
-		//		aload 1
-		//				stack[0]: IndentedOutputStream*=stream
-		//		iconst 1
-		//				stack[0]: IndentedOutputStream*=stream
-		//				stack[1]: int=1
-		//		invokevirtual org.borium.javarecompiler.classfile.IndentedOutputStream.indent
 		stream->indent(1);
-		//				stack: empty
-		//		iconst 1
-		//				stack[0]: int=1
-		//		istore 2
-		i = 1;
-		//				stack: empty
-		//		goto L0041
+		i_000D = 1;
 		goto L0041;
-		//				stack: empty
-		L0010: //
-		//		aload 0
-		//				stack[0]: ConstantPool*=this
-		//		getfield constants [Lorg/borium/javarecompiler/classfile/constants/Constant;
-		//				stack[0]: JavaArray<Constant*>*=this->constants
-		//		iload 2
-		//				stack[0]: JavaArray<Constant*>*=this->constants
-		//				stack[1]: int=i
-		//		aaload
-		//				stack[0]: Constant*=this->constants->get(i)
-		//		ifnull L003E
-		if ((this->constants->get(i)) == nullptr)
+	L0010: //
+		if ((this->constants->get(i_000D)) == nullptr)
 			goto L003E;
-		//				stack: empty
-		//		aload 1
-		//				stack[0]: IndentedOutputStream*=stream
-		//		new java.lang.StringBuilder
-		//				stack[0]: IndentedOutputStream*=stream
-		//				stack[1]: StringBuilder*=new
-		//		dup
-		//				stack[0]: IndentedOutputStream*=stream
-		//				stack[1]: StringBuilder*=new
-		//				stack[2]: StringBuilder*=new
-		//		iload 2
-		//				stack[0]: IndentedOutputStream*=stream
-		//				stack[1]: StringBuilder*=new
-		//				stack[2]: StringBuilder*=new
-		//				stack[3]: int=i
-		//		invokestatic java.lang.String.valueOf
 		String::ClassInit();
-		//				stack[0]: IndentedOutputStream*=stream
-		//				stack[1]: StringBuilder*=new
-		//				stack[2]: StringBuilder*=new
-		//				stack[3]: String*=String::valueOf(i)
-		//		invokespecial java.lang.StringBuilder.<init>
-		//				stack[0]: IndentedOutputStream*=stream
-		//				stack[1]: StringBuilder*=new StringBuilder(String::valueOf(i))
-		//		ldc ": "
-		//				stack[0]: IndentedOutputStream*=stream
-		//				stack[1]: StringBuilder*=new StringBuilder(String::valueOf(i))
-		//				stack[2]: String *=": "
-		//		invokevirtual java.lang.StringBuilder.append
-		//				stack[0]: IndentedOutputStream*=stream
-		//				stack[1]: StringBuilder*=(new StringBuilder(String::valueOf(i)))->append(": ")
-		//		invokevirtual java.lang.StringBuilder.toString
-		//				stack[0]: IndentedOutputStream*=stream
-		//				stack[1]: String*=(new StringBuilder(String::valueOf(i)))->append(": ")->toString()
-		//		invokevirtual org.borium.javarecompiler.classfile.IndentedOutputStream.iprint
-		stream->iprint((new StringBuilder(String::valueOf(i)))->append(": ")->toString());
-		//				stack: empty
-		//		aload 0
-		//				stack[0]: ConstantPool*=this
-		//		getfield constants [Lorg/borium/javarecompiler/classfile/constants/Constant;
-		//				stack[0]: JavaArray<Constant*>*=this->constants
-		//		iload 2
-		//				stack[0]: JavaArray<Constant*>*=this->constants
-		//				stack[1]: int=i
-		//		aaload
-		//				stack[0]: Constant*=this->constants->get(i)
-		//		aload 1
-		//				stack[0]: Constant*=this->constants->get(i)
-		//				stack[1]: IndentedOutputStream*=stream
-		//		invokevirtual org.borium.javarecompiler.classfile.constants.Constant.dump
-		this->constants->get(i)->dump(stream);
-		//				stack: empty
-		//		aload 1
-		//				stack[0]: IndentedOutputStream*=stream
-		//		invokevirtual org.borium.javarecompiler.classfile.IndentedOutputStream.println
+		temp_0022 = new StringBuilder(String::valueOf(i_000D));
+		stream->iprint(temp_0022->append(": ")->toString());
+		this->constants->get(i_000D)->dump(stream);
 		stream->println();
-		//				stack: empty
-		L003E: //
-		//		iinc 2 1
-		i += 1;
-		//				stack: empty
-		L0041: //
-		//		iload 2
-		//				stack[0]: int=i
-		//		aload 0
-		//				stack[0]: int=i
-		//				stack[1]: ConstantPool*=this
-		//		getfield constants [Lorg/borium/javarecompiler/classfile/constants/Constant;
-		//				stack[0]: int=i
-		//				stack[1]: JavaArray<Constant*>*=this->constants
-		//		arraylength
-		//				stack[0]: int=i
-		//				stack[1]: int=this->constants->length
-		//		if_icmplt L0010
-		if ((i) < (this->constants->length))
+	L003E: //
+		i_000D += 1;
+	L0041: //
+		if ((i_000D) < (this->constants->length))
 			goto L0010;
-		//				stack: empty
-		//		aload 1
-		//				stack[0]: IndentedOutputStream*=stream
-		//		iconst -1
-		//				stack[0]: IndentedOutputStream*=stream
-		//				stack[1]: int=-1
-		//		invokevirtual org.borium.javarecompiler.classfile.IndentedOutputStream.indent
 		stream->indent(-1);
-		//				stack: empty
-		//		return
 		return;
-		//				stack: empty
 	}
 
-	Constant* ConstantPool::get(int index)
+	Pointer<Constant> ConstantPool::get(int index)
 	{
-		//		iload 1
-		//				stack[0]: int=index
-		//		iflt L000D
+		Pointer<StringBuilder> temp_0017;
+		Pointer<ClassFormatError> temp_0030;
 		if ((index) < 0)
 			goto L000D;
-		//				stack: empty
-		//		iload 1
-		//				stack[0]: int=index
-		//		aload 0
-		//				stack[0]: int=index
-		//				stack[1]: ConstantPool*=this
-		//		getfield constants [Lorg/borium/javarecompiler/classfile/constants/Constant;
-		//				stack[0]: int=index
-		//				stack[1]: JavaArray<Constant*>*=this->constants
-		//		arraylength
-		//				stack[0]: int=index
-		//				stack[1]: int=this->constants->length
-		//		if_icmplt L0034
 		if ((index) < (this->constants->length))
 			goto L0034;
-		//				stack: empty
-		L000D: //
-		//		new java.lang.ClassFormatError
-		//				stack[0]: ClassFormatError*=new
-		//		dup
-		//				stack[0]: ClassFormatError*=new
-		//				stack[1]: ClassFormatError*=new
-		//		new java.lang.StringBuilder
-		//				stack[0]: ClassFormatError*=new
-		//				stack[1]: ClassFormatError*=new
-		//				stack[2]: StringBuilder*=new
-		//		dup
-		//				stack[0]: ClassFormatError*=new
-		//				stack[1]: ClassFormatError*=new
-		//				stack[2]: StringBuilder*=new
-		//				stack[3]: StringBuilder*=new
-		//		ldc "Constant index "
-		//				stack[0]: ClassFormatError*=new
-		//				stack[1]: ClassFormatError*=new
-		//				stack[2]: StringBuilder*=new
-		//				stack[3]: StringBuilder*=new
-		//				stack[4]: String *="Constant index "
-		//		invokespecial java.lang.StringBuilder.<init>
-		//				stack[0]: ClassFormatError*=new
-		//				stack[1]: ClassFormatError*=new
-		//				stack[2]: StringBuilder*=new StringBuilder("Constant index ")
-		//		iload 1
-		//				stack[0]: ClassFormatError*=new
-		//				stack[1]: ClassFormatError*=new
-		//				stack[2]: StringBuilder*=new StringBuilder("Constant index ")
-		//				stack[3]: int=index
-		//		invokevirtual java.lang.StringBuilder.append
-		//				stack[0]: ClassFormatError*=new
-		//				stack[1]: ClassFormatError*=new
-		//				stack[2]: StringBuilder*=(new StringBuilder("Constant index "))->append(index)
-		//		ldc " is out of range 0.."
-		//				stack[0]: ClassFormatError*=new
-		//				stack[1]: ClassFormatError*=new
-		//				stack[2]: StringBuilder*=(new StringBuilder("Constant index "))->append(index)
-		//				stack[3]: String *=" is out of range 0.."
-		//		invokevirtual java.lang.StringBuilder.append
-		//				stack[0]: ClassFormatError*=new
-		//				stack[1]: ClassFormatError*=new
-		//				stack[2]: StringBuilder*=(new StringBuilder("Constant index "))->append(index)->append(" is out of range 0..")
-		//		aload 0
-		//				stack[0]: ClassFormatError*=new
-		//				stack[1]: ClassFormatError*=new
-		//				stack[2]: StringBuilder*=(new StringBuilder("Constant index "))->append(index)->append(" is out of range 0..")
-		//				stack[3]: ConstantPool*=this
-		//		getfield constants [Lorg/borium/javarecompiler/classfile/constants/Constant;
-		//				stack[0]: ClassFormatError*=new
-		//				stack[1]: ClassFormatError*=new
-		//				stack[2]: StringBuilder*=(new StringBuilder("Constant index "))->append(index)->append(" is out of range 0..")
-		//				stack[3]: JavaArray<Constant*>*=this->constants
-		//		arraylength
-		//				stack[0]: ClassFormatError*=new
-		//				stack[1]: ClassFormatError*=new
-		//				stack[2]: StringBuilder*=(new StringBuilder("Constant index "))->append(index)->append(" is out of range 0..")
-		//				stack[3]: int=this->constants->length
-		//		iconst 1
-		//				stack[0]: ClassFormatError*=new
-		//				stack[1]: ClassFormatError*=new
-		//				stack[2]: StringBuilder*=(new StringBuilder("Constant index "))->append(index)->append(" is out of range 0..")
-		//				stack[3]: int=this->constants->length
-		//				stack[4]: int=1
-		//		isub
-		//				stack[0]: ClassFormatError*=new
-		//				stack[1]: ClassFormatError*=new
-		//				stack[2]: StringBuilder*=(new StringBuilder("Constant index "))->append(index)->append(" is out of range 0..")
-		//				stack[3]: int=(this->constants->length) - (1)
-		//		invokevirtual java.lang.StringBuilder.append
-		//				stack[0]: ClassFormatError*=new
-		//				stack[1]: ClassFormatError*=new
-		//				stack[2]: StringBuilder*=(new StringBuilder("Constant index "))->append(index)->append(" is out of range 0..")->append((this->constants->length) - (1))
-		//		invokevirtual java.lang.StringBuilder.toString
-		//				stack[0]: ClassFormatError*=new
-		//				stack[1]: ClassFormatError*=new
-		//				stack[2]: String*=(new StringBuilder("Constant index "))->append(index)->append(" is out of range 0..")->append((this->constants->length) - (1))->toString()
-		//		invokespecial java.lang.ClassFormatError.<init>
-		//				stack[0]: ClassFormatError*=new ClassFormatError((new StringBuilder("Constant index "))->append(index)->append(" is out of range 0..")->append((this->constants->length) - (1))->toString())
-		//		athrow
-		throw new ClassFormatError((new StringBuilder("Constant index "))->append(index)->append(" is out of range 0..")->append((this->constants->length) - (1))->toString());
-		//				stack: empty
-		L0034: //
-		//		aload 0
-		//				stack[0]: ConstantPool*=this
-		//		getfield constants [Lorg/borium/javarecompiler/classfile/constants/Constant;
-		//				stack[0]: JavaArray<Constant*>*=this->constants
-		//		iload 1
-		//				stack[0]: JavaArray<Constant*>*=this->constants
-		//				stack[1]: int=index
-		//		aaload
-		//				stack[0]: Constant*=this->constants->get(index)
-		//		areturn
+	L000D: //
+		temp_0017 = new StringBuilder("Constant index ");
+		temp_0030 = new ClassFormatError(temp_0017->append(index)->append(" is out of range 0..")->append((this->constants->length) - (1))->toString());
+		throw temp_0030;
+	L0034: //
 		return this->constants->get(index);
-		//				stack: empty
 	}
 
-	Constant* ConstantPool::get(int index, Class *clazz)
+	Pointer<String> ConstantPool::getString(int index)
 	{
-		Constant *c = nullptr;
-		//		aload 0
-		//				stack[0]: ConstantPool*=this
-		//		iload 1
-		//				stack[0]: ConstantPool*=this
-		//				stack[1]: int=index
-		//		invokevirtual org.borium.javarecompiler.classfile.constants.ConstantPool.get
-		//				stack[0]: Constant*=this->get(index)
-		//		astore 3
-		c = this->get(index);
-		//				stack: empty
-		//		aload 2
-		//				stack[0]: Class*=clazz
-		//		aload 3
-		//				stack[0]: Class*=clazz
-		//				stack[1]: Constant*=c
-		//		invokevirtual java.lang.Class.isInstance
-		//				stack[0]: bool=clazz->isInstance(c)
-		//		ifeq L0010
-		if (!(clazz->isInstance(c)))
-			goto L0010;
-		//				stack: empty
-		//		aload 3
-		//				stack[0]: Constant*=c
-		//		areturn
-		return c;
-		//				stack: empty
-		L0010: //
-		//		new java.lang.ClassFormatError
-		//				stack[0]: ClassFormatError*=new
-		//		dup
-		//				stack[0]: ClassFormatError*=new
-		//				stack[1]: ClassFormatError*=new
-		//		new java.lang.StringBuilder
-		//				stack[0]: ClassFormatError*=new
-		//				stack[1]: ClassFormatError*=new
-		//				stack[2]: StringBuilder*=new
-		//		dup
-		//				stack[0]: ClassFormatError*=new
-		//				stack[1]: ClassFormatError*=new
-		//				stack[2]: StringBuilder*=new
-		//				stack[3]: StringBuilder*=new
-		//		ldc "Constant "
-		//				stack[0]: ClassFormatError*=new
-		//				stack[1]: ClassFormatError*=new
-		//				stack[2]: StringBuilder*=new
-		//				stack[3]: StringBuilder*=new
-		//				stack[4]: String *="Constant "
-		//		invokespecial java.lang.StringBuilder.<init>
-		//				stack[0]: ClassFormatError*=new
-		//				stack[1]: ClassFormatError*=new
-		//				stack[2]: StringBuilder*=new StringBuilder("Constant ")
-		//		iload 1
-		//				stack[0]: ClassFormatError*=new
-		//				stack[1]: ClassFormatError*=new
-		//				stack[2]: StringBuilder*=new StringBuilder("Constant ")
-		//				stack[3]: int=index
-		//		invokevirtual java.lang.StringBuilder.append
-		//				stack[0]: ClassFormatError*=new
-		//				stack[1]: ClassFormatError*=new
-		//				stack[2]: StringBuilder*=(new StringBuilder("Constant "))->append(index)
-		//		ldc " is not "
-		//				stack[0]: ClassFormatError*=new
-		//				stack[1]: ClassFormatError*=new
-		//				stack[2]: StringBuilder*=(new StringBuilder("Constant "))->append(index)
-		//				stack[3]: String *=" is not "
-		//		invokevirtual java.lang.StringBuilder.append
-		//				stack[0]: ClassFormatError*=new
-		//				stack[1]: ClassFormatError*=new
-		//				stack[2]: StringBuilder*=(new StringBuilder("Constant "))->append(index)->append(" is not ")
-		//		aload 2
-		//				stack[0]: ClassFormatError*=new
-		//				stack[1]: ClassFormatError*=new
-		//				stack[2]: StringBuilder*=(new StringBuilder("Constant "))->append(index)->append(" is not ")
-		//				stack[3]: Class*=clazz
-		//		invokevirtual java.lang.Class.getSimpleName
-		//				stack[0]: ClassFormatError*=new
-		//				stack[1]: ClassFormatError*=new
-		//				stack[2]: StringBuilder*=(new StringBuilder("Constant "))->append(index)->append(" is not ")
-		//				stack[3]: String*=clazz->getSimpleName()
-		//		invokevirtual java.lang.StringBuilder.append
-		//				stack[0]: ClassFormatError*=new
-		//				stack[1]: ClassFormatError*=new
-		//				stack[2]: StringBuilder*=(new StringBuilder("Constant "))->append(index)->append(" is not ")->append(clazz->getSimpleName())
-		//		invokevirtual java.lang.StringBuilder.toString
-		//				stack[0]: ClassFormatError*=new
-		//				stack[1]: ClassFormatError*=new
-		//				stack[2]: String*=(new StringBuilder("Constant "))->append(index)->append(" is not ")->append(clazz->getSimpleName())->toString()
-		//		invokespecial java.lang.ClassFormatError.<init>
-		//				stack[0]: ClassFormatError*=new ClassFormatError((new StringBuilder("Constant "))->append(index)->append(" is not ")->append(clazz->getSimpleName())->toString())
-		//		athrow
-		throw new ClassFormatError((new StringBuilder("Constant "))->append(index)->append(" is not ")->append(clazz->getSimpleName())->toString());
-		//				stack: empty
-	}
-
-	String* ConstantPool::getString(int index)
-	{
-		Constant *constant = nullptr;
-		ConstantUtf8Info *utf8 = nullptr;
-		Constant * instanceOfPatternExpressionValue = nullptr;
-		//		aload 0
-		//				stack[0]: ConstantPool*=this
-		//		iload 1
-		//				stack[0]: ConstantPool*=this
-		//				stack[1]: int=index
-		//		invokevirtual org.borium.javarecompiler.classfile.constants.ConstantPool.get
-		//				stack[0]: Constant*=this->get(index)
-		//		astore 2
-		constant = this->get(index);
-		//				stack: empty
-		//		aload 2
-		//				stack[0]: Constant*=constant
-		//		astore 4
-		 instanceOfPatternExpressionValue = constant;
-		//				stack: empty
-		//		aload 4
-		//				stack[0]: Constant*= instanceOfPatternExpressionValue
-		//		instanceof org.borium.javarecompiler.classfile.constants.ConstantUtf8Info
-		//				stack[0]: bool= instanceOfPatternExpressionValue->instanceOf(ConstantUtf8Info::getClass())
-		//		ifeq L0025
-		if (!( instanceOfPatternExpressionValue->instanceOf(ConstantUtf8Info::getClass())))
+		Pointer<Constant> constant_0006;
+		Pointer<ConstantUtf8Info> utf8_0020;
+		Pointer<Constant>  instanceOfPatternExpressionValue_0009;
+		Pointer<ConstantUtf8Info> temp_0013;
+		Pointer<ConstantUtf8Info> local_0017;
+		Pointer<ConstantUtf8Info> temp_001A;
+		Pointer<StringBuilder> temp_002F;
+		Pointer<ClassFormatError> temp_0048;
+		constant_0006 = this->get(index);
+		 instanceOfPatternExpressionValue_0009 = constant_0006;
+		if (!( instanceOfPatternExpressionValue_0009->instanceOf(ConstantUtf8Info::getClass())))
 			goto L0025;
-		//				stack: empty
-		//		aload 4
-		//				stack[0]: Constant*= instanceOfPatternExpressionValue
-		//		checkcast org.borium.javarecompiler.classfile.constants.ConstantUtf8Info
-		 instanceOfPatternExpressionValue->checkCast(ConstantUtf8Info::getClass());
-		//				stack[0]: ConstantUtf8Info= instanceOfPatternExpressionValue
-		//		dup
-		//				stack[0]: ConstantUtf8Info= instanceOfPatternExpressionValue
-		//				stack[1]: ConstantUtf8Info= instanceOfPatternExpressionValue
-		//		astore 3
-		ConstantUtf8Info local_0017 =  instanceOfPatternExpressionValue;
-		//				stack[0]: ConstantUtf8Info= instanceOfPatternExpressionValue
-		//		aload 4
-		//				stack[0]: ConstantUtf8Info= instanceOfPatternExpressionValue
-		//				stack[1]: Constant*= instanceOfPatternExpressionValue
-		//		checkcast org.borium.javarecompiler.classfile.constants.ConstantUtf8Info
-		 instanceOfPatternExpressionValue->checkCast(ConstantUtf8Info::getClass());
-		//				stack[0]: ConstantUtf8Info= instanceOfPatternExpressionValue
-		//				stack[1]: ConstantUtf8Info= instanceOfPatternExpressionValue
-		//		if_acmpne L0025
-		if (( instanceOfPatternExpressionValue) != ( instanceOfPatternExpressionValue))
+		temp_0013 = (ConstantUtf8Info*)(( instanceOfPatternExpressionValue_0009).getValue());
+		temp_0013->checkCast(ConstantUtf8Info::getClass());
+		local_0017 = temp_0013;
+		temp_001A = (ConstantUtf8Info*)(( instanceOfPatternExpressionValue_0009).getValue());
+		temp_001A->checkCast(ConstantUtf8Info::getClass());
+		if ((temp_0013) != (temp_001A))
 			goto L0025;
-		//				stack: empty
-		//		aload 3
-		//				stack[0]: ConstantUtf8Info*=utf8
-		//		invokevirtual org.borium.javarecompiler.classfile.constants.ConstantUtf8Info.string
-		//				stack[0]: String*=utf8->string()
-		//		areturn
-		return utf8->string();
-		//				stack: empty
-		L0025: //
-		//		new java.lang.ClassFormatError
-		//				stack[0]: ClassFormatError*=new
-		//		dup
-		//				stack[0]: ClassFormatError*=new
-		//				stack[1]: ClassFormatError*=new
-		//		new java.lang.StringBuilder
-		//				stack[0]: ClassFormatError*=new
-		//				stack[1]: ClassFormatError*=new
-		//				stack[2]: StringBuilder*=new
-		//		dup
-		//				stack[0]: ClassFormatError*=new
-		//				stack[1]: ClassFormatError*=new
-		//				stack[2]: StringBuilder*=new
-		//				stack[3]: StringBuilder*=new
-		//		ldc "Index "
-		//				stack[0]: ClassFormatError*=new
-		//				stack[1]: ClassFormatError*=new
-		//				stack[2]: StringBuilder*=new
-		//				stack[3]: StringBuilder*=new
-		//				stack[4]: String *="Index "
-		//		invokespecial java.lang.StringBuilder.<init>
-		//				stack[0]: ClassFormatError*=new
-		//				stack[1]: ClassFormatError*=new
-		//				stack[2]: StringBuilder*=new StringBuilder("Index ")
-		//		iload 1
-		//				stack[0]: ClassFormatError*=new
-		//				stack[1]: ClassFormatError*=new
-		//				stack[2]: StringBuilder*=new StringBuilder("Index ")
-		//				stack[3]: int=index
-		//		invokevirtual java.lang.StringBuilder.append
-		//				stack[0]: ClassFormatError*=new
-		//				stack[1]: ClassFormatError*=new
-		//				stack[2]: StringBuilder*=(new StringBuilder("Index "))->append(index)
-		//		ldc " is not a string but "
-		//				stack[0]: ClassFormatError*=new
-		//				stack[1]: ClassFormatError*=new
-		//				stack[2]: StringBuilder*=(new StringBuilder("Index "))->append(index)
-		//				stack[3]: String *=" is not a string but "
-		//		invokevirtual java.lang.StringBuilder.append
-		//				stack[0]: ClassFormatError*=new
-		//				stack[1]: ClassFormatError*=new
-		//				stack[2]: StringBuilder*=(new StringBuilder("Index "))->append(index)->append(" is not a string but ")
-		//		aload 2
-		//				stack[0]: ClassFormatError*=new
-		//				stack[1]: ClassFormatError*=new
-		//				stack[2]: StringBuilder*=(new StringBuilder("Index "))->append(index)->append(" is not a string but ")
-		//				stack[3]: Constant*=constant
-		//		invokevirtual java.lang.Object.getClass
-		//				stack[0]: ClassFormatError*=new
-		//				stack[1]: ClassFormatError*=new
-		//				stack[2]: StringBuilder*=(new StringBuilder("Index "))->append(index)->append(" is not a string but ")
-		//				stack[3]: Class*=constant->getClass()
-		//		invokevirtual java.lang.Class.getSimpleName
-		//				stack[0]: ClassFormatError*=new
-		//				stack[1]: ClassFormatError*=new
-		//				stack[2]: StringBuilder*=(new StringBuilder("Index "))->append(index)->append(" is not a string but ")
-		//				stack[3]: String*=constant->getClass()->getSimpleName()
-		//		invokevirtual java.lang.StringBuilder.append
-		//				stack[0]: ClassFormatError*=new
-		//				stack[1]: ClassFormatError*=new
-		//				stack[2]: StringBuilder*=(new StringBuilder("Index "))->append(index)->append(" is not a string but ")->append(constant->getClass()->getSimpleName())
-		//		invokevirtual java.lang.StringBuilder.toString
-		//				stack[0]: ClassFormatError*=new
-		//				stack[1]: ClassFormatError*=new
-		//				stack[2]: String*=(new StringBuilder("Index "))->append(index)->append(" is not a string but ")->append(constant->getClass()->getSimpleName())->toString()
-		//		invokespecial java.lang.ClassFormatError.<init>
-		//				stack[0]: ClassFormatError*=new ClassFormatError((new StringBuilder("Index "))->append(index)->append(" is not a string but ")->append(constant->getClass()->getSimpleName())->toString())
-		//		athrow
-		throw new ClassFormatError((new StringBuilder("Index "))->append(index)->append(" is not a string but ")->append(constant->getClass()->getSimpleName())->toString());
-		//				stack: empty
+		return utf8_0020->string();
+	L0025: //
+		temp_002F = new StringBuilder("Index ");
+		temp_0048 = new ClassFormatError(temp_002F->append(index)->append(" is not a string but ")->append(constant_0006->getClass()->getSimpleName())->toString());
+		throw temp_0048;
 	}
 
-	void ConstantPool::read(ByteInputStream *in)
+	void ConstantPool::read(Pointer<ByteInputStream> in)
 	{
-		int count = 0;
-		int i = 0;
-		int tag = 0;
-		Constant *constant = nullptr;
-		int i = 0;
-		//		aload 1
-		//				stack[0]: ByteInputStream*=in
-		//		invokevirtual org.borium.javarecompiler.classfile.ByteInputStream.u2
-		//				stack[0]: int=in->u2()
-		//		istore 2
-		count = in->u2();
-		//				stack: empty
-		//		aload 0
-		//				stack[0]: ConstantPool*=this
-		//		iload 2
-		//				stack[0]: ConstantPool*=this
-		//				stack[1]: int=count
-		//		anewarray org.borium.javarecompiler.classfile.constants.Constant
-		//				stack[0]: ConstantPool*=this
-		//				stack[1]: JavaArray<Constant*>*=new JavaArray<Constant*>(count)
-		//		putfield constants [Lorg/borium/javarecompiler/classfile/constants/Constant;
-		this->constants = new JavaArray<Constant*>(count);
-		//				stack: empty
-		//		iconst 1
-		//				stack[0]: int=1
-		//		istore 3
-		i = 1;
-		//				stack: empty
-		//		goto L0046
+		int count_0005 = 0;
+		int i_000F = 0;
+		int tag_0018 = 0;
+		Pointer<Constant> constant_001F;
+		int i_004D = 0;
+		Pointer<JavaArray<Constant>> temp_0007;
+		count_0005 = in->u2();
+		temp_0007 = new JavaArray<Constant>(count_0005);
+		this->constants = (JavaArray<Constant>*)(temp_0007.getValue());
+		i_000F = 1;
 		goto L0046;
-		//				stack: empty
-		L0012: //
-		//		aload 1
-		//				stack[0]: ByteInputStream*=in
-		//		invokevirtual org.borium.javarecompiler.classfile.ByteInputStream.u1
-		//				stack[0]: int=in->u1()
-		//		istore 4
-		tag = in->u1();
-		//				stack: empty
-		//		iload 4
-		//				stack[0]: int=tag
-		//		invokestatic org.borium.javarecompiler.classfile.constants.Constant.create
+	L0012: //
+		tag_0018 = in->u1();
 		Constant::ClassInit();
-		//				stack[0]: Constant*=Constant::create(tag)
-		//		astore 5
-		constant = Constant::create(tag);
-		//				stack: empty
-		//		aload 5
-		//				stack[0]: Constant*=constant
-		//		aload 1
-		//				stack[0]: Constant*=constant
-		//				stack[1]: ByteInputStream*=in
-		//		invokevirtual org.borium.javarecompiler.classfile.constants.Constant.read
-		constant->read(in);
-		//				stack: empty
-		//		aload 0
-		//				stack[0]: ConstantPool*=this
-		//		getfield constants [Lorg/borium/javarecompiler/classfile/constants/Constant;
-		//				stack[0]: JavaArray<Constant*>*=this->constants
-		//		iload 3
-		//				stack[0]: JavaArray<Constant*>*=this->constants
-		//				stack[1]: int=i
-		//		aload 5
-		//				stack[0]: JavaArray<Constant*>*=this->constants
-		//				stack[1]: int=i
-		//				stack[2]: Constant*=constant
-		//		aastore
-		this->constants->assign(i, constant);
-		//				stack: empty
-		//		aload 5
-		//				stack[0]: Constant*=constant
-		//		iconst 5
-		//				stack[0]: Constant*=constant
-		//				stack[1]: int=5
-		//		invokevirtual org.borium.javarecompiler.classfile.constants.Constant.is
-		//				stack[0]: bool=constant->is(5)
-		//		ifne L0040
-		if (constant->is(5))
+		constant_001F = Constant::create(tag_0018);
+		constant_001F->read(in);
+		this->constants->assign(i_000F, constant_001F);
+		if (constant_001F->is(5))
 			goto L0040;
-		//				stack: empty
-		//		aload 5
-		//				stack[0]: Constant*=constant
-		//		bipush 6
-		//				stack[0]: Constant*=constant
-		//				stack[1]: int=6
-		//		invokevirtual org.borium.javarecompiler.classfile.constants.Constant.is
-		//				stack[0]: bool=constant->is(6)
-		//		ifeq L0043
-		if (!(constant->is(6)))
+		if (!(constant_001F->is(6)))
 			goto L0043;
-		//				stack: empty
-		L0040: //
-		//		iinc 3 1
-		i += 1;
-		//				stack: empty
-		L0043: //
-		//		iinc 3 1
-		i += 1;
-		//				stack: empty
-		L0046: //
-		//		iload 3
-		//				stack[0]: int=i
-		//		iload 2
-		//				stack[0]: int=i
-		//				stack[1]: int=count
-		//		if_icmplt L0012
-		if ((i) < (count))
+	L0040: //
+		i_000F += 1;
+	L0043: //
+		i_000F += 1;
+	L0046: //
+		if ((i_000F) < (count_0005))
 			goto L0012;
-		//				stack: empty
-		//		iconst 1
-		//				stack[0]: int=1
-		//		istore 3
-		i = 1;
-		//				stack: empty
-		//		goto L0066
+		i_004D = 1;
 		goto L0066;
-		//				stack: empty
-		L0050: //
-		//		aload 0
-		//				stack[0]: ConstantPool*=this
-		//		getfield constants [Lorg/borium/javarecompiler/classfile/constants/Constant;
-		//				stack[0]: JavaArray<Constant*>*=this->constants
-		//		iload 3
-		//				stack[0]: JavaArray<Constant*>*=this->constants
-		//				stack[1]: int=i
-		//		aaload
-		//				stack[0]: Constant*=this->constants->get(i)
-		//		ifnull L0063
-		if ((this->constants->get(i)) == nullptr)
+	L0050: //
+		if ((this->constants->get(i_004D)) == nullptr)
 			goto L0063;
-		//				stack: empty
-		//		aload 0
-		//				stack[0]: ConstantPool*=this
-		//		getfield constants [Lorg/borium/javarecompiler/classfile/constants/Constant;
-		//				stack[0]: JavaArray<Constant*>*=this->constants
-		//		iload 3
-		//				stack[0]: JavaArray<Constant*>*=this->constants
-		//				stack[1]: int=i
-		//		aaload
-		//				stack[0]: Constant*=this->constants->get(i)
-		//		aload 0
-		//				stack[0]: Constant*=this->constants->get(i)
-		//				stack[1]: ConstantPool*=this
-		//		invokevirtual org.borium.javarecompiler.classfile.constants.Constant.fixup
-		this->constants->get(i)->fixup(this);
-		//				stack: empty
-		L0063: //
-		//		iinc 3 1
-		i += 1;
-		//				stack: empty
-		L0066: //
-		//		iload 3
-		//				stack[0]: int=i
-		//		iload 2
-		//				stack[0]: int=i
-		//				stack[1]: int=count
-		//		if_icmplt L0050
-		if ((i) < (count))
+		this->constants->get(i_004D)->fixup(this);
+	L0063: //
+		i_004D += 1;
+	L0066: //
+		if ((i_004D) < (count_0005))
 			goto L0050;
-		//				stack: empty
-		//		return
 		return;
-		//				stack: empty
 	}
 
 	void ConstantPool::verify(int majorVersion, int minorVersion)
 	{
-		int i = 0;
-		Constant *constant = nullptr;
-		//		iconst 0
-		//				stack[0]: int=0
-		//		istore 3
-		i = 0;
-		//				stack: empty
-		//		goto L001F
+		int i_0002 = 0;
+		Pointer<Constant> constant_000D;
+		i_0002 = 0;
 		goto L001F;
-		//				stack: empty
-		L0005: //
-		//		aload 0
-		//				stack[0]: ConstantPool*=this
-		//		getfield constants [Lorg/borium/javarecompiler/classfile/constants/Constant;
-		//				stack[0]: JavaArray<Constant*>*=this->constants
-		//		iload 3
-		//				stack[0]: JavaArray<Constant*>*=this->constants
-		//				stack[1]: int=i
-		//		aaload
-		//				stack[0]: Constant*=this->constants->get(i)
-		//		astore 4
-		constant = this->constants->get(i);
-		//				stack: empty
-		//		aload 4
-		//				stack[0]: Constant*=constant
-		//		ifnull L001C
-		if ((constant) == nullptr)
+	L0005: //
+		constant_000D = this->constants->get(i_0002);
+		if ((constant_000D) == nullptr)
 			goto L001C;
-		//				stack: empty
-		//		aload 4
-		//				stack[0]: Constant*=constant
-		//		iload 1
-		//				stack[0]: Constant*=constant
-		//				stack[1]: int=majorVersion
-		//		iload 2
-		//				stack[0]: Constant*=constant
-		//				stack[1]: int=majorVersion
-		//				stack[2]: int=minorVersion
-		//		aload 0
-		//				stack[0]: Constant*=constant
-		//				stack[1]: int=majorVersion
-		//				stack[2]: int=minorVersion
-		//				stack[3]: ConstantPool*=this
-		//		iload 3
-		//				stack[0]: Constant*=constant
-		//				stack[1]: int=majorVersion
-		//				stack[2]: int=minorVersion
-		//				stack[3]: ConstantPool*=this
-		//				stack[4]: int=i
-		//		invokevirtual org.borium.javarecompiler.classfile.constants.Constant.verify
-		//				stack[0]: bool=constant->verify(majorVersion, minorVersion, this, i)
-		//		pop
-		constant->verify(majorVersion, minorVersion, this, i);
-		//				stack: empty
-		L001C: //
-		//		iinc 3 1
-		i += 1;
-		//				stack: empty
-		L001F: //
-		//		iload 3
-		//				stack[0]: int=i
-		//		aload 0
-		//				stack[0]: int=i
-		//				stack[1]: ConstantPool*=this
-		//		getfield constants [Lorg/borium/javarecompiler/classfile/constants/Constant;
-		//				stack[0]: int=i
-		//				stack[1]: JavaArray<Constant*>*=this->constants
-		//		arraylength
-		//				stack[0]: int=i
-		//				stack[1]: int=this->constants->length
-		//		if_icmplt L0005
-		if ((i) < (this->constants->length))
+		constant_000D->verify(majorVersion, minorVersion, this, i_0002);
+	L001C: //
+		i_0002 += 1;
+	L001F: //
+		if ((i_0002) < (this->constants->length))
 			goto L0005;
-		//				stack: empty
-		//		return
 		return;
-		//				stack: empty
 	}
 
 }

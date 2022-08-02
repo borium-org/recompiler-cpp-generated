@@ -7,6 +7,7 @@ namespace org::borium::javarecompiler::classfile
 	{
 	public:
 		virtual Pointer<Iterator<String>> iterator();
+		virtual void add(Pointer<String> type);
 	};
 
 }

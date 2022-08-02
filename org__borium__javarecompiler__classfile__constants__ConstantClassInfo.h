@@ -7,7 +7,8 @@ namespace org::borium::javarecompiler::classfile::constants
 
 	class ConstantClassInfo : public Constant
 	{
-
+	public:
+		virtual Pointer<String> getName();
 	};
 
 }
